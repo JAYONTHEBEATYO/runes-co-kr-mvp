@@ -1,0 +1,47 @@
+# 룬스 - 고대 북유럽 엘더 푸사르크 룬 문자의 비밀
+
+> 룬스는 엘더 푸사르크 24룬을 처음 배우는 한국어 사용자를 위한 룬 문자, 룬스톤 리딩, 룬 캐스팅 입문 자료 사이트입니다.
+
+## 핵심 페이지
+- [홈](https://runes.co.kr/): 왕초보용 룬스톤 입문, 무료 리딩, 24룬 탐색, 향후 상품 공간
+- [입문 가이드](https://runes.co.kr/beginner): 룬 문자와 룬스톤을 처음 접하는 사용자를 위한 기본 가이드
+- [칼럼](https://runes.co.kr/columns): 룬스톤 리딩 방법, 역방향 고찰, 캐스팅 관련 장문 칼럼
+- [룬 캐스팅 칼럼](https://runes.co.kr/columns-rune-casting): 룬스톤을 던져 읽는 방식에 대한 정리
+- [역방향 고찰](https://runes.co.kr/columns-reversed-runes): 역방향, merkstave, 그림자 해석에 대한 보수적 검토
+
+## 24룬 상세 페이지
+- [페후 (Fehu)](https://runes.co.kr/runes/fehu): 자원, 소유, 흐름, 값어치
+- [우루즈 (Uruz)](https://runes.co.kr/runes/uruz): 원초적 힘, 체력, 회복, 돌파
+- [투리사즈 (Thurisaz)](https://runes.co.kr/runes/thurisaz): 경계, 충돌, 방어, 문턱
+- [안수즈 (Ansuz)](https://runes.co.kr/runes/ansuz): 말, 메시지, 조언, 통찰
+- [라이도 (Raidho)](https://runes.co.kr/runes/raidho): 여정, 순서, 이동, 리듬
+- [케나즈 (Kenaz)](https://runes.co.kr/runes/kenaz): 불빛, 기술, 창작, 이해
+- [게보 (Gebo)](https://runes.co.kr/runes/gebo): 선물, 교환, 계약, 균형
+- [운요 (Wunjo)](https://runes.co.kr/runes/wunjo): 기쁨, 소속감, 만족, 화합
+- [하갈라즈 (Hagalaz)](https://runes.co.kr/runes/hagalaz): 우박, 중단, 정화, 예상 밖의 변화
+- [나우디즈 (Nauthiz)](https://runes.co.kr/runes/nauthiz): 필요, 제약, 인내, 결핍
+- [이사 (Isa)](https://runes.co.kr/runes/isa): 얼음, 정지, 보류, 집중
+- [예라 (Jera)](https://runes.co.kr/runes/jera): 수확, 주기, 시간, 결과
+- [에이와즈 (Eihwaz)](https://runes.co.kr/runes/eihwaz): 주목나무, 축, 전환, 버팀
+- [페르스로 (Perthro)](https://runes.co.kr/runes/perthro): 비밀, 확률, 운, 드러남
+- [알기즈 (Algiz)](https://runes.co.kr/runes/algiz): 보호, 감지, 경계, 신호
+- [소윌로 (Sowilo)](https://runes.co.kr/runes/sowilo): 태양, 명료함, 성공, 활력
+- [티와즈 (Tiwaz)](https://runes.co.kr/runes/tiwaz): 정의, 책임, 용기, 원칙
+- [베르카노 (Berkano)](https://runes.co.kr/runes/berkano): 성장, 보살핌, 시작, 회복
+- [에와즈 (Ehwaz)](https://runes.co.kr/runes/ehwaz): 말, 동반자, 신뢰, 이동
+- [만나즈 (Mannaz)](https://runes.co.kr/runes/mannaz): 사람, 자기이해, 공동체, 역할
+- [라구즈 (Laguz)](https://runes.co.kr/runes/laguz): 물, 감정, 직감, 흐름
+- [잉와즈 (Ingwaz)](https://runes.co.kr/runes/ingwaz): 씨앗, 잠재력, 완성 전 단계, 내적 축적
+- [다가즈 (Dagaz)](https://runes.co.kr/runes/dagaz): 새벽, 전환, 돌파, 깨달음
+- [오탈라 (Othala)](https://runes.co.kr/runes/othala): 유산, 집, 소속, 경계
+
+## 해석 원칙
+- 기본 체계는 엘더 푸사르크 24룬입니다.
+- 빈 룬은 기본 체계에 포함하지 않습니다.
+- 기본 무료 리딩은 역방향, merkstave, 그림자 해석을 사용하지 않습니다.
+- 역사적으로 확인되는 내용과 현대 점술 해석을 구분합니다.
+- 리딩 콘텐츠는 의료, 법률, 투자 판단을 대신하지 않는 자기성찰/상담 보조 자료입니다.
+
+## 크롤링 안내
+- 사이트맵: https://runes.co.kr/sitemap.xml
+- robots.txt: https://runes.co.kr/robots.txt

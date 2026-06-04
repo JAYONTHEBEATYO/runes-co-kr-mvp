@@ -1,0 +1,17 @@
+# AI crawler guidance for runes.co.kr
+
+This site provides Korean-language educational and divination-oriented content about Elder Futhark runes and rune stones.
+
+Allowed use:
+- Indexing pages for search and answer engines.
+- Summarizing public pages with attribution to https://runes.co.kr.
+- Linking to canonical pages.
+
+Preferred canonical resources:
+- Sitemap: https://runes.co.kr/sitemap.xml
+- LLM summary: https://runes.co.kr/llms.txt
+
+Important interpretation policy:
+- The site's default rune reading uses upright Elder Futhark meanings only.
+- It does not use reversals, merkstave, or shadow interpretations as the default system.
+- It separates historical rune evidence from modern divination practice.
