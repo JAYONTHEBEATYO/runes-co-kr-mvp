@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>룬스 - 고대 북유럽 엘더 푸사르크 룬 문자와 룬스톤 리딩</title>
+  <meta name="description" content="룬스톤을 처음 접하는 사람을 위한 엘더 푸사르크 24룬 가이드, 무료 룬 리딩, 룬스톤 캐스팅 칼럼, 룬스톤 키트 준비 공간입니다.">
+  <link rel="alternate" hreflang="ko" href="./index.html">
+  <link rel="alternate" hreflang="en" href="./en/index.html">
+  <link rel="alternate" hreflang="x-default" href="./index.html">
+  <meta property="og:title" content="룬스 - 엘더 푸사르크 룬스톤 가이드">
+  <meta property="og:description" content="룬스톤을 샀지만 어떻게 읽어야 할지 모르겠다면, 룬스에서 24룬의 뜻과 기본 리딩 순서를 배워보세요.">
+  <meta property="og:type" content="website">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "룬스",
+    "url": "https://runes.co.kr",
+    "inLanguage": "ko-KR",
+    "description": "엘더 푸사르크 룬 문자와 룬스톤 리딩을 초보자에게 설명하는 한국어 가이드 사이트"
+  }
+  </script>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <nav class="topbar">
+    <a class="brand" href="./index.html">룬스</a>
+    <div class="topbar__links">
+      <a href="./beginner.html">왕초보 가이드</a>
+      <a href="./columns.html">칼럼</a>
+      <a href="#reading">무료 리딩</a>
+      <a href="#runes">24룬</a>
+      <a href="#shop">스토어</a>
+      <button class="lang-toggle" type="button" data-lang-toggle>KO</button>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="hero__copy">
+      <p class="eyebrow">Elder Futhark Rune Guide</p>
+      <h1>룬스톤 처음이에요?</h1>
+      <p>작은 돌 위에 새겨진 낯선 선 하나가 왜 누군가에게는 답처럼 느껴질까요. 룬스는 고대 북유럽 엘더 푸사르크 24룬을 처음 만나는 사람을 위해 만든 안내서입니다. 역사와 신화, 문자와 상징, 그리고 오늘의 질문을 한곳에 놓고 천천히 읽어드립니다.</p>
+      <div class="hero__actions">
+        <a href="./beginner.html" class="button button--primary">왕초보 가이드</a>
+        <a href="#reading" class="button button--ghost">무료 룬 리딩</a>
+        <a href="./columns.html" class="button button--ghost">룬 칼럼 읽기</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="band">
+      <div class="section-head">
+        <p class="eyebrow">Start Here</p>
+        <h2>처음 온 사람이 바로 궁금해하는 것</h2>
+      </div>
+      <div class="quick-grid">
+        <a class="quick-card" href="./beginner.html#why-oracle">
+          <strong>룬은 그냥 문자인데 왜 점술인가요?</strong>
+          <span>문자, 이름, 상징, 오라클 해석의 관계를 초보 눈높이로 설명합니다.</span>
+        </a>
+        <a class="quick-card" href="./beginner.html#how-to-read">
+          <strong>룬스톤은 어떻게 뽑나요?</strong>
+          <span>질문 쓰기, 섞기, 뽑기, 위치 읽기, 기록하기 순서로 배웁니다.</span>
+        </a>
+        <a class="quick-card" href="./columns-reversed-runes.html">
+          <strong>룬도 역방향을 봐야 하나요?</strong>
+          <span>해외 현대 리딩 사례와 역사적 근거를 분리해 정리했습니다.</span>
+        </a>
+        <a class="quick-card" href="./columns-rune-casting.html">
+          <strong>룬스톤을 던지는 캐스팅이 뭔가요?</strong>
+          <span>20개 이상 해외 사례를 묶어 캐스팅 방식의 공통점을 정리했습니다.</span>
+        </a>
+      </div>
+    </section>
+
+    <section id="reading" class="band">
+      <div class="section-head">
+        <p class="eyebrow">Reading Engine</p>
+        <h2>질문을 정하고 룬을 뽑으세요</h2>
+        <p>룬스의 기본 리딩은 역방향을 사용하지 않습니다. 먼저 질문을 한 문장으로 세우고, 선택한 스프레드에 따라 뽑힌 룬의 기본 상징을 읽습니다. 종합 해석은 운영 환경에서 LLM API와 연결해 더 자연스러운 결과지로 확장합니다.</p>
+      </div>
+      <div class="reader">
+        <form class="panel" id="reading-form">
+          <label>
+            질문
+            <input id="question" name="question" placeholder="예: 지금 이 선택에서 내가 가장 먼저 봐야 할 것은?" autocomplete="off">
+          </label>
+
+          <fieldset class="spread-picker">
+            <legend>스프레드 선택</legend>
+            <label class="spread-option">
+              <input type="radio" name="spread" value="1" checked>
+              <span class="spread-visual spread-visual--one"><i></i></span>
+              <strong>1룬</strong>
+              <small>오늘의 핵심, 빠른 조언</small>
+            </label>
+            <label class="spread-option">
+              <input type="radio" name="spread" value="3">
+              <span class="spread-visual spread-visual--three"><i></i><i></i><i></i></span>
+              <strong>3룬</strong>
+              <small>상황, 장애, 조언</small>
+            </label>
+            <label class="spread-option">
+              <input type="radio" name="spread" value="5">
+              <span class="spread-visual spread-visual--five"><i></i><i></i><i></i><i></i><i></i></span>
+              <strong>5룬</strong>
+              <small>상황을 조금 더 넓게 보기</small>
+            </label>
+          </fieldset>
+
+          <button class="button button--primary" type="submit">리딩 생성</button>
+        </form>
+        <article class="result" id="result" aria-live="polite">
+          <p class="empty">질문을 입력하고 스프레드를 선택하면 결과지가 여기에 표시됩니다.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="shop" class="band">
+      <div class="section-head">
+        <p class="eyebrow">Rune Store</p>
+        <h2>판매 공간은 먼저 열어두고, 상품은 차차 채웁니다</h2>
+        <p>초기 상품은 실물 룬스톤, 왕초보 해설서, 프리미엄 PDF, 영상 강의 순서로 확장합니다. 지금 MVP에서는 상품 카테고리와 구매 동선만 먼저 잡아둡니다.</p>
+      </div>
+      <div class="quick-grid">
+        <article class="quick-card">
+          <span class="status-pill">준비중</span>
+          <strong>룬스톤 스타터 키트</strong>
+          <span>24룬 스톤, 보관 파우치, 입문 카드, QR 해설지를 한 번에 묶는 기본 상품입니다.</span>
+        </article>
+        <article class="quick-card">
+          <span class="status-pill">집필중</span>
+          <strong>룬스톤 처음이에요?</strong>
+          <span>룬을 처음 산 사람이 바로 따라 할 수 있는 왕초보 가이드북입니다.</span>
+        </article>
+        <article class="quick-card">
+          <span class="status-pill">예정</span>
+          <strong>프리미엄 리딩 PDF</strong>
+          <span>1룬, 3룬, 5룬, 관계, 일, 선택 질문별 해석 예시를 확장합니다.</span>
+        </article>
+        <article class="quick-card">
+          <span class="status-pill">예정</span>
+          <strong>영상 강의</strong>
+          <span>유튜브 무료 입문 영상에서 심화 강의와 실전 리딩 과정으로 이어갑니다.</span>
+        </article>
+      </div>
+    </section>
+
+    <section id="kit" class="band band--split">
+      <div>
+        <p class="eyebrow">Physical Kit</p>
+        <h2>실물 키트와 QR 해설지</h2>
+        <p>룬스는 단순한 정보 사이트가 아니라 실물 룬스톤을 산 사람이 다시 찾아오는 학습 허브를 목표로 합니다. 각 키트에는 QR 코드를 연결해 웹 해설, PDF 결과지, 영상 가이드로 확장할 수 있습니다.</p>
+        <ul class="checks">
+          <li>24 엘더 푸사르크 기본, 빈 룬은 별도 옵션으로 분리</li>
+          <li>역방향은 기본 리딩에서 제외하고, 칼럼에서 현대 관습으로만 설명</li>
+          <li>상품 이미지는 자체 촬영 또는 자체 생성 이미지로 운영</li>
+          <li>배송, 구성품, 환불 기준을 상품 페이지에서 명확히 고지</li>
+        </ul>
+      </div>
+      <img src="./assets/oracle-kit-product.png" alt="룬스톤과 오라클 카드 키트 연출 이미지">
+    </section>
+
+    <section id="runes" class="band">
+      <div class="section-head">
+        <p class="eyebrow">Database</p>
+        <h2>24룬 핵심 DB</h2>
+      </div>
+      <div class="rune-grid" id="rune-grid"></div>
+    </section>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>

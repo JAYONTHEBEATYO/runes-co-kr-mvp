@@ -1,0 +1,19 @@
+{
+  "defaultLocale": "ko",
+  "locales": ["ko", "en"],
+  "routes": {
+    "home": {
+      "ko": "/index.html",
+      "en": "/en/index.html"
+    },
+    "columns": {
+      "ko": "/columns.html",
+      "en": "/en/columns.html"
+    }
+  },
+  "production_notes": [
+    "Next.js 전환 시 next-intl 또는 next-i18next 구조로 확장한다.",
+    "룬 DB는 rune id를 고정 키로 두고 locale별 name, keywords, upright, question을 분리한다.",
+    "SEO용 canonical, hreflang, Article/FAQ schema를 각 언어 페이지에 별도로 생성한다."
+  ]
+}
