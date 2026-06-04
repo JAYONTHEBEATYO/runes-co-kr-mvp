@@ -92,11 +92,11 @@ function escapeHtml(value) {
 function renderRuneGrid() {
   const grid = document.getElementById("rune-grid");
   grid.innerHTML = runeData.map(rune => `
-    <article class="rune-tile">
+    <a class="rune-tile" href="./runes/${rune.id}.html" aria-label="${rune.ko} ${rune.name} 상세 해설 보기">
       <div class="symbol">${rune.symbol}</div>
       <strong>${rune.ko} · ${rune.name}</strong>
       <small>${rune.keywords.join(" / ")}</small>
-    </article>
+    </a>
   `).join("");
 }
 
