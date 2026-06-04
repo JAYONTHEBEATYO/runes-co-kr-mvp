@@ -1,0 +1,60 @@
+{
+  "source_locale": "ko-KR",
+  "default_model": "gpt-4.1-mini",
+  "target_locales": [
+    {
+      "locale": "en",
+      "label": "English",
+      "dir": "en",
+      "tone": "clear, warm, beginner-friendly, not sensational"
+    },
+    {
+      "locale": "ja",
+      "label": "日本語",
+      "dir": "ja",
+      "tone": "polite, calm, beginner-friendly"
+    },
+    {
+      "locale": "zh-Hans",
+      "label": "简体中文",
+      "dir": "zh-Hans",
+      "tone": "clear, accessible, beginner-friendly"
+    },
+    {
+      "locale": "zh-Hant",
+      "label": "繁體中文",
+      "dir": "zh-Hant",
+      "tone": "clear, elegant, beginner-friendly"
+    },
+    {
+      "locale": "es",
+      "label": "Español",
+      "dir": "es",
+      "tone": "clear, warm, beginner-friendly"
+    },
+    {
+      "locale": "fr",
+      "label": "Français",
+      "dir": "fr",
+      "tone": "clear, refined, beginner-friendly"
+    }
+  ],
+  "glossary": {
+    "룬스": "Runes",
+    "엘더 푸사르크": "Elder Futhark",
+    "룬스톤": "rune stone",
+    "룬 문자": "rune letters",
+    "역방향": "reversed rune",
+    "그림자 해석": "shadow interpretation",
+    "캐스팅": "casting",
+    "리딩": "reading"
+  },
+  "translation_rules": [
+    "Do not invent historical certainty. Keep the distinction between historical evidence and modern divination practice.",
+    "Do not add reversals, merkstave, or shadow interpretations as the default system.",
+    "Do not provide medical, legal, investment, or other high-stakes advice.",
+    "Keep rune names in Latin transliteration and include the local-language explanatory wording around them.",
+    "Preserve HTML structure and attributes. Translate visible human-facing text only.",
+    "Preserve canonical URLs unless the page is explicitly generated into a locale directory."
+  ]
+}

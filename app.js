@@ -34,12 +34,12 @@ async function renderResult(event) {
     <p><strong>질문:</strong> ${escapeHtml(question)}</p>
     ${selected.map((rune, index) => `
       <div class="spread-card">
-        <div class="rune-mark" aria-hidden="true">${rune.symbol}</div>
+        <div class="rune-mark" aria-hidden="true">${escapeHtml(rune.symbol)}</div>
         <div>
-          <h3>${positions[count][index]} · ${rune.ko}</h3>
-          <p><strong>${rune.name}</strong> · ${rune.keywords.join(" / ")}</p>
-          <p>${rune.upright}</p>
-          <p><strong>질문에 비춰보기</strong> ${rune.question}</p>
+          <h3>${escapeHtml(positions[count][index])} · ${escapeHtml(rune.ko)}</h3>
+          <p><strong>${escapeHtml(rune.name)}</strong> · ${formatKeywords(rune.keywords)}</p>
+          <p>${escapeHtml(rune.upright)}</p>
+          <p><strong>질문에 비춰보기</strong> ${escapeHtml(rune.question)}</p>
         </div>
       </div>
     `).join("")}
@@ -48,8 +48,11 @@ async function renderResult(event) {
       <h3>종합 해석</h3>
       <p>${llmReading}</p>
     </section>
-    <button class="button button--primary" onclick="window.print()">PDF로 저장</button>
+    <button class="button button--primary" type="button" data-print-result>PDF로 저장</button>
   `;
+
+  const printButton = result.querySelector("[data-print-result]");
+  if (printButton) printButton.addEventListener("click", () => window.print());
 }
 
 async function requestLlmReading(payload) {
@@ -80,7 +83,7 @@ function buildLocalSynthesis({ question, runes }) {
 }
 
 function escapeHtml(value) {
-  return value.replace(/[&<>"']/g, char => ({
+  return String(value).replace(/[&<>"']/g, char => ({
     "&": "&amp;",
     "<": "&lt;",
     ">": "&gt;",
@@ -89,13 +92,17 @@ function escapeHtml(value) {
   }[char]));
 }
 
+function formatKeywords(keywords) {
+  return keywords.map(escapeHtml).join(" / ");
+}
+
 function renderRuneGrid() {
   const grid = document.getElementById("rune-grid");
   grid.innerHTML = runeData.map(rune => `
-    <a class="rune-tile" href="./runes/${rune.id}.html" aria-label="${rune.ko} ${rune.name} 상세 해설 보기">
-      <div class="symbol">${rune.symbol}</div>
-      <strong>${rune.ko} · ${rune.name}</strong>
-      <small>${rune.keywords.join(" / ")}</small>
+    <a class="rune-tile" href="./runes/${encodeURIComponent(rune.id)}.html" aria-label="${escapeHtml(rune.ko)} ${escapeHtml(rune.name)} 상세 해설 보기">
+      <div class="symbol">${escapeHtml(rune.symbol)}</div>
+      <strong>${escapeHtml(rune.ko)} · ${escapeHtml(rune.name)}</strong>
+      <small>${formatKeywords(rune.keywords)}</small>
     </a>
   `).join("");
 }
