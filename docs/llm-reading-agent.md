@@ -19,12 +19,13 @@ The serverless function loads:
 - `content/elder-futhark.ko.json`
 - `content/rag/rune-reading-agent.ko.json`
 
-Then it calls the OpenAI Responses API and returns:
+Then it calls the Gemini API and returns:
 
 ```json
 {
   "reading": "...",
-  "model": "gpt-4.1-mini",
+  "model": "gemini-2.5-flash",
+  "provider": "gemini",
   "source": "runes-reading-agent-ko"
 }
 ```
@@ -32,14 +33,14 @@ Then it calls the OpenAI Responses API and returns:
 ## Required Vercel Environment Variables
 
 ```text
-OPENAI_API_KEY
-OPENAI_READING_MODEL
+GEMINI_API_KEY
+GEMINI_READING_MODEL
 ```
 
-`OPENAI_READING_MODEL` is optional. Default:
+`GEMINI_READING_MODEL` is optional. Default:
 
 ```text
-gpt-4.1-mini
+gemini-2.5-flash
 ```
 
 ## Safety Policy
@@ -54,7 +55,7 @@ The agent prompt enforces:
 
 ## Current Fallback
 
-If the API key is absent or the OpenAI call fails, the frontend catches the error and displays the local fallback synthesis.
+If the API key is absent or the Gemini call fails, the frontend catches the error and displays the local fallback synthesis.
 
 This keeps the free reading page usable while API setup is pending.
 

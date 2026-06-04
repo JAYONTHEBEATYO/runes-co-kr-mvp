@@ -8,7 +8,7 @@ Site: https://runes.co.kr
 - Static HTML/CSS/JS deployed on Vercel.
 - No database, no login, no payment, no user account system.
 - Free reading form runs in browser and falls back locally if `/api/rune-reading` is absent.
-- No OpenAI or Vercel secret is stored in repository files.
+- No Gemini, OpenAI, or Vercel secret is stored in repository files.
 
 ## Implemented Controls
 
@@ -38,9 +38,9 @@ Residual risk: If a future editor loads untrusted CMS content into the rune DB w
 
 Risk: LLM translation or reading generation can leak API keys if called directly from browser code.
 
-Mitigation: Translation script reads `OPENAI_API_KEY` only from the process environment. Client code does not include OpenAI keys.
+Mitigation: The reading endpoint reads `GEMINI_API_KEY` only from server-side environment variables. Translation tooling reads `OPENAI_API_KEY` only from the process environment. Client code does not include provider keys.
 
-Residual risk: If `/api/rune-reading` is later implemented, the OpenAI key must live only in Vercel environment variables and the route must enforce rate limiting.
+Residual risk: `/api/rune-reading` must keep the Gemini key only in Vercel environment variables and should add rate limiting before paid launch.
 
 ### Clickjacking
 
@@ -67,5 +67,5 @@ Residual risk: Any future Next.js, CMS, payment, or auth dependency must be audi
 - Add abuse logging for repeated LLM calls.
 - Add privacy policy before collecting emails, names, birth data, questions, photos, or payment data.
 - Add a refund/commerce policy before selling kits, PDFs, or courses.
-- Keep OpenAI, payment, courier, and admin keys only in Vercel environment variables.
+- Keep Gemini, OpenAI, payment, courier, and admin keys only in Vercel environment variables.
 - Do not expose private PDF archives or RAG source files under the public web root.

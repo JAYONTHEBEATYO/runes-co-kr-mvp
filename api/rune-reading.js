@@ -5,6 +5,7 @@ const ROOT = process.cwd();
 const MAX_QUESTION_LENGTH = 500;
 const ALLOWED_TOPICS = new Set(["general", "love", "work", "money", "self", "choice"]);
 const ALLOWED_SPREADS = new Set([1, 3, 5]);
+const DEFAULT_MODEL = "gemini-2.5-flash";
 
 function readJson(relativePath) {
   return JSON.parse(fs.readFileSync(path.join(ROOT, relativePath), "utf8"));
@@ -55,13 +56,7 @@ function buildPrompt({ question, topic, spread, positions, runes, agentContext }
     JSON.stringify(agentContext, null, 2),
     "",
     "[리딩 입력]",
-    JSON.stringify({
-      topic,
-      question,
-      spread,
-      positions,
-      runes
-    }, null, 2),
+    JSON.stringify({ topic, question, spread, positions, runes }, null, 2),
     "",
     "[출력 지시]",
     "마크다운 기호를 과하게 쓰지 말고, 웹 결과지에 바로 들어갈 수 있는 한국어 문단으로 작성한다.",
@@ -72,15 +67,59 @@ function buildPrompt({ question, topic, spread, positions, runes, agentContext }
   ].join("\n");
 }
 
-function extractOutputText(data) {
-  if (data.output_text) return data.output_text;
+function extractGeminiText(data) {
   const parts = [];
-  for (const item of data.output || []) {
-    for (const content of item.content || []) {
-      if (content.type === "output_text" && content.text) parts.push(content.text);
+  for (const candidate of data.candidates || []) {
+    for (const part of candidate.content?.parts || []) {
+      if (part.text) parts.push(part.text);
     }
   }
   return parts.join("\n").trim();
+}
+
+async function callGemini(prompt) {
+  const model = process.env.GEMINI_READING_MODEL || DEFAULT_MODEL;
+  const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent`;
+
+  const response = await fetch(endpoint, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "x-goog-api-key": process.env.GEMINI_API_KEY
+    },
+    body: JSON.stringify({
+      contents: [
+        {
+          role: "user",
+          parts: [{ text: prompt }]
+        }
+      ],
+      generationConfig: {
+        temperature: 0.65,
+        topP: 0.9,
+        maxOutputTokens: 1600
+      },
+      safetySettings: [
+        { category: "HARM_CATEGORY_HARASSMENT", threshold: "BLOCK_MEDIUM_AND_ABOVE" },
+        { category: "HARM_CATEGORY_HATE_SPEECH", threshold: "BLOCK_MEDIUM_AND_ABOVE" },
+        { category: "HARM_CATEGORY_SEXUALLY_EXPLICIT", threshold: "BLOCK_MEDIUM_AND_ABOVE" },
+        { category: "HARM_CATEGORY_DANGEROUS_CONTENT", threshold: "BLOCK_MEDIUM_AND_ABOVE" }
+      ]
+    })
+  });
+
+  if (!response.ok) {
+    const errorText = await response.text();
+    const error = new Error(errorText.slice(0, 800));
+    error.status = response.status;
+    throw error;
+  }
+
+  const data = await response.json();
+  return {
+    reading: extractGeminiText(data),
+    model
+  };
 }
 
 module.exports = async function handler(req, res) {
@@ -92,9 +131,9 @@ module.exports = async function handler(req, res) {
     return;
   }
 
-  if (!process.env.OPENAI_API_KEY) {
+  if (!process.env.GEMINI_API_KEY) {
     res.statusCode = 503;
-    res.end(JSON.stringify({ error: "OPENAI_API_KEY is not configured" }));
+    res.end(JSON.stringify({ error: "GEMINI_API_KEY is not configured" }));
     return;
   }
 
@@ -122,47 +161,27 @@ module.exports = async function handler(req, res) {
       return;
     }
 
-    const response = await fetch("https://api.openai.com/v1/responses", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`
-      },
-      body: JSON.stringify({
-        model: process.env.OPENAI_READING_MODEL || "gpt-4.1-mini",
-        input: buildPrompt({ question, topic, spread, positions, runes, agentContext }),
-        max_output_tokens: 1400,
-        text: {
-          format: { type: "text" },
-          verbosity: "medium"
-        }
-      })
-    });
-
-    if (!response.ok) {
-      const errorText = await response.text();
-      res.statusCode = 502;
-      res.end(JSON.stringify({ error: "OpenAI response failed", detail: errorText.slice(0, 500) }));
-      return;
-    }
-
-    const data = await response.json();
-    const reading = extractOutputText(data);
+    const prompt = buildPrompt({ question, topic, spread, positions, runes, agentContext });
+    const { reading, model } = await callGemini(prompt);
 
     if (!reading) {
       res.statusCode = 502;
-      res.end(JSON.stringify({ error: "Empty model response" }));
+      res.end(JSON.stringify({ error: "Empty Gemini response" }));
       return;
     }
 
     res.statusCode = 200;
     res.end(JSON.stringify({
       reading,
-      model: process.env.OPENAI_READING_MODEL || "gpt-4.1-mini",
+      model,
+      provider: "gemini",
       source: "runes-reading-agent-ko"
     }));
   } catch (error) {
-    res.statusCode = 500;
-    res.end(JSON.stringify({ error: "Rune reading failed", detail: String(error.message || error).slice(0, 300) }));
+    res.statusCode = error.status || 500;
+    res.end(JSON.stringify({
+      error: "Gemini rune reading failed",
+      detail: String(error.message || error).slice(0, 500)
+    }));
   }
 };
