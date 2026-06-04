@@ -4,6 +4,15 @@ const positions = {
   5: ["상황", "내 역할", "주의점", "다음 행동", "흐름"]
 };
 
+const topicLabels = {
+  general: "전체 흐름",
+  love: "관계 / 연애",
+  work: "일 / 커리어",
+  money: "돈 / 판매 / 자원",
+  self: "마음정리 / 자기이해",
+  choice: "선택 / 결정"
+};
+
 let runeData = [];
 
 function pickRunes(count) {
@@ -20,18 +29,20 @@ async function renderResult(event) {
   event.preventDefault();
   const form = new FormData(event.currentTarget);
   const count = Number(form.get("spread"));
+  const topic = (form.get("topic") || "general").toString();
   const question = (form.get("question") || "").toString().trim() || "지금 내가 가장 먼저 바라봐야 할 흐름은 무엇인가요?";
   const selected = pickRunes(count);
   const result = document.getElementById("result");
 
   result.innerHTML = `<p class="empty">룬을 정리하고 결과지를 만드는 중입니다.</p>`;
 
-  const llmReading = await requestLlmReading({ question, spread: count, runes: selected });
+  const llmReading = await requestLlmReading({ question, topic, spread: count, positions: positions[count], runes: selected });
 
   result.innerHTML = `
     <p class="eyebrow">Rune Reading Result</p>
     <h2>${count}룬 리딩</h2>
     <p><strong>질문:</strong> ${escapeHtml(question)}</p>
+    <p><strong>주제:</strong> ${escapeHtml(topicLabels[topic] || topicLabels.general)}</p>
     ${selected.map((rune, index) => `
       <div class="spread-card">
         <div class="rune-mark" aria-hidden="true">${escapeHtml(rune.symbol)}</div>
@@ -45,8 +56,8 @@ async function renderResult(event) {
     `).join("")}
     <section class="llm-summary">
       <p class="eyebrow">Synthesis</p>
-      <h3>종합 해석</h3>
-      <p>${llmReading}</p>
+      <h3>AI 종합 해석</h3>
+      <div class="reading-copy">${formatReadingText(llmReading)}</div>
     </section>
     <button class="button button--primary" type="button" data-print-result>PDF로 저장</button>
   `;
@@ -68,7 +79,7 @@ async function requestLlmReading(payload) {
     });
     if (!response.ok) throw new Error(`LLM endpoint returned ${response.status}`);
     const data = await response.json();
-    if (data && data.reading) return escapeHtml(data.reading);
+    if (data && data.reading) return data.reading;
   } catch (error) {
     console.info("LLM endpoint unavailable; using local synthesis.", error);
   }
@@ -76,10 +87,10 @@ async function requestLlmReading(payload) {
   return buildLocalSynthesis(payload);
 }
 
-function buildLocalSynthesis({ question, runes }) {
+function buildLocalSynthesis({ question, topic, runes }) {
   const names = runes.map(rune => `${rune.ko}(${rune.name})`).join(", ");
   const focus = runes.map(rune => rune.keywords[0]).join(", ");
-  return escapeHtml(`이번 질문은 ${names}의 흐름으로 읽을 수 있습니다. 핵심 키워드는 ${focus}입니다. 룬스의 기본 리딩은 역방향을 쓰지 않으므로, 뽑힌 룬의 본래 상징을 질문에 그대로 비춰봅니다. 지금은 답을 단정하기보다 질문을 더 선명하게 만들고, 오늘 바로 실행할 수 있는 작은 행동 하나를 정하는 데 집중하세요.`);
+  return `이번 ${topicLabels[topic] || topicLabels.general} 질문은 ${names}의 흐름으로 읽을 수 있습니다. 핵심 키워드는 ${focus}입니다.\n\n룬스의 기본 리딩은 역방향을 쓰지 않으므로, 뽑힌 룬의 본래 상징을 질문에 그대로 비춰봅니다. 지금은 답을 단정하기보다 질문을 더 선명하게 만들고, 오늘 바로 실행할 수 있는 작은 행동 하나를 정하는 데 집중하세요.`;
 }
 
 function escapeHtml(value) {
@@ -94,6 +105,13 @@ function escapeHtml(value) {
 
 function formatKeywords(keywords) {
   return keywords.map(escapeHtml).join(" / ");
+}
+
+function formatReadingText(value) {
+  return escapeHtml(value)
+    .split(/\n{2,}/)
+    .map(block => `<p>${block.replace(/\n/g, "<br>")}</p>`)
+    .join("");
 }
 
 function renderRuneGrid() {
