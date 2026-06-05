@@ -74,13 +74,14 @@ function extractGeminiText(data) {
 
 async function callGemini(prompt) {
   const model = process.env.GEMINI_READING_MODEL || DEFAULT_MODEL;
+  const apiKey = String(process.env.GEMINI_API_KEY || "").replace(/^\uFEFF/, "").trim();
   const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent`;
 
   const response = await fetch(endpoint, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "x-goog-api-key": process.env.GEMINI_API_KEY
+      "x-goog-api-key": apiKey
     },
     body: JSON.stringify({
       contents: [
@@ -126,7 +127,7 @@ module.exports = async function handler(req, res) {
     return;
   }
 
-  if (!process.env.GEMINI_API_KEY) {
+  if (!String(process.env.GEMINI_API_KEY || "").replace(/^\uFEFF/, "").trim()) {
     res.statusCode = 503;
     res.end(JSON.stringify({ error: "GEMINI_API_KEY is not configured" }));
     return;
