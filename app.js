@@ -108,10 +108,19 @@ function formatKeywords(keywords) {
 }
 
 function formatReadingText(value) {
-  return escapeHtml(value)
+  return escapeHtml(cleanReadingText(value))
     .split(/\n{2,}/)
     .map(block => `<p>${block.replace(/\n/g, "<br>")}</p>`)
     .join("");
+}
+
+function cleanReadingText(value) {
+  return String(value || "")
+    .replace(/^#{1,6}\s*/gm, "")
+    .replace(/\*\*(.*?)\*\*/g, "$1")
+    .replace(/^\s*[-*]\s+/gm, "")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
 }
 
 function renderRuneGrid() {

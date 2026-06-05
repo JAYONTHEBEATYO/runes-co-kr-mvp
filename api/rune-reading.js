@@ -54,9 +54,10 @@ function buildPrompt({ question, topic, spread, positions, runes, agentContext }
     JSON.stringify({ topic, question, spread, positions, runes }, null, 2),
     "",
     "[출력 지시]",
-    "마크다운 기호를 과하게 쓰지 말고, 웹 결과지에 바로 들어갈 수 있는 한국어 문단으로 작성한다.",
-    "분량은 900~1400자 정도로 한다.",
-    "구성은 제목, 전체 요약, 위치별 해석, 종합 흐름, 오늘의 실천, 주의할 점 순서로 쓴다.",
+    "마크다운 문법을 쓰지 않는다. #, ##, **, -, bullet 기호를 사용하지 않는다.",
+    "웹 결과지에 바로 들어갈 수 있는 평문 한국어 문단으로 작성한다.",
+    "분량은 5룬 기준 1200~1800자, 3룬 기준 900~1300자, 1룬 기준 600~900자로 한다.",
+    "구성은 짧은 제목, 전체 요약, 위치별 해석, 종합 흐름, 오늘의 실천, 주의할 점 순서로 쓴다.",
     "각 위치별 해석에서는 위치명과 룬 이름을 반드시 언급한다.",
     "마지막에는 사용자가 오늘 바로 할 수 있는 작고 구체적인 행동을 제안한다."
   ].join("\n");
@@ -93,7 +94,7 @@ async function callGemini(prompt) {
       generationConfig: {
         temperature: 0.65,
         topP: 0.9,
-        maxOutputTokens: 1600
+        maxOutputTokens: 3200
       },
       safetySettings: [
         { category: "HARM_CATEGORY_HARASSMENT", threshold: "BLOCK_MEDIUM_AND_ABOVE" },

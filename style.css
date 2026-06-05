@@ -393,7 +393,7 @@ select:focus {
   display: grid;
   grid-template-columns: 76px 1fr;
   gap: 18px;
-  padding: 18px 0;
+  padding: 16px 0;
   border-bottom: 1px solid var(--line);
 }
 
@@ -412,17 +412,35 @@ select:focus {
 }
 
 .result h3 {
-  margin: 0 0 8px;
+  margin: 0 0 6px;
+  font-size: 22px;
 }
 
-.result p { margin: 6px 0; }
+.result p {
+  margin: 6px 0;
+  line-height: 1.75;
+}
 
 .llm-summary {
-  margin-top: 22px;
-  padding: 20px;
+  margin-top: 18px;
+  padding: 18px;
   border: 1px solid rgba(59, 43, 130, .16);
   border-radius: var(--radius);
-  background: var(--violet-soft);
+  background: linear-gradient(180deg, #f7f4ff 0%, #fffefa 100%);
+}
+
+.llm-summary h3 {
+  margin-bottom: 12px;
+}
+
+.reading-copy p {
+  margin: 0 0 14px;
+  color: var(--ink-soft);
+  line-height: 1.85;
+}
+
+.reading-copy p:last-child {
+  margin-bottom: 0;
 }
 
 .band--split {
@@ -828,13 +846,15 @@ th {
   }
 
   .spread-card {
-    grid-template-columns: 64px 1fr;
+    grid-template-columns: 58px 1fr;
+    gap: 12px;
+    padding: 14px 0;
   }
 
   .rune-mark {
-    width: 64px;
-    height: 64px;
-    font-size: 36px;
+    width: 58px;
+    height: 58px;
+    font-size: 32px;
   }
 
   .site-header {
@@ -870,6 +890,37 @@ th {
   .panel,
   .result {
     padding: 18px;
+  }
+
+  .reader {
+    gap: 16px;
+  }
+
+  .result h2 {
+    font-size: 32px;
+  }
+
+  .result h3 {
+    font-size: 20px;
+    line-height: 1.3;
+  }
+
+  .result p {
+    font-size: 15px;
+    line-height: 1.72;
+  }
+
+  .spread-card p strong {
+    display: inline;
+  }
+
+  .llm-summary {
+    padding: 16px;
+  }
+
+  .reading-copy p {
+    font-size: 15px;
+    line-height: 1.82;
   }
 
   h1 {
