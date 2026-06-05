@@ -87,7 +87,10 @@ async function callGemini(prompt) {
     generationConfig: {
       temperature: 0.65,
       topP: 0.9,
-      maxOutputTokens: 3200
+      maxOutputTokens: 3200,
+      thinkingConfig: {
+        thinkingBudget: 0
+      }
     },
     safetySettings: [
       { category: "HARM_CATEGORY_HARASSMENT", threshold: "BLOCK_MEDIUM_AND_ABOVE" },

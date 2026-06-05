@@ -443,6 +443,29 @@ select:focus {
   margin-bottom: 0;
 }
 
+.drawn-runes {
+  margin: 16px 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #fff;
+}
+
+.drawn-runes summary {
+  cursor: pointer;
+  padding: 14px 16px;
+  color: var(--ink);
+  font-weight: 900;
+  list-style-position: inside;
+}
+
+.drawn-runes .spread-card {
+  margin: 0 16px;
+}
+
+.result > .button {
+  margin-top: 4px;
+}
+
 .band--split {
   display: grid;
   grid-template-columns: 1fr minmax(320px, 520px);
@@ -921,6 +944,19 @@ th {
   .reading-copy p {
     font-size: 15px;
     line-height: 1.82;
+  }
+
+  .drawn-runes {
+    margin: 14px 0;
+  }
+
+  .drawn-runes summary {
+    padding: 12px 14px;
+    font-size: 15px;
+  }
+
+  .drawn-runes .spread-card {
+    margin: 0 14px;
   }
 
   h1 {

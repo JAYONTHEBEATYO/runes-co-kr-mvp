@@ -43,22 +43,25 @@ async function renderResult(event) {
     <h2>${count}룬 리딩</h2>
     <p><strong>질문:</strong> ${escapeHtml(question)}</p>
     <p><strong>주제:</strong> ${escapeHtml(topicLabels[topic] || topicLabels.general)}</p>
-    ${selected.map((rune, index) => `
-      <div class="spread-card">
-        <div class="rune-mark" aria-hidden="true">${escapeHtml(rune.symbol)}</div>
-        <div>
-          <h3>${escapeHtml(positions[count][index])} · ${escapeHtml(rune.ko)}</h3>
-          <p><strong>${escapeHtml(rune.name)}</strong> · ${formatKeywords(rune.keywords)}</p>
-          <p>${escapeHtml(rune.upright)}</p>
-          <p><strong>질문에 비춰보기</strong> ${escapeHtml(rune.question)}</p>
-        </div>
-      </div>
-    `).join("")}
     <section class="llm-summary">
       <p class="eyebrow">Synthesis</p>
       <h3>AI 종합 해석</h3>
       <div class="reading-copy">${formatReadingText(llmReading)}</div>
     </section>
+    <details class="drawn-runes">
+      <summary>뽑힌 룬 자세히 보기</summary>
+      ${selected.map((rune, index) => `
+        <div class="spread-card">
+          <div class="rune-mark" aria-hidden="true">${escapeHtml(rune.symbol)}</div>
+          <div>
+            <h3>${escapeHtml(positions[count][index])} · ${escapeHtml(rune.ko)}</h3>
+            <p><strong>${escapeHtml(rune.name)}</strong> · ${formatKeywords(rune.keywords)}</p>
+            <p>${escapeHtml(rune.upright)}</p>
+            <p><strong>질문에 비춰보기</strong> ${escapeHtml(rune.question)}</p>
+          </div>
+        </div>
+      `).join("")}
+    </details>
     <button class="button button--primary" type="button" data-print-result>PDF로 저장</button>
   `;
 
