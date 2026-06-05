@@ -1,15 +1,10 @@
-const fs = require("node:fs");
-const path = require("node:path");
+const runeDb = require("../content/elder-futhark.ko.json");
+const agentContext = require("../content/rag/rune-reading-agent.ko.json");
 
-const ROOT = process.cwd();
 const MAX_QUESTION_LENGTH = 500;
 const ALLOWED_TOPICS = new Set(["general", "love", "work", "money", "self", "choice"]);
 const ALLOWED_SPREADS = new Set([1, 3, 5]);
 const DEFAULT_MODEL = "gemini-2.5-flash";
-
-function readJson(relativePath) {
-  return JSON.parse(fs.readFileSync(path.join(ROOT, relativePath), "utf8"));
-}
 
 function getBody(req) {
   if (typeof req.body === "string") return JSON.parse(req.body || "{}");
@@ -151,8 +146,6 @@ module.exports = async function handler(req, res) {
       return;
     }
 
-    const runeDb = readJson("content/elder-futhark.ko.json");
-    const agentContext = readJson("content/rag/rune-reading-agent.ko.json");
     const runes = selectRuneContext(requestRunes, runeDb);
 
     if (runes.length !== spread) {
