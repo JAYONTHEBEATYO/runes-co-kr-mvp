@@ -44,8 +44,8 @@ async function renderResult(event) {
     <p><strong>질문:</strong> ${escapeHtml(question)}</p>
     <p><strong>주제:</strong> ${escapeHtml(topicLabels[topic] || topicLabels.general)}</p>
     <section class="llm-summary">
-      <p class="eyebrow">Synthesis</p>
-      <h3>AI 종합 해석</h3>
+      <p class="eyebrow">Rune Reading</p>
+      <h3>룬 리딩 해석</h3>
       <div class="reading-copy">${formatReadingText(llmReading)}</div>
     </section>
     <details class="drawn-runes">
@@ -87,10 +87,10 @@ async function requestLlmReading(payload) {
     console.info("LLM endpoint unavailable; using local synthesis.", error);
   }
 
-  return buildLocalSynthesis(payload);
+  return buildLocalReading(payload);
 }
 
-function buildLocalSynthesis({ question, topic, runes }) {
+function buildLocalReading({ question, topic, runes }) {
   const names = runes.map(rune => `${rune.ko}(${rune.name})`).join(", ");
   const focus = runes.map(rune => rune.keywords[0]).join(", ");
   return `이번 ${topicLabels[topic] || topicLabels.general} 질문은 ${names}의 흐름으로 읽을 수 있습니다. 핵심 키워드는 ${focus}입니다.\n\n룬스의 기본 리딩은 역방향을 쓰지 않으므로, 뽑힌 룬의 본래 상징을 질문에 그대로 비춰봅니다. 지금은 답을 단정하기보다 질문을 더 선명하게 만들고, 오늘 바로 실행할 수 있는 작은 행동 하나를 정하는 데 집중하세요.`;

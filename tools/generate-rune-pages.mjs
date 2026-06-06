@@ -311,7 +311,7 @@ function page(rune) {
   const spec = specs[rune.id];
   const { prev, next } = nextPrev(rune.id);
   const title = `${rune.ko}(${rune.name}) 룬 뜻과 실전 해석 - ${spec.title}`;
-  const desc = `${rune.ko} ${rune.name} 룬의 기본 의미, 역사적 배경, 룬스톤 리딩 실전 사례, 관계·일·돈·자기이해 해석까지 정리한 5000자 이상 상세 가이드.`;
+  const desc = `${rune.ko} ${rune.name} 룬의 뜻과 상징, 역사적 배경, 룬스톤 리딩에서의 해석, 관계·일·돈·자기이해 질문에 적용하는 법을 차분히 정리했습니다.`;
   const articleJson = JSON.stringify({
     "@context": "https://schema.org",
     "@type": "Article",
@@ -339,7 +339,7 @@ function page(rune) {
     </section>
 
     <article class="long-article rune-article">
-      <p class="lead">${esc(spec.essence)} 이 글은 ${esc(rune.ko)}를 처음 접하는 사람도 실제 리딩에 바로 적용할 수 있도록 기본 의미, 역사적 근거의 범위, 현대 점술에서의 사용법, 상담 사례, 질문 설계까지 한 번에 정리한 상세 페이지다.</p>
+      <p class="lead">${esc(spec.essence)} 이 글은 ${esc(rune.ko)}를 처음 접하는 사람도 실제 리딩에 바로 적용할 수 있도록 기본 의미, 역사적 근거의 범위, 현대 룬스톤 리딩에서의 사용법, 상담 사례, 질문 설계까지 한 번에 정리한 안내서입니다.</p>
 
       <h2>${esc(rune.ko)}를 읽기 전에: 역사와 현대 해석을 분리하기</h2>
       ${para(spec.historical)}
