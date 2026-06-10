@@ -102,6 +102,34 @@
             </select>
           </label>
 
+          <section class="personal-fields" aria-label="별자리 개인화 입력">
+            <div class="form-section-title">
+              <strong>별자리 개인화</strong>
+              <span>선택 입력 · 양력 생일 기준</span>
+            </div>
+            <div class="field-grid">
+              <label>
+                양력 생일
+                <input type="date" name="birthDate" id="birthDate">
+              </label>
+              <label>
+                태어난 시간
+                <input type="time" name="birthTime" id="birthTime">
+              </label>
+            </div>
+            <div class="field-grid">
+              <label>
+                태어난 지역
+                <input name="birthPlace" id="birthPlace" placeholder="예: 서울, 부산, 제주" autocomplete="off">
+              </label>
+              <label>
+                현재 사는 지역
+                <input name="currentPlace" id="currentPlace" placeholder="예: 강남, 성수, 분당" autocomplete="off">
+              </label>
+            </div>
+            <p class="field-help">생일을 넣으면 태양 별자리 흐름을 룬 리딩에 함께 반영합니다. 태어난 시간과 지역은 다음 단계의 정밀 차트 확장을 위한 선택값입니다.</p>
+          </section>
+
           <fieldset class="spread-picker">
             <legend>스프레드 선택</legend>
             <label class="spread-option">

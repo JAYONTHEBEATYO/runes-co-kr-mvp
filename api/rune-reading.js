@@ -5,6 +5,22 @@ const MAX_QUESTION_LENGTH = 500;
 const ALLOWED_TOPICS = new Set(["general", "love", "work", "money", "self", "choice"]);
 const ALLOWED_SPREADS = new Set([1, 3, 5]);
 const DEFAULT_MODEL = "gemini-2.5-flash";
+const ZODIAC = [
+  { sign: "Capricorn", ko: "염소자리", element: "earth", mode: "cardinal", start: [12, 22], end: [1, 19], tone: "현실성, 책임, 장기적인 성취" },
+  { sign: "Aquarius", ko: "물병자리", element: "air", mode: "fixed", start: [1, 20], end: [2, 18], tone: "독립성, 관점 전환, 네트워크" },
+  { sign: "Pisces", ko: "물고기자리", element: "water", mode: "mutable", start: [2, 19], end: [3, 20], tone: "감수성, 직감, 경계의 흐림" },
+  { sign: "Aries", ko: "양자리", element: "fire", mode: "cardinal", start: [3, 21], end: [4, 19], tone: "시작, 추진력, 즉각적인 결단" },
+  { sign: "Taurus", ko: "황소자리", element: "earth", mode: "fixed", start: [4, 20], end: [5, 20], tone: "안정, 소유, 감각적인 현실감" },
+  { sign: "Gemini", ko: "쌍둥이자리", element: "air", mode: "mutable", start: [5, 21], end: [6, 21], tone: "정보, 이동, 말과 선택지" },
+  { sign: "Cancer", ko: "게자리", element: "water", mode: "cardinal", start: [6, 22], end: [7, 22], tone: "보호, 집, 정서적 안전" },
+  { sign: "Leo", ko: "사자자리", element: "fire", mode: "fixed", start: [7, 23], end: [8, 22], tone: "표현, 자존감, 주도권" },
+  { sign: "Virgo", ko: "처녀자리", element: "earth", mode: "mutable", start: [8, 23], end: [9, 22], tone: "정리, 분석, 생활의 개선" },
+  { sign: "Libra", ko: "천칭자리", element: "air", mode: "cardinal", start: [9, 23], end: [10, 23], tone: "균형, 관계, 선택의 조율" },
+  { sign: "Scorpio", ko: "전갈자리", element: "water", mode: "fixed", start: [10, 24], end: [11, 22], tone: "몰입, 소유와 상실, 깊은 전환" },
+  { sign: "Sagittarius", ko: "사수자리", element: "fire", mode: "mutable", start: [11, 23], end: [12, 21], tone: "확장, 이동, 의미 탐색" }
+];
+const ELEMENT_KO = { fire: "불", earth: "흙", air: "공기", water: "물" };
+const MODE_KO = { cardinal: "시작", fixed: "고정", mutable: "변화" };
 
 function getBody(req) {
   if (typeof req.body === "string") return JSON.parse(req.body || "{}");
@@ -38,11 +54,57 @@ function selectRuneContext(requestRunes, runeDb) {
     }));
 }
 
-function buildPrompt({ question, topic, spread, positions, runes, agentContext }) {
+function buildAstrologyContext(value) {
+  if (!value || typeof value !== "object") return null;
+  const birthDate = cleanText(value.birthDate, 20);
+  const birthTime = cleanText(value.birthTime, 20);
+  const birthPlace = cleanText(value.birthPlace, 80);
+  const currentPlace = cleanText(value.currentPlace, 80);
+  if (!birthDate && !birthTime && !birthPlace && !currentPlace) return null;
+
+  const dateMatch = birthDate.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  const sun = dateMatch ? sunSignFor(Number(dateMatch[2]), Number(dateMatch[3])) : null;
+
+  return {
+    calendar: "solar",
+    birthDate: birthDate || null,
+    birthTime: birthTime || null,
+    birthPlace: birthPlace || null,
+    currentPlace: currentPlace || null,
+    precision: birthTime ? "birth-date-time-provided" : "birth-date-only",
+    note: birthTime
+      ? "1차 개인화는 양력 생일 기반 태양 별자리 중심이다. 출생 시간과 지역은 사용자가 제공했지만 ASC/하우스 계산은 아직 기본 결과에 단정적으로 쓰지 않는다."
+      : "출생 시간이 없으므로 ASC, 하우스, 달 별자리를 단정하지 않는다. 양력 생일 기반 태양 별자리만 가볍게 참고한다.",
+    sun: sun ? {
+      sign: sun.sign,
+      ko: sun.ko,
+      element: sun.element,
+      elementKo: ELEMENT_KO[sun.element],
+      mode: sun.mode,
+      modeKo: MODE_KO[sun.mode],
+      tone: sun.tone
+    } : null
+  };
+}
+
+function sunSignFor(month, day) {
+  return ZODIAC.find((item) => {
+    const [sm, sd] = item.start;
+    const [em, ed] = item.end;
+    if (sm <= em) {
+      return (month > sm || (month === sm && day >= sd)) && (month < em || (month === em && day <= ed));
+    }
+    return (month > sm || (month === sm && day >= sd)) || (month < em || (month === em && day <= ed));
+  }) || null;
+}
+
+function buildPrompt({ question, topic, spread, positions, runes, astrology, agentContext }) {
   return [
     "너는 runes.co.kr의 한국어 룬 리딩 서브에이전트다.",
     "사용자에게는 부드럽고 유려한 한국어로 답하되, 불안을 키우거나 예언을 단정하지 않는다.",
     "반드시 제공된 RAG 컨텍스트와 뽑힌 룬 정보만 근거로 사용한다.",
+    "별자리 개인화 정보가 있으면 룬 해석을 보조하는 부드러운 문맥으로만 사용한다.",
+    "양력 생일만 있는 경우 태양 별자리만 언급하고, ASC·하우스·달 별자리는 단정하지 않는다.",
     "역방향, merkstave, 그림자 해석은 사용하지 않는다.",
     "의료, 법률, 투자, 안전 문제에 대한 확정 조언은 하지 않는다.",
     "상대의 속마음이나 미래 결과를 확정하지 말고, 질문자가 확인할 수 있는 현실 단서와 행동으로 연결한다.",
@@ -51,13 +113,13 @@ function buildPrompt({ question, topic, spread, positions, runes, agentContext }
     JSON.stringify(agentContext, null, 2),
     "",
     "[리딩 입력]",
-    JSON.stringify({ topic, question, spread, positions, runes }, null, 2),
+    JSON.stringify({ topic, question, spread, positions, runes, astrology }, null, 2),
     "",
     "[출력 지시]",
     "마크다운 문법을 쓰지 않는다. #, ##, **, -, bullet 기호를 사용하지 않는다.",
     "웹 결과지에 바로 들어갈 수 있는 평문 한국어 문단으로 작성한다.",
     "분량은 5룬 기준 1200~1800자, 3룬 기준 900~1300자, 1룬 기준 600~900자로 한다.",
-    "구성은 짧은 제목, 전체 요약, 위치별 해석, 종합 흐름, 오늘의 실천, 주의할 점 순서로 쓴다.",
+    "구성은 짧은 제목, 전체 요약, 별자리 개인화가 있으면 1문단 요약, 위치별 해석, 종합 흐름, 오늘의 실천, 주의할 점 순서로 쓴다.",
     "각 위치별 해석에서는 위치명과 룬 이름을 반드시 언급한다.",
     "마지막에는 사용자가 오늘 바로 할 수 있는 작고 구체적인 행동을 제안한다."
   ].join("\n");
@@ -150,6 +212,7 @@ module.exports = async function handler(req, res) {
     const question = cleanText(body.question) || "지금 내가 가장 먼저 바라봐야 할 흐름은 무엇인가요?";
     const positions = Array.isArray(body.positions) ? body.positions.map((item) => cleanText(item, 40)).slice(0, 5) : [];
     const requestRunes = Array.isArray(body.runes) ? body.runes.slice(0, 5) : [];
+    const astrology = buildAstrologyContext(body.astrology);
 
     if (!ALLOWED_SPREADS.has(spread) || requestRunes.length !== spread) {
       res.statusCode = 400;
@@ -165,7 +228,7 @@ module.exports = async function handler(req, res) {
       return;
     }
 
-    const prompt = buildPrompt({ question, topic, spread, positions, runes, agentContext });
+    const prompt = buildPrompt({ question, topic, spread, positions, runes, astrology, agentContext });
     const { reading, model } = await callGemini(prompt);
 
     if (!reading) {
@@ -179,7 +242,8 @@ module.exports = async function handler(req, res) {
       reading,
       model,
       provider: "gemini",
-      source: "runes-reading-agent-ko"
+      source: "runes-reading-agent-ko",
+      astrology
     }));
   } catch (error) {
     res.statusCode = error.status || 500;

@@ -31,18 +31,20 @@ async function renderResult(event) {
   const count = Number(form.get("spread"));
   const topic = (form.get("topic") || "general").toString();
   const question = (form.get("question") || "").toString().trim() || "지금 내가 가장 먼저 바라봐야 할 흐름은 무엇인가요?";
+  const astrology = buildAstrologyInput(form);
   const selected = pickRunes(count);
   const result = document.getElementById("result");
 
   result.innerHTML = `<p class="empty">룬을 정리하고 결과지를 만드는 중입니다.</p>`;
 
-  const llmReading = await requestLlmReading({ question, topic, spread: count, positions: positions[count], runes: selected });
+  const llmReading = await requestLlmReading({ question, topic, spread: count, positions: positions[count], runes: selected, astrology });
 
   result.innerHTML = `
     <p class="eyebrow">Rune Reading Result</p>
     <h2>${count}룬 리딩</h2>
     <p><strong>질문:</strong> ${escapeHtml(question)}</p>
     <p><strong>주제:</strong> ${escapeHtml(topicLabels[topic] || topicLabels.general)}</p>
+    ${astrology ? `<p class="astro-note"><strong>별자리 개인화:</strong> ${escapeHtml(formatAstrologyNote(astrology))}</p>` : ""}
     <section class="llm-summary">
       <p class="eyebrow">Rune Reading</p>
       <h3>룬 리딩 해석</h3>
@@ -69,6 +71,24 @@ async function renderResult(event) {
   if (printButton) printButton.addEventListener("click", () => window.print());
 }
 
+function buildAstrologyInput(form) {
+  const birthDate = (form.get("birthDate") || "").toString().trim();
+  const birthTime = (form.get("birthTime") || "").toString().trim();
+  const birthPlace = (form.get("birthPlace") || "").toString().trim();
+  const currentPlace = (form.get("currentPlace") || "").toString().trim();
+  if (!birthDate && !birthTime && !birthPlace && !currentPlace) return null;
+  return { birthDate, birthTime, birthPlace, currentPlace, calendar: "solar" };
+}
+
+function formatAstrologyNote(astrology) {
+  const parts = [];
+  if (astrology.birthDate) parts.push(`양력 ${astrology.birthDate}`);
+  if (astrology.birthTime) parts.push(`${astrology.birthTime} 출생`);
+  if (astrology.birthPlace) parts.push(`출생지 ${astrology.birthPlace}`);
+  if (astrology.currentPlace) parts.push(`현재 ${astrology.currentPlace}`);
+  return parts.join(" · ");
+}
+
 async function requestLlmReading(payload) {
   const endpoint = window.RUNES_LLM_ENDPOINT || "/api/rune-reading";
   try {
@@ -90,10 +110,13 @@ async function requestLlmReading(payload) {
   return buildLocalReading(payload);
 }
 
-function buildLocalReading({ question, topic, spread, positions, runes }) {
+function buildLocalReading({ question, topic, spread, positions, runes, astrology }) {
   const topicLabel = topicLabels[topic] || topicLabels.general;
   const namedRunes = runes.map(rune => `${rune.ko}(${rune.name})`).join(", ");
   const keywordLine = runes.map(rune => rune.keywords.slice(0, 2).join("·")).join(" → ");
+  const astrologyLine = astrology?.birthDate
+    ? `양력 생일 ${astrology.birthDate}의 별자리 흐름도 함께 참고합니다. 정확한 출생 시간이 없으면 태양 별자리 중심의 가벼운 개인화로만 보는 것이 안전합니다.\n\n`
+    : "";
   const introByTopic = {
     general: "전체 흐름에서는 지금 상황을 좋고 나쁨으로 빨리 가르기보다, 어떤 리듬으로 움직이고 있는지 먼저 보는 편이 좋습니다.",
     love: "관계 질문에서는 상대의 마음을 단정하기보다, 내가 어떤 방식으로 관계 안에서 반응하고 있는지 보는 것이 먼저입니다.",
@@ -112,7 +135,7 @@ function buildLocalReading({ question, topic, spread, positions, runes }) {
     5: "오늘은 리딩을 한 번에 결론 내리지 말고 기록으로 남기는 편이 좋습니다. 각 자리의 룬이 말하는 현실 단서를 하나씩 적고, 그중 이번 주 안에 확인할 수 있는 행동만 따로 표시하세요. 큰 예언보다 작은 검증이 더 정확합니다."
   };
 
-  return `룬 리딩 기본 해석\n\n질문은 “${question}”입니다. 이번 주제는 ${topicLabel}이고, ${spread}개의 룬은 ${namedRunes}의 흐름으로 이어집니다. 핵심 키워드만 놓고 보면 ${keywordLine}의 순서입니다. ${introByTopic[topic] || introByTopic.general}\n\n${positionText}\n\n종합하면, 이번 리딩은 “잘했다 / 잘못했다”처럼 바로 판정하는 흐름이 아닙니다. 룬은 결정의 승패보다 그 결정이 지금 어떤 비용, 필요, 멈춤, 회복, 이동을 만들고 있는지 보게 합니다. 특히 돈과 자원이 걸린 질문이라면 감정적인 안도감과 실제 유지 비용을 분리해서 봐야 합니다. 좋은 선택이었다면 앞으로 살아날 자원이 보여야 하고, 무리한 선택이었다면 지금부터 조정해야 할 고정비와 에너지 누수가 드러납니다.\n\n룬스의 기본 리딩은 역방향, merkstave, 그림자 해석을 사용하지 않습니다. 뽑힌 룬의 본래 상징을 질문에 그대로 비추고, 사용자가 현실에서 확인할 수 있는 단서로 옮깁니다.\n\n${actionBySpread[spread] || actionBySpread[3]}`;
+  return `룬 리딩 기본 해석\n\n${astrologyLine}질문은 “${question}”입니다. 이번 주제는 ${topicLabel}이고, ${spread}개의 룬은 ${namedRunes}의 흐름으로 이어집니다. 핵심 키워드만 놓고 보면 ${keywordLine}의 순서입니다. ${introByTopic[topic] || introByTopic.general}\n\n${positionText}\n\n종합하면, 이번 리딩은 “잘했다 / 잘못했다”처럼 바로 판정하는 흐름이 아닙니다. 룬은 결정의 승패보다 그 결정이 지금 어떤 비용, 필요, 멈춤, 회복, 이동을 만들고 있는지 보게 합니다. 특히 돈과 자원이 걸린 질문이라면 감정적인 안도감과 실제 유지 비용을 분리해서 봐야 합니다. 좋은 선택이었다면 앞으로 살아날 자원이 보여야 하고, 무리한 선택이었다면 지금부터 조정해야 할 고정비와 에너지 누수가 드러납니다.\n\n룬스의 기본 리딩은 역방향, merkstave, 그림자 해석을 사용하지 않습니다. 뽑힌 룬의 본래 상징을 질문에 그대로 비추고, 사용자가 현실에서 확인할 수 있는 단서로 옮깁니다.\n\n${actionBySpread[spread] || actionBySpread[3]}`;
 }
 
 function escapeHtml(value) {

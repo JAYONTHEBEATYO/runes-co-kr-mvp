@@ -308,6 +308,47 @@ select:focus {
   border-color: rgba(59, 43, 130, .42);
 }
 
+.personal-fields {
+  margin: 18px 0;
+  padding: 16px;
+  border: 1px solid rgba(59, 43, 130, .14);
+  border-radius: var(--radius);
+  background: linear-gradient(180deg, #fffefa 0%, #f7f4ff 100%);
+}
+
+.form-section-title {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: baseline;
+  margin-bottom: 12px;
+}
+
+.form-section-title strong {
+  font-size: 16px;
+}
+
+.form-section-title span,
+.field-help {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.field-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.personal-fields label {
+  margin-bottom: 10px;
+}
+
+.field-help {
+  margin: 2px 0 0;
+  line-height: 1.55;
+}
+
 .spread-picker {
   display: grid;
   gap: 10px;
@@ -419,6 +460,13 @@ select:focus {
 .result p {
   margin: 6px 0;
   line-height: 1.75;
+}
+
+.astro-note {
+  padding: 10px 12px;
+  border: 1px solid rgba(59, 43, 130, .14);
+  border-radius: var(--radius);
+  background: rgba(247, 244, 255, .8);
 }
 
 .llm-summary {
@@ -917,6 +965,17 @@ th {
 
   .reader {
     gap: 16px;
+  }
+
+  .field-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .form-section-title {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 2px;
   }
 
   .result h2 {
