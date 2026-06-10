@@ -3,7 +3,7 @@ const agentContext = require("../content/rag/rune-reading-agent.ko.json");
 
 const MAX_QUESTION_LENGTH = 500;
 const ALLOWED_TOPICS = new Set(["general", "love", "work", "money", "self", "choice"]);
-const ALLOWED_SPREADS = new Set([1, 3, 5]);
+const ALLOWED_SPREADS = new Set([1, 3, 5, 7, 9]);
 const DEFAULT_MODEL = "gemini-2.5-flash";
 const ZODIAC = [
   { sign: "Capricorn", ko: "염소자리", element: "earth", mode: "cardinal", start: [12, 22], end: [1, 19], tone: "현실성, 책임, 장기적인 성취" },
@@ -98,7 +98,7 @@ function sunSignFor(month, day) {
   }) || null;
 }
 
-function buildPrompt({ question, topic, spread, positions, runes, astrology, agentContext }) {
+function buildPrompt({ question, topic, spread, spreadKey, spreadTitle, positions, runes, astrology, agentContext }) {
   return [
     "너는 runes.co.kr의 한국어 룬 리딩 서브에이전트다.",
     "사용자에게는 부드럽고 유려한 한국어로 답하되, 불안을 키우거나 예언을 단정하지 않는다.",
@@ -113,14 +113,14 @@ function buildPrompt({ question, topic, spread, positions, runes, astrology, age
     JSON.stringify(agentContext, null, 2),
     "",
     "[리딩 입력]",
-    JSON.stringify({ topic, question, spread, positions, runes, astrology }, null, 2),
+    JSON.stringify({ topic, question, spread, spreadKey, spreadTitle, positions, runes, astrology }, null, 2),
     "",
     "[출력 지시]",
     "마크다운 문법을 쓰지 않는다. #, ##, **, -, bullet 기호를 사용하지 않는다.",
     "웹 결과지에 바로 들어갈 수 있는 평문 한국어 문단으로 작성한다.",
-    "분량은 5룬 기준 1200~1800자, 3룬 기준 900~1300자, 1룬 기준 600~900자로 한다.",
+    "분량은 9룬 기준 1800~2400자, 7룬 기준 1500~2100자, 5룬 기준 1200~1800자, 3룬 기준 900~1300자, 1룬 기준 600~900자로 한다.",
     "구성은 짧은 제목, 전체 요약, 별자리 개인화가 있으면 1문단 요약, 위치별 해석, 종합 흐름, 오늘의 실천, 주의할 점 순서로 쓴다.",
-    "각 위치별 해석에서는 위치명과 룬 이름을 반드시 언급한다.",
+    "각 위치별 해석에서는 위치명과 룬 이름을 반드시 언급한다. 7룬과 9룬은 모든 자리를 길게 반복하지 말고 핵심 패턴과 반복 키워드를 묶어 읽는다.",
     "마지막에는 사용자가 오늘 바로 할 수 있는 작고 구체적인 행동을 제안한다."
   ].join("\n");
 }
@@ -209,9 +209,11 @@ module.exports = async function handler(req, res) {
     const body = getBody(req);
     const topic = ALLOWED_TOPICS.has(body.topic) ? body.topic : "general";
     const spread = Number(body.spread);
+    const spreadKey = cleanText(body.spreadKey, 40);
+    const spreadTitle = cleanText(body.spreadTitle, 60);
     const question = cleanText(body.question) || "지금 내가 가장 먼저 바라봐야 할 흐름은 무엇인가요?";
-    const positions = Array.isArray(body.positions) ? body.positions.map((item) => cleanText(item, 40)).slice(0, 5) : [];
-    const requestRunes = Array.isArray(body.runes) ? body.runes.slice(0, 5) : [];
+    const positions = Array.isArray(body.positions) ? body.positions.map((item) => cleanText(item, 40)).slice(0, 9) : [];
+    const requestRunes = Array.isArray(body.runes) ? body.runes.slice(0, 9) : [];
     const astrology = buildAstrologyContext(body.astrology);
 
     if (!ALLOWED_SPREADS.has(spread) || requestRunes.length !== spread) {
@@ -228,7 +230,7 @@ module.exports = async function handler(req, res) {
       return;
     }
 
-    const prompt = buildPrompt({ question, topic, spread, positions, runes, astrology, agentContext });
+    const prompt = buildPrompt({ question, topic, spread, spreadKey, spreadTitle, positions, runes, astrology, agentContext });
     const { reading, model } = await callGemini(prompt);
 
     if (!reading) {

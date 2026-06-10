@@ -1,7 +1,40 @@
-const positions = {
-  1: ["지금의 핵심"],
-  3: ["상황", "장애", "조언"],
-  5: ["상황", "내 역할", "주의점", "다음 행동", "흐름"]
+const spreads = {
+  daily: {
+    count: 1,
+    title: "1룬 데일리",
+    summary: "오늘의 핵심, 빠른 조언",
+    positions: ["지금의 핵심"]
+  },
+  three: {
+    count: 3,
+    title: "3룬 기본",
+    summary: "상황, 장애, 조언",
+    positions: ["상황", "장애", "조언"]
+  },
+  norns: {
+    count: 3,
+    title: "노른 3룬",
+    summary: "과거, 현재, 가능성",
+    positions: ["과거의 영향", "현재의 상태", "앞으로의 가능성"]
+  },
+  cross: {
+    count: 5,
+    title: "5룬 크로스",
+    summary: "핵심, 장애, 기반, 과거, 다음 흐름",
+    positions: ["핵심", "장애", "기반", "지나온 영향", "다음 흐름"]
+  },
+  path: {
+    count: 7,
+    title: "7룬 길",
+    summary: "선택의 흐름을 단계별로 보기",
+    positions: ["출발점", "숨은 영향", "현재 문턱", "나의 태도", "외부 변수", "조언", "정리"]
+  },
+  grid: {
+    count: 9,
+    title: "9룬 그리드",
+    summary: "몸·마음·현실을 넓게 점검",
+    positions: ["몸의 과거", "몸의 현재", "몸의 다음", "마음의 과거", "마음의 현재", "마음의 다음", "현실의 과거", "현실의 현재", "현실의 다음"]
+  }
 };
 
 const topicLabels = {
@@ -28,7 +61,9 @@ function pickRunes(count) {
 async function renderResult(event) {
   event.preventDefault();
   const form = new FormData(event.currentTarget);
-  const count = Number(form.get("spread"));
+  const spreadKey = (form.get("spread") || "daily").toString();
+  const spreadConfig = spreads[spreadKey] || spreads.daily;
+  const count = spreadConfig.count;
   const topic = (form.get("topic") || "general").toString();
   const question = (form.get("question") || "").toString().trim() || "지금 내가 가장 먼저 바라봐야 할 흐름은 무엇인가요?";
   const astrology = buildAstrologyInput(form);
@@ -37,13 +72,14 @@ async function renderResult(event) {
 
   result.innerHTML = `<p class="empty">룬을 정리하고 결과지를 만드는 중입니다.</p>`;
 
-  const llmReading = await requestLlmReading({ question, topic, spread: count, positions: positions[count], runes: selected, astrology });
+  const llmReading = await requestLlmReading({ question, topic, spread: count, spreadKey, spreadTitle: spreadConfig.title, positions: spreadConfig.positions, runes: selected, astrology });
 
   result.innerHTML = `
     <p class="eyebrow">Rune Reading Result</p>
-    <h2>${count}룬 리딩</h2>
+    <h2>${escapeHtml(spreadConfig.title)}</h2>
     <p><strong>질문:</strong> ${escapeHtml(question)}</p>
     <p><strong>주제:</strong> ${escapeHtml(topicLabels[topic] || topicLabels.general)}</p>
+    <p><strong>스프레드:</strong> ${count}개 룬 · ${escapeHtml(spreadConfig.summary)}</p>
     ${astrology ? `<p class="astro-note"><strong>별자리 개인화:</strong> ${escapeHtml(formatAstrologyNote(astrology))}</p>` : ""}
     <section class="llm-summary">
       <p class="eyebrow">Rune Reading</p>
@@ -56,7 +92,7 @@ async function renderResult(event) {
         <div class="spread-card">
           <div class="rune-mark" aria-hidden="true">${escapeHtml(rune.symbol)}</div>
           <div>
-            <h3>${escapeHtml(positions[count][index])} · ${escapeHtml(rune.ko)}</h3>
+            <h3>${escapeHtml(spreadConfig.positions[index])} · ${escapeHtml(rune.ko)}</h3>
             <p><strong>${escapeHtml(rune.name)}</strong> · ${formatKeywords(rune.keywords)}</p>
             <p>${escapeHtml(rune.upright)}</p>
             <p><strong>질문에 비춰보기</strong> ${escapeHtml(rune.question)}</p>
@@ -110,7 +146,7 @@ async function requestLlmReading(payload) {
   return buildLocalReading(payload);
 }
 
-function buildLocalReading({ question, topic, spread, positions, runes, astrology }) {
+function buildLocalReading({ question, topic, spread, spreadTitle, positions, runes, astrology }) {
   const topicLabel = topicLabels[topic] || topicLabels.general;
   const namedRunes = runes.map(rune => `${rune.ko}(${rune.name})`).join(", ");
   const keywordLine = runes.map(rune => rune.keywords.slice(0, 2).join("·")).join(" → ");
@@ -132,10 +168,12 @@ function buildLocalReading({ question, topic, spread, positions, runes, astrolog
   const actionBySpread = {
     1: "오늘은 이 룬 하나를 결론처럼 소비하지 말고, 하루 동안 같은 질문을 세 번만 다시 적어보세요. 처음 적은 질문, 조금 더 솔직해진 질문, 실제 행동으로 옮길 수 있는 질문을 구분하면 리딩의 방향이 훨씬 선명해집니다.",
     3: "오늘 바로 할 일은 세 가지입니다. 첫째, 이미 결정한 것과 아직 조정할 수 있는 것을 나눠 적으세요. 둘째, 돈과 시간처럼 실제로 빠져나가는 자원을 숫자로 확인하세요. 셋째, 불안해서 움직이는 행동과 필요해서 움직이는 행동을 구분하세요.",
-    5: "오늘은 리딩을 한 번에 결론 내리지 말고 기록으로 남기는 편이 좋습니다. 각 자리의 룬이 말하는 현실 단서를 하나씩 적고, 그중 이번 주 안에 확인할 수 있는 행동만 따로 표시하세요. 큰 예언보다 작은 검증이 더 정확합니다."
+    5: "오늘은 리딩을 한 번에 결론 내리지 말고 기록으로 남기는 편이 좋습니다. 각 자리의 룬이 말하는 현실 단서를 하나씩 적고, 그중 이번 주 안에 확인할 수 있는 행동만 따로 표시하세요. 큰 예언보다 작은 검증이 더 정확합니다.",
+    7: "7룬 리딩은 선택의 길을 길게 펼쳐 보는 방식입니다. 지금 당장 결론을 내리기보다 출발점, 숨은 영향, 외부 변수, 조언을 따로 적고 서로 충돌하는 자리가 어디인지 확인하세요.",
+    9: "9룬 그리드는 넓은 점검용입니다. 몸, 마음, 현실의 흐름을 한 번에 보되 모든 자리를 같은 무게로 해석하지 말고, 반복되는 키워드와 중앙 자리의 룬을 먼저 기준으로 삼으세요."
   };
 
-  return `룬 리딩 기본 해석\n\n${astrologyLine}질문은 “${question}”입니다. 이번 주제는 ${topicLabel}이고, ${spread}개의 룬은 ${namedRunes}의 흐름으로 이어집니다. 핵심 키워드만 놓고 보면 ${keywordLine}의 순서입니다. ${introByTopic[topic] || introByTopic.general}\n\n${positionText}\n\n종합하면, 이번 리딩은 “잘했다 / 잘못했다”처럼 바로 판정하는 흐름이 아닙니다. 룬은 결정의 승패보다 그 결정이 지금 어떤 비용, 필요, 멈춤, 회복, 이동을 만들고 있는지 보게 합니다. 특히 돈과 자원이 걸린 질문이라면 감정적인 안도감과 실제 유지 비용을 분리해서 봐야 합니다. 좋은 선택이었다면 앞으로 살아날 자원이 보여야 하고, 무리한 선택이었다면 지금부터 조정해야 할 고정비와 에너지 누수가 드러납니다.\n\n룬스의 기본 리딩은 역방향, merkstave, 그림자 해석을 사용하지 않습니다. 뽑힌 룬의 본래 상징을 질문에 그대로 비추고, 사용자가 현실에서 확인할 수 있는 단서로 옮깁니다.\n\n${actionBySpread[spread] || actionBySpread[3]}`;
+  return `룬 리딩 기본 해석\n\n${astrologyLine}질문은 “${question}”입니다. 이번 주제는 ${topicLabel}이고, 선택한 스프레드는 ${spreadTitle || `${spread}룬 리딩`}입니다. ${spread}개의 룬은 ${namedRunes}의 흐름으로 이어집니다. 핵심 키워드만 놓고 보면 ${keywordLine}의 순서입니다. ${introByTopic[topic] || introByTopic.general}\n\n${positionText}\n\n종합하면, 이번 리딩은 “잘했다 / 잘못했다”처럼 바로 판정하는 흐름이 아닙니다. 룬은 결정의 승패보다 그 결정이 지금 어떤 비용, 필요, 멈춤, 회복, 이동을 만들고 있는지 보게 합니다. 특히 돈과 자원이 걸린 질문이라면 감정적인 안도감과 실제 유지 비용을 분리해서 봐야 합니다. 좋은 선택이었다면 앞으로 살아날 자원이 보여야 하고, 무리한 선택이었다면 지금부터 조정해야 할 고정비와 에너지 누수가 드러납니다.\n\n룬스의 기본 리딩은 역방향, merkstave, 그림자 해석을 사용하지 않습니다. 뽑힌 룬의 본래 상징을 질문에 그대로 비추고, 사용자가 현실에서 확인할 수 있는 단서로 옮깁니다.\n\n${actionBySpread[spread] || actionBySpread[3]}`;
 }
 
 function escapeHtml(value) {

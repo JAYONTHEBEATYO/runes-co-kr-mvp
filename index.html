@@ -132,24 +132,57 @@
 
           <fieldset class="spread-picker">
             <legend>스프레드 선택</legend>
-            <label class="spread-option">
-              <input type="radio" name="spread" value="1" checked>
-              <span class="spread-visual spread-visual--one"><i></i></span>
-              <strong>1룬</strong>
-              <small>오늘의 핵심, 빠른 조언</small>
-            </label>
-            <label class="spread-option">
-              <input type="radio" name="spread" value="3">
-              <span class="spread-visual spread-visual--three"><i></i><i></i><i></i></span>
-              <strong>3룬</strong>
-              <small>상황, 장애, 조언</small>
-            </label>
-            <label class="spread-option">
-              <input type="radio" name="spread" value="5">
-              <span class="spread-visual spread-visual--five"><i></i><i></i><i></i><i></i><i></i></span>
-              <strong>5룬</strong>
-              <small>상황을 조금 더 넓게 보기</small>
-            </label>
+            <p class="field-help">처음이면 1룬·3룬, 선택이나 이사처럼 복합적인 질문은 5룬 크로스, 흐름을 넓게 보고 싶을 때는 7룬·9룬을 고르세요.</p>
+            <div class="spread-grid">
+              <label class="spread-option">
+                <input type="radio" name="spread" value="daily" checked>
+                <span class="spread-visual spread-visual--one"><i></i></span>
+                <span class="spread-copy">
+                  <strong>1룬 데일리</strong>
+                  <small>오늘의 핵심, 빠른 조언</small>
+                </span>
+              </label>
+              <label class="spread-option">
+                <input type="radio" name="spread" value="three">
+                <span class="spread-visual spread-visual--three"><i></i><i></i><i></i></span>
+                <span class="spread-copy">
+                  <strong>3룬 기본</strong>
+                  <small>상황, 장애, 조언</small>
+                </span>
+              </label>
+              <label class="spread-option">
+                <input type="radio" name="spread" value="norns">
+                <span class="spread-visual spread-visual--three"><i></i><i></i><i></i></span>
+                <span class="spread-copy">
+                  <strong>노른 3룬</strong>
+                  <small>과거, 현재, 가능성</small>
+                </span>
+              </label>
+              <label class="spread-option">
+                <input type="radio" name="spread" value="cross">
+                <span class="spread-visual spread-visual--cross"><i></i><i></i><i></i><i></i><i></i></span>
+                <span class="spread-copy">
+                  <strong>5룬 크로스</strong>
+                  <small>핵심, 장애, 기반, 과거, 다음</small>
+                </span>
+              </label>
+              <label class="spread-option">
+                <input type="radio" name="spread" value="path">
+                <span class="spread-visual spread-visual--path"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+                <span class="spread-copy">
+                  <strong>7룬 길</strong>
+                  <small>선택의 흐름을 단계별로 보기</small>
+                </span>
+              </label>
+              <label class="spread-option">
+                <input type="radio" name="spread" value="grid">
+                <span class="spread-visual spread-visual--grid"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+                <span class="spread-copy">
+                  <strong>9룬 그리드</strong>
+                  <small>몸·마음·현실을 넓게 점검</small>
+                </span>
+              </label>
+            </div>
           </fieldset>
 
           <button class="button button--primary" type="submit">리딩 생성</button>
