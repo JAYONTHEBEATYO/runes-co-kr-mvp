@@ -84,6 +84,11 @@ a {
   align-items: center;
   font-size: 14px;
   font-weight: 800;
+  scrollbar-width: none;
+}
+
+.topbar__links::-webkit-scrollbar {
+  display: none;
 }
 
 .topbar__links a {
