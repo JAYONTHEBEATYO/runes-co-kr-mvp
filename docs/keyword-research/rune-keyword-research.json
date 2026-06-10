@@ -1,0 +1,4293 @@
+{
+  "generated_at": "2026-06-10T09:53:43.170Z",
+  "methodology": [
+    "Google Suggest ko-KR and en-US",
+    "Naver autocomplete where available",
+    "Manual Korean seed expansion for low-volume niche terms",
+    "Rule-based cluster and intent scoring"
+  ],
+  "caveats": [
+    "Autocomplete is not monthly search volume.",
+    "Google Trends/Keyword Planner/Search Console are needed for precise volume.",
+    "Korean rune terms are niche; English demand should be translated into Korean intent pages."
+  ],
+  "keywords": [
+    {
+      "keyword": "룬 문자 뜻",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US",
+        "naver_ac",
+        "manual_seed"
+      ],
+      "seeds": [
+        "룬 문자",
+        "manual_ko"
+      ],
+      "intent": "meaning_lookup",
+      "cluster": "meanings",
+      "score": 31,
+      "article": {
+        "title": "룬 문자 뜻: 룬 문자 뜻과 해석 기준",
+        "slug": "rune-letters-meaning",
+        "type": "meaning"
+      }
+    },
+    {
+      "keyword": "룬 점술",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "룬 점술"
+      ],
+      "intent": "divination",
+      "cluster": "reading",
+      "score": 31,
+      "article": {
+        "title": "룬 점술: 룬스 초보 가이드",
+        "slug": "rune-divination",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "룬문자 뜻",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US",
+        "manual_seed"
+      ],
+      "seeds": [
+        "룬문자",
+        "manual_ko"
+      ],
+      "intent": "meaning_lookup",
+      "cluster": "meanings",
+      "score": 31,
+      "article": {
+        "title": "룬문자 뜻: 룬 문자 뜻과 해석 기준",
+        "slug": "rune-letters-meaning",
+        "type": "meaning"
+      }
+    },
+    {
+      "keyword": "룬스톤",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US",
+        "naver_ac"
+      ],
+      "seeds": [
+        "룬스톤"
+      ],
+      "intent": "general",
+      "cluster": "rune_stones",
+      "score": 31,
+      "article": {
+        "title": "룬스톤: 룬스 초보 가이드",
+        "slug": "rune-stones",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "룬스톤 구매",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US",
+        "manual_seed"
+      ],
+      "seeds": [
+        "룬스톤",
+        "manual_ko"
+      ],
+      "intent": "commercial",
+      "cluster": "rune_stones",
+      "score": 31,
+      "article": {
+        "title": "룬스톤 구매: 룬스 초보 가이드",
+        "slug": "rune-stones-buying",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "룬스톤 리딩",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "룬스톤"
+      ],
+      "intent": "divination",
+      "cluster": "rune_stones",
+      "score": 31,
+      "article": {
+        "title": "룬스톤 리딩: 룬스 초보 가이드",
+        "slug": "rune-stones-reading",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "룬스톤 매뉴얼",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "룬스톤"
+      ],
+      "intent": "general",
+      "cluster": "rune_stones",
+      "score": 31,
+      "article": {
+        "title": "룬스톤 매뉴얼: 룬스 초보 가이드",
+        "slug": "rune-stones-manual",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "룬스톤 보는 법",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "룬스톤"
+      ],
+      "intent": "general",
+      "cluster": "rune_stones",
+      "score": 31,
+      "article": {
+        "title": "룬스톤 보는 법: 룬스 초보 가이드",
+        "slug": "rune-stones-reading-method",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "룬스톤 점",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "룬스톤"
+      ],
+      "intent": "general",
+      "cluster": "rune_stones",
+      "score": 31,
+      "article": {
+        "title": "룬스톤 점: 룬스 초보 가이드",
+        "slug": "rune-stones",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "룬스톤 점술",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US",
+        "manual_seed"
+      ],
+      "seeds": [
+        "룬스톤",
+        "manual_ko"
+      ],
+      "intent": "divination",
+      "cluster": "rune_stones",
+      "score": 31,
+      "article": {
+        "title": "룬스톤 점술: 룬스 초보 가이드",
+        "slug": "rune-stones-divination",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "룬스톤 종류",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "룬스톤"
+      ],
+      "intent": "general",
+      "cluster": "rune_stones",
+      "score": 31,
+      "article": {
+        "title": "룬스톤 종류: 룬스 초보 가이드",
+        "slug": "rune-stones-types",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "룬스톤 해석",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US",
+        "naver_ac"
+      ],
+      "seeds": [
+        "룬스톤"
+      ],
+      "intent": "meaning_lookup",
+      "cluster": "rune_stones",
+      "score": 31,
+      "article": {
+        "title": "룬스톤 해석: 룬스 초보 가이드",
+        "slug": "rune-stones-interpretation",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "룬스톤 해설서",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "룬스톤"
+      ],
+      "intent": "general",
+      "cluster": "rune_stones",
+      "score": 31,
+      "article": {
+        "title": "룬스톤 해설서: 룬스 초보 가이드",
+        "slug": "rune-stones-guidebook",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "엘더 푸사르크",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "엘더 푸사르크",
+        "푸사르크"
+      ],
+      "intent": "history_factcheck",
+      "cluster": "elder_futhark",
+      "score": 31,
+      "article": {
+        "title": "엘더 푸사르크: 엘더 푸사르크 입문자가 헷갈리는 핵심 정리",
+        "slug": "elder-futhark",
+        "type": "guide"
+      }
+    },
+    {
+      "keyword": "룬 뜻",
+      "sources": [
+        "manual_seed"
+      ],
+      "seeds": [
+        "manual_ko"
+      ],
+      "intent": "meaning_lookup",
+      "cluster": "meanings",
+      "score": 30,
+      "article": {
+        "title": "룬 뜻: 룬 문자 뜻과 해석 기준",
+        "slug": "rune-meaning",
+        "type": "meaning"
+      }
+    },
+    {
+      "keyword": "룬 리딩 방법",
+      "sources": [
+        "manual_seed"
+      ],
+      "seeds": [
+        "manual_ko"
+      ],
+      "intent": "how_to",
+      "cluster": "reading",
+      "score": 30,
+      "article": {
+        "title": "룬 리딩 방법: 룬스 초보 가이드",
+        "slug": "rune-reading-method",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "룬 리딩 스프레드",
+      "sources": [
+        "manual_seed"
+      ],
+      "seeds": [
+        "manual_ko"
+      ],
+      "intent": "divination",
+      "cluster": "reading",
+      "score": 30,
+      "article": {
+        "title": "룬 리딩 스프레드: 룬스 초보 가이드",
+        "slug": "rune-reading-spreads",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "룬 리딩 질문",
+      "sources": [
+        "manual_seed"
+      ],
+      "seeds": [
+        "manual_ko"
+      ],
+      "intent": "divination",
+      "cluster": "reading",
+      "score": 30,
+      "article": {
+        "title": "룬 리딩 질문: 룬스 초보 가이드",
+        "slug": "rune-reading-questions",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "룬 문자 점술 사전",
+      "sources": [
+        "manual_seed"
+      ],
+      "seeds": [
+        "manual_ko"
+      ],
+      "intent": "divination",
+      "cluster": "reading",
+      "score": 30,
+      "article": {
+        "title": "룬 문자 점술 사전: 룬스 초보 가이드",
+        "slug": "rune-letters-divination",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "룬 점술 방법",
+      "sources": [
+        "manual_seed"
+      ],
+      "seeds": [
+        "manual_ko"
+      ],
+      "intent": "how_to",
+      "cluster": "reading",
+      "score": 30,
+      "article": {
+        "title": "룬 점술은 어떻게 보나요? 초보자를 위한 룬 리딩 순서",
+        "slug": "how-rune-divination-works",
+        "type": "pillar"
+      }
+    },
+    {
+      "keyword": "룬 캐스팅",
+      "sources": [
+        "manual_seed"
+      ],
+      "seeds": [
+        "manual_ko"
+      ],
+      "intent": "general",
+      "cluster": "casting",
+      "score": 30,
+      "article": {
+        "title": "룬 캐스팅: 룬스톤을 던져 읽는 법",
+        "slug": "rune-casting",
+        "type": "how_to"
+      }
+    },
+    {
+      "keyword": "룬 캐스팅 천",
+      "sources": [
+        "manual_seed"
+      ],
+      "seeds": [
+        "manual_ko"
+      ],
+      "intent": "general",
+      "cluster": "casting",
+      "score": 30,
+      "article": {
+        "title": "룬 캐스팅 천: 룬스톤을 던져 읽는 법",
+        "slug": "rune-casting",
+        "type": "how_to"
+      }
+    },
+    {
+      "keyword": "룬스톤 던지는 법",
+      "sources": [
+        "manual_seed"
+      ],
+      "seeds": [
+        "manual_ko"
+      ],
+      "intent": "how_to",
+      "cluster": "rune_stones",
+      "score": 30,
+      "article": {
+        "title": "룬스톤 던지는 법: 초보자가 먼저 알아야 할 사용 순서",
+        "slug": "rune-stones-casting-method",
+        "type": "how_to"
+      }
+    },
+    {
+      "keyword": "룬스톤 뽑는 법",
+      "sources": [
+        "manual_seed"
+      ],
+      "seeds": [
+        "manual_ko"
+      ],
+      "intent": "how_to",
+      "cluster": "rune_stones",
+      "score": 30,
+      "article": {
+        "title": "룬스톤 뽑는 법: 초보자가 먼저 알아야 할 사용 순서",
+        "slug": "rune-stones-drawing-method",
+        "type": "how_to"
+      }
+    },
+    {
+      "keyword": "룬스톤 사용법",
+      "sources": [
+        "manual_seed"
+      ],
+      "seeds": [
+        "manual_ko"
+      ],
+      "intent": "how_to",
+      "cluster": "rune_stones",
+      "score": 30,
+      "article": {
+        "title": "룬스톤 사용법: 처음 산 사람이 바로 따라 하는 7단계",
+        "slug": "how-to-use-rune-stones",
+        "type": "pillar"
+      }
+    },
+    {
+      "keyword": "룬스톤 세트",
+      "sources": [
+        "manual_seed"
+      ],
+      "seeds": [
+        "manual_ko"
+      ],
+      "intent": "commercial",
+      "cluster": "rune_stones",
+      "score": 30,
+      "article": {
+        "title": "룬스톤 세트: 룬스 초보 가이드",
+        "slug": "rune-stones-set",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "룬스톤 키트",
+      "sources": [
+        "manual_seed"
+      ],
+      "seeds": [
+        "manual_ko"
+      ],
+      "intent": "commercial",
+      "cluster": "rune_stones",
+      "score": 30,
+      "article": {
+        "title": "룬스톤 키트: 룬스 초보 가이드",
+        "slug": "rune-stones-kit",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "엘더 푸사르크 24룬",
+      "sources": [
+        "manual_seed"
+      ],
+      "seeds": [
+        "manual_ko"
+      ],
+      "intent": "meaning_lookup",
+      "cluster": "elder_futhark",
+      "score": 30,
+      "article": {
+        "title": "엘더 푸사르크 24룬 뜻 표",
+        "slug": "elder-futhark-24-runes-meaning-chart",
+        "type": "hub"
+      }
+    },
+    {
+      "keyword": "엘더 푸사르크 뜻",
+      "sources": [
+        "manual_seed"
+      ],
+      "seeds": [
+        "manual_ko"
+      ],
+      "intent": "meaning_lookup",
+      "cluster": "elder_futhark",
+      "score": 30,
+      "article": {
+        "title": "엘더 푸사르크 뜻: 엘더 푸사르크 입문자가 헷갈리는 핵심 정리",
+        "slug": "elder-futhark-meaning",
+        "type": "guide"
+      }
+    },
+    {
+      "keyword": "엘더 푸사르크 룬 문자",
+      "sources": [
+        "manual_seed"
+      ],
+      "seeds": [
+        "manual_ko"
+      ],
+      "intent": "history_factcheck",
+      "cluster": "elder_futhark",
+      "score": 30,
+      "article": {
+        "title": "엘더 푸사르크 룬 문자: 엘더 푸사르크 입문자가 헷갈리는 핵심 정리",
+        "slug": "elder-futhark-rune-letters",
+        "type": "guide"
+      }
+    },
+    {
+      "keyword": "엘더 푸사르크 영거 푸사르크 차이",
+      "sources": [
+        "manual_seed"
+      ],
+      "seeds": [
+        "manual_ko"
+      ],
+      "intent": "history_factcheck",
+      "cluster": "elder_futhark",
+      "score": 30,
+      "article": {
+        "title": "엘더 푸사르크 영거 푸사르크 차이: 엘더 푸사르크 입문자가 헷갈리는 핵심 정리",
+        "slug": "elder-futhark-younger-futhark",
+        "type": "guide"
+      }
+    },
+    {
+      "keyword": "룬 문자 종류 뜻",
+      "sources": [
+        "naver_ac"
+      ],
+      "seeds": [
+        "룬 문자",
+        "룬문자"
+      ],
+      "intent": "meaning_lookup",
+      "cluster": "meanings",
+      "score": 26,
+      "article": {
+        "title": "룬 문자 종류 뜻: 룬 문자 뜻과 해석 기준",
+        "slug": "rune-letters-types-meaning",
+        "type": "meaning"
+      }
+    },
+    {
+      "keyword": "룬스톤 뜻",
+      "sources": [
+        "naver_ac",
+        "manual_seed"
+      ],
+      "seeds": [
+        "룬스톤",
+        "manual_ko"
+      ],
+      "intent": "meaning_lookup",
+      "cluster": "rune_stones",
+      "score": 26,
+      "article": {
+        "title": "룬스톤 뜻: 룬스 초보 가이드",
+        "slug": "rune-stones-meaning",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "룬스톤 점치는법",
+      "sources": [
+        "naver_ac"
+      ],
+      "seeds": [
+        "룬스톤"
+      ],
+      "intent": "general",
+      "cluster": "rune_stones",
+      "score": 26,
+      "article": {
+        "title": "룬스톤 점치는법: 룬스 초보 가이드",
+        "slug": "rune-stones-divination-method",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "룬스톤 추천",
+      "sources": [
+        "naver_ac"
+      ],
+      "seeds": [
+        "룬스톤"
+      ],
+      "intent": "general",
+      "cluster": "rune_stones",
+      "score": 26,
+      "article": {
+        "title": "룬스톤 추천: 룬스 초보 가이드",
+        "slug": "rune-stones",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "룬스톤 카드",
+      "sources": [
+        "naver_ac"
+      ],
+      "seeds": [
+        "룬스톤"
+      ],
+      "intent": "general",
+      "cluster": "rune_stones",
+      "score": 26,
+      "article": {
+        "title": "룬스톤 카드: 룬스 초보 가이드",
+        "slug": "rune-stones",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "룬스톤 타로",
+      "sources": [
+        "naver_ac"
+      ],
+      "seeds": [
+        "룬스톤"
+      ],
+      "intent": "general",
+      "cluster": "rune_stones",
+      "score": 26,
+      "article": {
+        "title": "룬스톤 타로: 룬스 초보 가이드",
+        "slug": "rune-stones",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "룬스톤 하는방법",
+      "sources": [
+        "naver_ac"
+      ],
+      "seeds": [
+        "룬스톤"
+      ],
+      "intent": "how_to",
+      "cluster": "rune_stones",
+      "score": 26,
+      "article": {
+        "title": "룬스톤 하는방법: 초보자가 먼저 알아야 할 사용 순서",
+        "slug": "rune-stones-method",
+        "type": "how_to"
+      }
+    },
+    {
+      "keyword": "푸사르크 뜻",
+      "sources": [
+        "naver_ac"
+      ],
+      "seeds": [
+        "푸사르크"
+      ],
+      "intent": "meaning_lookup",
+      "cluster": "elder_futhark",
+      "score": 26,
+      "article": {
+        "title": "푸사르크 뜻: 엘더 푸사르크 입문자가 헷갈리는 핵심 정리",
+        "slug": "futhark-meaning",
+        "type": "guide"
+      }
+    },
+    {
+      "keyword": "룬 문자",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "룬 문자"
+      ],
+      "intent": "general",
+      "cluster": "general",
+      "score": 23,
+      "article": {
+        "title": "룬 문자: 룬스 초보 가이드",
+        "slug": "rune-letters",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "룬 문자 마법",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "룬 문자"
+      ],
+      "intent": "general",
+      "cluster": "general",
+      "score": 23,
+      "article": {
+        "title": "룬 문자 마법: 룬스 초보 가이드",
+        "slug": "rune-letters",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "룬 문자 번역",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US",
+        "naver_ac"
+      ],
+      "seeds": [
+        "룬 문자",
+        "룬문자"
+      ],
+      "intent": "general",
+      "cluster": "general",
+      "score": 23,
+      "article": {
+        "title": "룬 문자 번역: 룬스 초보 가이드",
+        "slug": "rune-letters",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "룬 문자 번역기",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US",
+        "naver_ac",
+        "manual_seed"
+      ],
+      "seeds": [
+        "룬 문자",
+        "룬문자",
+        "manual_ko"
+      ],
+      "intent": "utility_or_creation",
+      "cluster": "tools_tattoo",
+      "score": 23,
+      "article": {
+        "title": "룬 문자 번역기: 룬스 초보 가이드",
+        "slug": "rune-letters-translator",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "룬 문자 변환기",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "룬 문자"
+      ],
+      "intent": "utility_or_creation",
+      "cluster": "tools_tattoo",
+      "score": 23,
+      "article": {
+        "title": "룬 문자 변환기: 룬스 초보 가이드",
+        "slug": "rune-letters-converter",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "룬 문자 읽는 법",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "룬 문자"
+      ],
+      "intent": "general",
+      "cluster": "general",
+      "score": 23,
+      "article": {
+        "title": "룬 문자 읽는 법: 룬스 초보 가이드",
+        "slug": "rune-letters",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "룬 문자 종류",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US",
+        "naver_ac",
+        "manual_seed"
+      ],
+      "seeds": [
+        "룬 문자",
+        "룬문자",
+        "manual_ko"
+      ],
+      "intent": "general",
+      "cluster": "general",
+      "score": 23,
+      "article": {
+        "title": "룬 문자 종류: 룬스 초보 가이드",
+        "slug": "rune-letters-types",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "룬 문자 폰트",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "룬 문자"
+      ],
+      "intent": "general",
+      "cluster": "general",
+      "score": 23,
+      "article": {
+        "title": "룬 문자 폰트: 룬스 초보 가이드",
+        "slug": "rune-letters",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "룬 문자 해석",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US",
+        "manual_seed"
+      ],
+      "seeds": [
+        "룬 문자",
+        "manual_ko"
+      ],
+      "intent": "meaning_lookup",
+      "cluster": "meanings",
+      "score": 23,
+      "article": {
+        "title": "룬 문자 해석: 룬 문자 뜻과 해석 기준",
+        "slug": "rune-letters-interpretation",
+        "type": "meaning"
+      }
+    },
+    {
+      "keyword": "룬레이",
+      "sources": [
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "룬"
+      ],
+      "intent": "general",
+      "cluster": "general",
+      "score": 23,
+      "article": {
+        "title": "룬레이: 룬스 초보 가이드",
+        "slug": "rune",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "룬문자",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "룬문자"
+      ],
+      "intent": "general",
+      "cluster": "general",
+      "score": 23,
+      "article": {
+        "title": "룬문자: 룬스 초보 가이드",
+        "slug": "rune-letters",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "룬문자 번역",
+      "sources": [
+        "google_suggest_ko_KR"
+      ],
+      "seeds": [
+        "룬문자"
+      ],
+      "intent": "general",
+      "cluster": "general",
+      "score": 23,
+      "article": {
+        "title": "룬문자 번역: 룬스 초보 가이드",
+        "slug": "rune-letters",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "룬문자 번역기",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "룬문자"
+      ],
+      "intent": "utility_or_creation",
+      "cluster": "tools_tattoo",
+      "score": 23,
+      "article": {
+        "title": "룬문자 번역기: 룬스 초보 가이드",
+        "slug": "rune-letters-translator",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "룬문자 실타래",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "룬문자"
+      ],
+      "intent": "general",
+      "cluster": "general",
+      "score": 23,
+      "article": {
+        "title": "룬문자 실타래: 룬스 초보 가이드",
+        "slug": "rune-letters",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "룬문자 아케나이트 마법막대",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "룬문자"
+      ],
+      "intent": "general",
+      "cluster": "general",
+      "score": 23,
+      "article": {
+        "title": "룬문자 아케나이트 마법막대: 룬스 초보 가이드",
+        "slug": "rune-letters",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "룬문자 아케나이트 마법막대 도안",
+      "sources": [
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "룬문자"
+      ],
+      "intent": "general",
+      "cluster": "general",
+      "score": 23,
+      "article": {
+        "title": "룬문자 아케나이트 마법막대 도안: 룬스 초보 가이드",
+        "slug": "rune-letters",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "룬문자 아케이나이트 마법막대",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "룬문자"
+      ],
+      "intent": "general",
+      "cluster": "general",
+      "score": 23,
+      "article": {
+        "title": "룬문자 아케이나이트 마법막대: 룬스 초보 가이드",
+        "slug": "rune-letters",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "룬문자 아케이나이트 마법막대 도안",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "룬문자"
+      ],
+      "intent": "general",
+      "cluster": "general",
+      "score": 23,
+      "article": {
+        "title": "룬문자 아케이나이트 마법막대 도안: 룬스 초보 가이드",
+        "slug": "rune-letters",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "룬문자 이터늄 마법막대",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "룬문자"
+      ],
+      "intent": "general",
+      "cluster": "general",
+      "score": 23,
+      "article": {
+        "title": "룬문자 이터늄 마법막대: 룬스 초보 가이드",
+        "slug": "rune-letters",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "룬문자 지옥무쇠 마법막대",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "룬문자"
+      ],
+      "intent": "general",
+      "cluster": "general",
+      "score": 23,
+      "article": {
+        "title": "룬문자 지옥무쇠 마법막대: 룬스 초보 가이드",
+        "slug": "rune-letters",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "룬워드",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "룬"
+      ],
+      "intent": "general",
+      "cluster": "general",
+      "score": 23,
+      "article": {
+        "title": "룬워드: 룬스 초보 가이드",
+        "slug": "rune",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "룬의 아이들",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "룬"
+      ],
+      "intent": "general",
+      "cluster": "general",
+      "score": 23,
+      "article": {
+        "title": "룬의 아이들: 룬스 초보 가이드",
+        "slug": "rune",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "바이킹 룬",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "바이킹 룬"
+      ],
+      "intent": "history_factcheck",
+      "cluster": "history",
+      "score": 23,
+      "article": {
+        "title": "바이킹 룬: 룬스 초보 가이드",
+        "slug": "viking-rune",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "바이킹 룬문자",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "바이킹 룬"
+      ],
+      "intent": "history_factcheck",
+      "cluster": "history",
+      "score": 23,
+      "article": {
+        "title": "바이킹 룬문자: 룬스 초보 가이드",
+        "slug": "viking-rune-letters",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "북유럽 룬",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "북유럽 룬"
+      ],
+      "intent": "history_factcheck",
+      "cluster": "history",
+      "score": 23,
+      "article": {
+        "title": "북유럽 룬: 룬스 초보 가이드",
+        "slug": "norse-rune",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "북유럽 룬문자",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "북유럽 룬"
+      ],
+      "intent": "history_factcheck",
+      "cluster": "history",
+      "score": 23,
+      "article": {
+        "title": "북유럽 룬문자: 룬스 초보 가이드",
+        "slug": "norse-rune-letters",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "북유럽 신화 룬",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "북유럽 룬"
+      ],
+      "intent": "history_factcheck",
+      "cluster": "history",
+      "score": 23,
+      "article": {
+        "title": "북유럽 신화 룬: 룬스 초보 가이드",
+        "slug": "norse-rune",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "북유럽 신화 룬문자",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "북유럽 룬"
+      ],
+      "intent": "history_factcheck",
+      "cluster": "history",
+      "score": 23,
+      "article": {
+        "title": "북유럽 신화 룬문자: 룬스 초보 가이드",
+        "slug": "norse-rune-letters",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "북유럽 신화 시그룬",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "북유럽 룬"
+      ],
+      "intent": "history_factcheck",
+      "cluster": "history",
+      "score": 23,
+      "article": {
+        "title": "북유럽 신화 시그룬: 룬스 초보 가이드",
+        "slug": "norse-rune",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "영거 푸사르크",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US",
+        "manual_seed"
+      ],
+      "seeds": [
+        "푸사르크",
+        "manual_ko"
+      ],
+      "intent": "history_factcheck",
+      "cluster": "elder_futhark",
+      "score": 23,
+      "article": {
+        "title": "영거 푸사르크: 엘더 푸사르크 입문자가 헷갈리는 핵심 정리",
+        "slug": "younger-futhark",
+        "type": "guide"
+      }
+    },
+    {
+      "keyword": "푸사르크",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "푸사르크"
+      ],
+      "intent": "history_factcheck",
+      "cluster": "elder_futhark",
+      "score": 23,
+      "article": {
+        "title": "푸사르크: 엘더 푸사르크 입문자가 헷갈리는 핵심 정리",
+        "slug": "futhark",
+        "type": "guide"
+      }
+    },
+    {
+      "keyword": "rune 뜻",
+      "sources": [
+        "google_suggest_ko_KR"
+      ],
+      "seeds": [
+        "rune"
+      ],
+      "intent": "meaning_lookup",
+      "cluster": "meanings",
+      "score": 23,
+      "article": {
+        "title": "rune 뜻: 룬 문자 뜻과 해석 기준",
+        "slug": "rune-meaning",
+        "type": "meaning"
+      }
+    },
+    {
+      "keyword": "25번째 룬",
+      "sources": [
+        "manual_seed"
+      ],
+      "seeds": [
+        "manual_ko"
+      ],
+      "intent": "general",
+      "cluster": "general",
+      "score": 22,
+      "article": {
+        "title": "25번째 룬: 룬스 초보 가이드",
+        "slug": "25-rune",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "고대 룬 문자",
+      "sources": [
+        "manual_seed"
+      ],
+      "seeds": [
+        "manual_ko"
+      ],
+      "intent": "history_factcheck",
+      "cluster": "history",
+      "score": 22,
+      "article": {
+        "title": "고대 룬 문자: 룬스 초보 가이드",
+        "slug": "ancient-rune-letters",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "룬 문자 변환",
+      "sources": [
+        "manual_seed"
+      ],
+      "seeds": [
+        "manual_ko"
+      ],
+      "intent": "utility_or_creation",
+      "cluster": "tools_tattoo",
+      "score": 22,
+      "article": {
+        "title": "룬 문자 변환: 룬스 초보 가이드",
+        "slug": "rune-letters-converter",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "룬 문자 타투",
+      "sources": [
+        "manual_seed"
+      ],
+      "seeds": [
+        "manual_ko"
+      ],
+      "intent": "utility_or_creation",
+      "cluster": "tools_tattoo",
+      "score": 22,
+      "article": {
+        "title": "룬 문자 타투: 룬스 초보 가이드",
+        "slug": "rune-letters-tattoo",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "룬 오라클 카드",
+      "sources": [
+        "manual_seed"
+      ],
+      "seeds": [
+        "manual_ko"
+      ],
+      "intent": "general",
+      "cluster": "general",
+      "score": 22,
+      "article": {
+        "title": "룬 오라클 카드: 룬스 초보 가이드",
+        "slug": "rune-oracle-cards",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "룬 카드",
+      "sources": [
+        "manual_seed"
+      ],
+      "seeds": [
+        "manual_ko"
+      ],
+      "intent": "general",
+      "cluster": "general",
+      "score": 22,
+      "article": {
+        "title": "룬 카드: 룬스 초보 가이드",
+        "slug": "rune-cards",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "바이킹 룬 문자",
+      "sources": [
+        "manual_seed"
+      ],
+      "seeds": [
+        "manual_ko"
+      ],
+      "intent": "history_factcheck",
+      "cluster": "history",
+      "score": 22,
+      "article": {
+        "title": "바이킹 룬 문자: 룬스 초보 가이드",
+        "slug": "viking-rune-letters",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "바인드 룬",
+      "sources": [
+        "manual_seed"
+      ],
+      "seeds": [
+        "manual_ko"
+      ],
+      "intent": "utility_or_creation",
+      "cluster": "bind_runes",
+      "score": 22,
+      "article": {
+        "title": "바인드 룬은 마음대로 만들어도 될까?",
+        "slug": "bind-runes-guide",
+        "type": "factcheck"
+      }
+    },
+    {
+      "keyword": "북유럽 룬 문자",
+      "sources": [
+        "manual_seed"
+      ],
+      "seeds": [
+        "manual_ko"
+      ],
+      "intent": "history_factcheck",
+      "cluster": "history",
+      "score": 22,
+      "article": {
+        "title": "북유럽 룬 문자: 룬스 초보 가이드",
+        "slug": "norse-rune-letters",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "빈 룬",
+      "sources": [
+        "manual_seed"
+      ],
+      "seeds": [
+        "manual_ko"
+      ],
+      "intent": "general",
+      "cluster": "general",
+      "score": 22,
+      "article": {
+        "title": "빈 룬은 진짜 25번째 룬일까?",
+        "slug": "blank-rune-25th-rune",
+        "type": "factcheck"
+      }
+    },
+    {
+      "keyword": "bind runes and their meanings",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "bind runes"
+      ],
+      "intent": "meaning_lookup",
+      "cluster": "bind_runes",
+      "score": 20,
+      "article": {
+        "title": "bind runes and their meanings: 룬스 초보 가이드",
+        "slug": "bind-runes-and-their-meanings",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "bind runes elder futhark",
+      "sources": [
+        "google_suggest_ko_KR"
+      ],
+      "seeds": [
+        "bind runes"
+      ],
+      "intent": "utility_or_creation",
+      "cluster": "elder_futhark",
+      "score": 20,
+      "article": {
+        "title": "bind runes elder futhark: 엘더 푸사르크 입문자가 헷갈리는 핵심 정리",
+        "slug": "bind-runes-elder-futhark",
+        "type": "guide"
+      }
+    },
+    {
+      "keyword": "bind runes meaning",
+      "sources": [
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "bind runes"
+      ],
+      "intent": "meaning_lookup",
+      "cluster": "bind_runes",
+      "score": 20,
+      "article": {
+        "title": "bind runes meaning: 룬스 초보 가이드",
+        "slug": "bind-runes-meaning",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "elder futhark",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "elder futhark"
+      ],
+      "intent": "history_factcheck",
+      "cluster": "elder_futhark",
+      "score": 20,
+      "article": {
+        "title": "elder futhark: 엘더 푸사르크 입문자가 헷갈리는 핵심 정리",
+        "slug": "elder-futhark",
+        "type": "guide"
+      }
+    },
+    {
+      "keyword": "elder futhark alphabet",
+      "sources": [
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "elder futhark"
+      ],
+      "intent": "meaning_lookup",
+      "cluster": "elder_futhark",
+      "score": 20,
+      "article": {
+        "title": "elder futhark alphabet: 엘더 푸사르크 입문자가 헷갈리는 핵심 정리",
+        "slug": "elder-futhark-alphabet",
+        "type": "guide"
+      }
+    },
+    {
+      "keyword": "elder futhark font",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "elder futhark"
+      ],
+      "intent": "utility_or_creation",
+      "cluster": "elder_futhark",
+      "score": 20,
+      "article": {
+        "title": "elder futhark font: 엘더 푸사르크 입문자가 헷갈리는 핵심 정리",
+        "slug": "elder-futhark-font",
+        "type": "guide"
+      }
+    },
+    {
+      "keyword": "elder futhark list",
+      "sources": [
+        "google_suggest_ko_KR"
+      ],
+      "seeds": [
+        "elder futhark"
+      ],
+      "intent": "meaning_lookup",
+      "cluster": "elder_futhark",
+      "score": 20,
+      "article": {
+        "title": "elder futhark list: 엘더 푸사르크 입문자가 헷갈리는 핵심 정리",
+        "slug": "elder-futhark-list",
+        "type": "guide"
+      }
+    },
+    {
+      "keyword": "elder futhark meanings",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "elder futhark"
+      ],
+      "intent": "meaning_lookup",
+      "cluster": "elder_futhark",
+      "score": 20,
+      "article": {
+        "title": "elder futhark meanings: 엘더 푸사르크 입문자가 헷갈리는 핵심 정리",
+        "slug": "elder-futhark-meanings",
+        "type": "guide"
+      }
+    },
+    {
+      "keyword": "elder futhark rune meanings",
+      "sources": [
+        "google_suggest_ko_KR"
+      ],
+      "seeds": [
+        "elder futhark"
+      ],
+      "intent": "meaning_lookup",
+      "cluster": "elder_futhark",
+      "score": 20,
+      "article": {
+        "title": "elder futhark rune meanings: 엘더 푸사르크 입문자가 헷갈리는 핵심 정리",
+        "slug": "elder-futhark-rune-meanings",
+        "type": "guide"
+      }
+    },
+    {
+      "keyword": "elder futhark rune translator",
+      "sources": [
+        "google_suggest_ko_KR"
+      ],
+      "seeds": [
+        "elder futhark"
+      ],
+      "intent": "utility_or_creation",
+      "cluster": "elder_futhark",
+      "score": 20,
+      "article": {
+        "title": "elder futhark rune translator: 엘더 푸사르크 입문자가 헷갈리는 핵심 정리",
+        "slug": "elder-futhark-rune-translator",
+        "type": "guide"
+      }
+    },
+    {
+      "keyword": "elder futhark runes",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "elder futhark"
+      ],
+      "intent": "history_factcheck",
+      "cluster": "elder_futhark",
+      "score": 20,
+      "article": {
+        "title": "elder futhark runes: 엘더 푸사르크 입문자가 헷갈리는 핵심 정리",
+        "slug": "elder-futhark-runes",
+        "type": "guide"
+      }
+    },
+    {
+      "keyword": "elder futhark runes alphabet",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "elder futhark"
+      ],
+      "intent": "meaning_lookup",
+      "cluster": "elder_futhark",
+      "score": 20,
+      "article": {
+        "title": "elder futhark runes alphabet: 엘더 푸사르크 입문자가 헷갈리는 핵심 정리",
+        "slug": "elder-futhark-runes-alphabet",
+        "type": "guide"
+      }
+    },
+    {
+      "keyword": "elder futhark runes meanings",
+      "sources": [
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "elder futhark"
+      ],
+      "intent": "meaning_lookup",
+      "cluster": "elder_futhark",
+      "score": 20,
+      "article": {
+        "title": "elder futhark runes meanings: 엘더 푸사르크 입문자가 헷갈리는 핵심 정리",
+        "slug": "elder-futhark-runes-meanings",
+        "type": "guide"
+      }
+    },
+    {
+      "keyword": "elder futhark runes translator",
+      "sources": [
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "elder futhark"
+      ],
+      "intent": "utility_or_creation",
+      "cluster": "elder_futhark",
+      "score": 20,
+      "article": {
+        "title": "elder futhark runes translator: 엘더 푸사르크 입문자가 헷갈리는 핵심 정리",
+        "slug": "elder-futhark-runes-translator",
+        "type": "guide"
+      }
+    },
+    {
+      "keyword": "elder futhark runic alphabet",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "elder futhark"
+      ],
+      "intent": "meaning_lookup",
+      "cluster": "elder_futhark",
+      "score": 20,
+      "article": {
+        "title": "elder futhark runic alphabet: 엘더 푸사르크 입문자가 헷갈리는 핵심 정리",
+        "slug": "elder-futhark-runic-alphabet",
+        "type": "guide"
+      }
+    },
+    {
+      "keyword": "elder futhark translator",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "elder futhark"
+      ],
+      "intent": "utility_or_creation",
+      "cluster": "elder_futhark",
+      "score": 20,
+      "article": {
+        "title": "elder futhark translator: 엘더 푸사르크 입문자가 헷갈리는 핵심 정리",
+        "slug": "elder-futhark-translator",
+        "type": "guide"
+      }
+    },
+    {
+      "keyword": "futhark runes and their meanings",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "futhark runes"
+      ],
+      "intent": "meaning_lookup",
+      "cluster": "elder_futhark",
+      "score": 20,
+      "article": {
+        "title": "futhark runes and their meanings: 엘더 푸사르크 입문자가 헷갈리는 핵심 정리",
+        "slug": "futhark-runes-and-their-meanings",
+        "type": "guide"
+      }
+    },
+    {
+      "keyword": "futhark runes meaning",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "futhark runes"
+      ],
+      "intent": "meaning_lookup",
+      "cluster": "elder_futhark",
+      "score": 20,
+      "article": {
+        "title": "futhark runes meaning: 엘더 푸사르크 입문자가 헷갈리는 핵심 정리",
+        "slug": "futhark-runes-meaning",
+        "type": "guide"
+      }
+    },
+    {
+      "keyword": "rune casting",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "rune casting"
+      ],
+      "intent": "divination",
+      "cluster": "casting",
+      "score": 20,
+      "article": {
+        "title": "rune casting: 룬스톤을 던져 읽는 법",
+        "slug": "rune-casting",
+        "type": "how_to"
+      }
+    },
+    {
+      "keyword": "rune casting board",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "rune casting"
+      ],
+      "intent": "commercial",
+      "cluster": "casting",
+      "score": 20,
+      "article": {
+        "title": "rune casting board: 룬스톤을 던져 읽는 법",
+        "slug": "rune-casting-board",
+        "type": "how_to"
+      }
+    },
+    {
+      "keyword": "rune casting cloth",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "rune casting"
+      ],
+      "intent": "commercial",
+      "cluster": "casting",
+      "score": 20,
+      "article": {
+        "title": "rune casting cloth: 룬스톤을 던져 읽는 법",
+        "slug": "rune-casting-cloth",
+        "type": "how_to"
+      }
+    },
+    {
+      "keyword": "rune casting divination",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "rune casting"
+      ],
+      "intent": "divination",
+      "cluster": "casting",
+      "score": 20,
+      "article": {
+        "title": "rune casting divination: 룬스톤을 던져 읽는 법",
+        "slug": "rune-casting-divination",
+        "type": "how_to"
+      }
+    },
+    {
+      "keyword": "rune casting guide",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "rune casting"
+      ],
+      "intent": "how_to",
+      "cluster": "casting",
+      "score": 20,
+      "article": {
+        "title": "rune casting guide: 룬스톤을 던져 읽는 법",
+        "slug": "rune-casting-guide",
+        "type": "how_to"
+      }
+    },
+    {
+      "keyword": "rune casting layouts",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "rune casting"
+      ],
+      "intent": "how_to",
+      "cluster": "casting",
+      "score": 20,
+      "article": {
+        "title": "rune casting layouts: 룬스톤을 던져 읽는 법",
+        "slug": "rune-casting-layouts",
+        "type": "how_to"
+      }
+    },
+    {
+      "keyword": "rune casting mat",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "rune casting"
+      ],
+      "intent": "commercial",
+      "cluster": "casting",
+      "score": 20,
+      "article": {
+        "title": "rune casting mat: 룬스톤을 던져 읽는 법",
+        "slug": "rune-casting-mat",
+        "type": "how_to"
+      }
+    },
+    {
+      "keyword": "rune casting meaning",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "rune casting"
+      ],
+      "intent": "meaning_lookup",
+      "cluster": "casting",
+      "score": 20,
+      "article": {
+        "title": "rune casting meaning: 룬스톤을 던져 읽는 법",
+        "slug": "rune-casting-meaning",
+        "type": "how_to"
+      }
+    },
+    {
+      "keyword": "rune casting methods",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "rune casting"
+      ],
+      "intent": "how_to",
+      "cluster": "casting",
+      "score": 20,
+      "article": {
+        "title": "rune casting methods: 룬스톤을 던져 읽는 법",
+        "slug": "rune-casting-methods",
+        "type": "how_to"
+      }
+    },
+    {
+      "keyword": "rune casting online",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "rune casting"
+      ],
+      "intent": "divination",
+      "cluster": "casting",
+      "score": 20,
+      "article": {
+        "title": "rune casting online: 룬스톤을 던져 읽는 법",
+        "slug": "rune-casting-online",
+        "type": "how_to"
+      }
+    },
+    {
+      "keyword": "rune meaning",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "rune meaning"
+      ],
+      "intent": "meaning_lookup",
+      "cluster": "meanings",
+      "score": 20,
+      "article": {
+        "title": "rune meaning: 룬 문자 뜻과 해석 기준",
+        "slug": "rune-meaning",
+        "type": "meaning"
+      }
+    },
+    {
+      "keyword": "rune meaning ansuz",
+      "sources": [
+        "google_suggest_ko_KR"
+      ],
+      "seeds": [
+        "rune meaning"
+      ],
+      "intent": "meaning_lookup",
+      "cluster": "meanings",
+      "score": 20,
+      "article": {
+        "title": "rune meaning ansuz: 룬 문자 뜻과 해석 기준",
+        "slug": "rune-meaning-ansuz",
+        "type": "meaning"
+      }
+    },
+    {
+      "keyword": "rune meaning chart",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "rune meaning"
+      ],
+      "intent": "meaning_lookup",
+      "cluster": "meanings",
+      "score": 20,
+      "article": {
+        "title": "rune meaning chart: 룬 문자 뜻과 해석 기준",
+        "slug": "rune-meaning-chart",
+        "type": "meaning"
+      }
+    },
+    {
+      "keyword": "rune meaning dagaz",
+      "sources": [
+        "google_suggest_ko_KR"
+      ],
+      "seeds": [
+        "rune meaning"
+      ],
+      "intent": "meaning_lookup",
+      "cluster": "meanings",
+      "score": 20,
+      "article": {
+        "title": "rune meaning dagaz: 룬 문자 뜻과 해석 기준",
+        "slug": "rune-meaning-dagaz",
+        "type": "meaning"
+      }
+    },
+    {
+      "keyword": "rune meaning in bengali",
+      "sources": [
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "rune meaning"
+      ],
+      "intent": "meaning_lookup",
+      "cluster": "meanings",
+      "score": 20,
+      "article": {
+        "title": "rune meaning in bengali: 룬 문자 뜻과 해석 기준",
+        "slug": "rune-meaning-in-bengali",
+        "type": "meaning"
+      }
+    },
+    {
+      "keyword": "rune meaning in english",
+      "sources": [
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "rune meaning"
+      ],
+      "intent": "meaning_lookup",
+      "cluster": "meanings",
+      "score": 20,
+      "article": {
+        "title": "rune meaning in english: 룬 문자 뜻과 해석 기준",
+        "slug": "rune-meaning-in-english",
+        "type": "meaning"
+      }
+    },
+    {
+      "keyword": "rune meaning in hindi",
+      "sources": [
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "rune meaning"
+      ],
+      "intent": "meaning_lookup",
+      "cluster": "meanings",
+      "score": 20,
+      "article": {
+        "title": "rune meaning in hindi: 룬 문자 뜻과 해석 기준",
+        "slug": "rune-meaning-in-hindi",
+        "type": "meaning"
+      }
+    },
+    {
+      "keyword": "rune meaning in tamil",
+      "sources": [
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "rune meaning"
+      ],
+      "intent": "meaning_lookup",
+      "cluster": "meanings",
+      "score": 20,
+      "article": {
+        "title": "rune meaning in tamil: 룬 문자 뜻과 해석 기준",
+        "slug": "rune-meaning-in-tamil",
+        "type": "meaning"
+      }
+    },
+    {
+      "keyword": "rune meaning in urdu",
+      "sources": [
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "rune meaning"
+      ],
+      "intent": "meaning_lookup",
+      "cluster": "meanings",
+      "score": 20,
+      "article": {
+        "title": "rune meaning in urdu: 룬 문자 뜻과 해석 기준",
+        "slug": "rune-meaning-in-urdu",
+        "type": "meaning"
+      }
+    },
+    {
+      "keyword": "rune meaning isa",
+      "sources": [
+        "google_suggest_ko_KR"
+      ],
+      "seeds": [
+        "rune meaning"
+      ],
+      "intent": "meaning_lookup",
+      "cluster": "meanings",
+      "score": 20,
+      "article": {
+        "title": "rune meaning isa: 룬 문자 뜻과 해석 기준",
+        "slug": "rune-meaning-isa",
+        "type": "meaning"
+      }
+    },
+    {
+      "keyword": "rune meaning light",
+      "sources": [
+        "google_suggest_ko_KR"
+      ],
+      "seeds": [
+        "rune meaning"
+      ],
+      "intent": "meaning_lookup",
+      "cluster": "meanings",
+      "score": 20,
+      "article": {
+        "title": "rune meaning light: 룬 문자 뜻과 해석 기준",
+        "slug": "rune-meaning-light",
+        "type": "meaning"
+      }
+    },
+    {
+      "keyword": "rune meaning love",
+      "sources": [
+        "google_suggest_ko_KR"
+      ],
+      "seeds": [
+        "rune meaning"
+      ],
+      "intent": "meaning_lookup",
+      "cluster": "meanings",
+      "score": 20,
+      "article": {
+        "title": "rune meaning love: 룬 문자 뜻과 해석 기준",
+        "slug": "rune-meaning-love",
+        "type": "meaning"
+      }
+    },
+    {
+      "keyword": "rune meaning name",
+      "sources": [
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "rune meaning"
+      ],
+      "intent": "meaning_lookup",
+      "cluster": "meanings",
+      "score": 20,
+      "article": {
+        "title": "rune meaning name: 룬 문자 뜻과 해석 기준",
+        "slug": "rune-meaning-name",
+        "type": "meaning"
+      }
+    },
+    {
+      "keyword": "rune meaning nauthiz",
+      "sources": [
+        "google_suggest_ko_KR"
+      ],
+      "seeds": [
+        "rune meaning"
+      ],
+      "intent": "meaning_lookup",
+      "cluster": "meanings",
+      "score": 20,
+      "article": {
+        "title": "rune meaning nauthiz: 룬 문자 뜻과 해석 기준",
+        "slug": "rune-meaning-nauthiz",
+        "type": "meaning"
+      }
+    },
+    {
+      "keyword": "rune meaning perthro",
+      "sources": [
+        "google_suggest_ko_KR"
+      ],
+      "seeds": [
+        "rune meaning"
+      ],
+      "intent": "meaning_lookup",
+      "cluster": "meanings",
+      "score": 20,
+      "article": {
+        "title": "rune meaning perthro: 룬 문자 뜻과 해석 기준",
+        "slug": "rune-meaning-perthro",
+        "type": "meaning"
+      }
+    },
+    {
+      "keyword": "rune meaning tiwaz",
+      "sources": [
+        "google_suggest_ko_KR"
+      ],
+      "seeds": [
+        "rune meaning"
+      ],
+      "intent": "meaning_lookup",
+      "cluster": "meanings",
+      "score": 20,
+      "article": {
+        "title": "rune meaning tiwaz: 룬 문자 뜻과 해석 기준",
+        "slug": "rune-meaning-tiwaz",
+        "type": "meaning"
+      }
+    },
+    {
+      "keyword": "rune meanings elder futhark",
+      "sources": [
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "rune meaning"
+      ],
+      "intent": "meaning_lookup",
+      "cluster": "elder_futhark",
+      "score": 20,
+      "article": {
+        "title": "rune meanings elder futhark: 엘더 푸사르크 입문자가 헷갈리는 핵심 정리",
+        "slug": "rune-meanings-elder-futhark",
+        "type": "guide"
+      }
+    },
+    {
+      "keyword": "rune meanings norse",
+      "sources": [
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "rune meaning"
+      ],
+      "intent": "meaning_lookup",
+      "cluster": "meanings",
+      "score": 20,
+      "article": {
+        "title": "rune meanings norse: 룬 문자 뜻과 해석 기준",
+        "slug": "rune-meanings-norse",
+        "type": "meaning"
+      }
+    },
+    {
+      "keyword": "rune reading free",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "rune reading"
+      ],
+      "intent": "divination",
+      "cluster": "reading",
+      "score": 20,
+      "article": {
+        "title": "rune reading free: 룬스 초보 가이드",
+        "slug": "rune-reading-free",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "rune reading guide",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "rune reading"
+      ],
+      "intent": "how_to",
+      "cluster": "reading",
+      "score": 20,
+      "article": {
+        "title": "rune reading guide: 룬스 초보 가이드",
+        "slug": "rune-reading-guide",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "rune reading meaning",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "rune reading"
+      ],
+      "intent": "meaning_lookup",
+      "cluster": "reading",
+      "score": 20,
+      "article": {
+        "title": "rune reading meaning: 룬스 초보 가이드",
+        "slug": "rune-reading-meaning",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "rune reading online",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "rune reading"
+      ],
+      "intent": "divination",
+      "cluster": "reading",
+      "score": 20,
+      "article": {
+        "title": "rune reading online: 룬스 초보 가이드",
+        "slug": "rune-reading-online",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "rune reading online free",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "rune reading"
+      ],
+      "intent": "divination",
+      "cluster": "reading",
+      "score": 20,
+      "article": {
+        "title": "rune reading online free: 룬스 초보 가이드",
+        "slug": "rune-reading-online-free",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "rune stones",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "rune stones"
+      ],
+      "intent": "general",
+      "cluster": "rune_stones",
+      "score": 20,
+      "article": {
+        "title": "rune stones: 룬스 초보 가이드",
+        "slug": "rune-stones",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "rune stones and their meanings",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "rune stones"
+      ],
+      "intent": "meaning_lookup",
+      "cluster": "rune_stones",
+      "score": 20,
+      "article": {
+        "title": "rune stones and their meanings: 룬스 초보 가이드",
+        "slug": "rune-stones-and-their-meanings",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "rune stones for divination",
+      "sources": [
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "rune stones"
+      ],
+      "intent": "divination",
+      "cluster": "rune_stones",
+      "score": 20,
+      "article": {
+        "title": "rune stones for divination: 룬스 초보 가이드",
+        "slug": "rune-stones-for-divination",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "rune stones for sale",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "rune stones"
+      ],
+      "intent": "commercial",
+      "cluster": "rune_stones",
+      "score": 20,
+      "article": {
+        "title": "rune stones for sale: 룬스 초보 가이드",
+        "slug": "rune-stones-for-sale",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "rune stones how to use",
+      "sources": [
+        "google_suggest_ko_KR"
+      ],
+      "seeds": [
+        "rune stones"
+      ],
+      "intent": "how_to",
+      "cluster": "rune_stones",
+      "score": 20,
+      "article": {
+        "title": "rune stones how to use: 초보자가 먼저 알아야 할 사용 순서",
+        "slug": "rune-stones-how-to-use",
+        "type": "how_to"
+      }
+    },
+    {
+      "keyword": "rune stones meanings",
+      "sources": [
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "rune stones"
+      ],
+      "intent": "meaning_lookup",
+      "cluster": "rune_stones",
+      "score": 20,
+      "article": {
+        "title": "rune stones meanings: 룬스 초보 가이드",
+        "slug": "rune-stones-meanings",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "rune stones oblivion",
+      "sources": [
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "rune stones"
+      ],
+      "intent": "general",
+      "cluster": "rune_stones",
+      "score": 20,
+      "article": {
+        "title": "rune stones oblivion: 룬스 초보 가이드",
+        "slug": "rune-stones-oblivion",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "rune stones reading",
+      "sources": [
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "rune stones"
+      ],
+      "intent": "divination",
+      "cluster": "rune_stones",
+      "score": 20,
+      "article": {
+        "title": "rune stones reading: 룬스 초보 가이드",
+        "slug": "rune-stones-reading",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "rune stones set",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "rune stones"
+      ],
+      "intent": "commercial",
+      "cluster": "rune_stones",
+      "score": 20,
+      "article": {
+        "title": "rune stones set: 룬스 초보 가이드",
+        "slug": "rune-stones-set",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "rune stones sweden",
+      "sources": [
+        "google_suggest_ko_KR"
+      ],
+      "seeds": [
+        "rune stones"
+      ],
+      "intent": "general",
+      "cluster": "rune_stones",
+      "score": 20,
+      "article": {
+        "title": "rune stones sweden: 룬스 초보 가이드",
+        "slug": "rune-stones-sweden",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "rune stones symbols",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "rune stones"
+      ],
+      "intent": "meaning_lookup",
+      "cluster": "rune_stones",
+      "score": 20,
+      "article": {
+        "title": "rune stones symbols: 룬스 초보 가이드",
+        "slug": "rune-stones-symbols",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "rune stones uk",
+      "sources": [
+        "google_suggest_ko_KR"
+      ],
+      "seeds": [
+        "rune stones"
+      ],
+      "intent": "general",
+      "cluster": "rune_stones",
+      "score": 20,
+      "article": {
+        "title": "rune stones uk: 룬스 초보 가이드",
+        "slug": "rune-stones-uk",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "runes meaning",
+      "sources": [
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "runes"
+      ],
+      "intent": "meaning_lookup",
+      "cluster": "meanings",
+      "score": 20,
+      "article": {
+        "title": "runes meaning: 룬 문자 뜻과 해석 기준",
+        "slug": "runes-meaning",
+        "type": "meaning"
+      }
+    },
+    {
+      "keyword": "룬 문자 배우기",
+      "sources": [
+        "naver_ac"
+      ],
+      "seeds": [
+        "룬 문자",
+        "룬문자"
+      ],
+      "intent": "general",
+      "cluster": "general",
+      "score": 18,
+      "article": {
+        "title": "룬 문자 배우기: 룬스 초보 가이드",
+        "slug": "rune-letters",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "룬 문자 책",
+      "sources": [
+        "naver_ac"
+      ],
+      "seeds": [
+        "룬 문자",
+        "룬문자"
+      ],
+      "intent": "general",
+      "cluster": "general",
+      "score": 18,
+      "article": {
+        "title": "룬 문자 책: 룬스 초보 가이드",
+        "slug": "rune-letters",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "룬느",
+      "sources": [
+        "naver_ac"
+      ],
+      "seeds": [
+        "룬"
+      ],
+      "intent": "general",
+      "cluster": "general",
+      "score": 18,
+      "article": {
+        "title": "룬느: 룬스 초보 가이드",
+        "slug": "rune",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "룬문자 읽는법",
+      "sources": [
+        "naver_ac"
+      ],
+      "seeds": [
+        "룬 문자",
+        "룬문자"
+      ],
+      "intent": "general",
+      "cluster": "general",
+      "score": 18,
+      "article": {
+        "title": "룬문자 읽는법: 룬스 초보 가이드",
+        "slug": "rune-letters",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "runes 뜻",
+      "sources": [
+        "naver_ac"
+      ],
+      "seeds": [
+        "rune",
+        "runes"
+      ],
+      "intent": "meaning_lookup",
+      "cluster": "meanings",
+      "score": 18,
+      "article": {
+        "title": "runes 뜻: 룬 문자 뜻과 해석 기준",
+        "slug": "runes-meaning",
+        "type": "meaning"
+      }
+    },
+    {
+      "keyword": "bind runes",
+      "sources": [
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "bind runes"
+      ],
+      "intent": "utility_or_creation",
+      "cluster": "bind_runes",
+      "score": 15,
+      "article": {
+        "title": "bind runes: 룬스 초보 가이드",
+        "slug": "bind-runes",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "bind runes alphabet",
+      "sources": [
+        "google_suggest_ko_KR"
+      ],
+      "seeds": [
+        "bind runes"
+      ],
+      "intent": "meaning_lookup",
+      "cluster": "elder_futhark",
+      "score": 15,
+      "article": {
+        "title": "bind runes alphabet: 엘더 푸사르크 입문자가 헷갈리는 핵심 정리",
+        "slug": "bind-runes-alphabet",
+        "type": "guide"
+      }
+    },
+    {
+      "keyword": "bind runes for love",
+      "sources": [
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "bind runes"
+      ],
+      "intent": "utility_or_creation",
+      "cluster": "bind_runes",
+      "score": 15,
+      "article": {
+        "title": "bind runes for love: 룬스 초보 가이드",
+        "slug": "bind-runes-for-love",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "bind runes for money",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "bind runes"
+      ],
+      "intent": "utility_or_creation",
+      "cluster": "bind_runes",
+      "score": 15,
+      "article": {
+        "title": "bind runes for money: 룬스 초보 가이드",
+        "slug": "bind-runes-for-money",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "bind runes for protection",
+      "sources": [
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "bind runes"
+      ],
+      "intent": "utility_or_creation",
+      "cluster": "bind_runes",
+      "score": 15,
+      "article": {
+        "title": "bind runes for protection: 룬스 초보 가이드",
+        "slug": "bind-runes-for-protection",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "bind runes for strength",
+      "sources": [
+        "google_suggest_ko_KR"
+      ],
+      "seeds": [
+        "bind runes"
+      ],
+      "intent": "utility_or_creation",
+      "cluster": "bind_runes",
+      "score": 15,
+      "article": {
+        "title": "bind runes for strength: 룬스 초보 가이드",
+        "slug": "bind-runes-for-strength",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "bind runes generator",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "bind runes"
+      ],
+      "intent": "utility_or_creation",
+      "cluster": "bind_runes",
+      "score": 15,
+      "article": {
+        "title": "bind runes generator: 룬스 초보 가이드",
+        "slug": "bind-runes-generator",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "bind runes list",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "bind runes"
+      ],
+      "intent": "meaning_lookup",
+      "cluster": "bind_runes",
+      "score": 15,
+      "article": {
+        "title": "bind runes list: 룬스 초보 가이드",
+        "slug": "bind-runes-list",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "bind runes symbols",
+      "sources": [
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "bind runes"
+      ],
+      "intent": "meaning_lookup",
+      "cluster": "bind_runes",
+      "score": 15,
+      "article": {
+        "title": "bind runes symbols: 룬스 초보 가이드",
+        "slug": "bind-runes-symbols",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "bind runes tattoo",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "bind runes"
+      ],
+      "intent": "utility_or_creation",
+      "cluster": "bind_runes",
+      "score": 15,
+      "article": {
+        "title": "bind runes tattoo: 룬스 초보 가이드",
+        "slug": "bind-runes-tattoo",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "bind runes tattoo ideas",
+      "sources": [
+        "google_suggest_ko_KR"
+      ],
+      "seeds": [
+        "bind runes"
+      ],
+      "intent": "utility_or_creation",
+      "cluster": "bind_runes",
+      "score": 15,
+      "article": {
+        "title": "bind runes tattoo ideas: 룬스 초보 가이드",
+        "slug": "bind-runes-tattoo-ideas",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "bind runes witchcraft",
+      "sources": [
+        "google_suggest_ko_KR"
+      ],
+      "seeds": [
+        "bind runes"
+      ],
+      "intent": "utility_or_creation",
+      "cluster": "bind_runes",
+      "score": 15,
+      "article": {
+        "title": "bind runes witchcraft: 룬스 초보 가이드",
+        "slug": "bind-runes-witchcraft",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "futhark runes",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "futhark runes"
+      ],
+      "intent": "history_factcheck",
+      "cluster": "elder_futhark",
+      "score": 15,
+      "article": {
+        "title": "futhark runes: 엘더 푸사르크 입문자가 헷갈리는 핵심 정리",
+        "slug": "futhark-runes",
+        "type": "guide"
+      }
+    },
+    {
+      "keyword": "futhark runes alphabet",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "futhark runes"
+      ],
+      "intent": "meaning_lookup",
+      "cluster": "elder_futhark",
+      "score": 15,
+      "article": {
+        "title": "futhark runes alphabet: 엘더 푸사르크 입문자가 헷갈리는 핵심 정리",
+        "slug": "futhark-runes-alphabet",
+        "type": "guide"
+      }
+    },
+    {
+      "keyword": "futhark runes canada",
+      "sources": [
+        "google_suggest_ko_KR"
+      ],
+      "seeds": [
+        "futhark runes"
+      ],
+      "intent": "history_factcheck",
+      "cluster": "elder_futhark",
+      "score": 15,
+      "article": {
+        "title": "futhark runes canada: 엘더 푸사르크 입문자가 헷갈리는 핵심 정리",
+        "slug": "futhark-runes-canada",
+        "type": "guide"
+      }
+    },
+    {
+      "keyword": "futhark runes compass",
+      "sources": [
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "futhark runes"
+      ],
+      "intent": "history_factcheck",
+      "cluster": "elder_futhark",
+      "score": 15,
+      "article": {
+        "title": "futhark runes compass: 엘더 푸사르크 입문자가 헷갈리는 핵심 정리",
+        "slug": "futhark-runes-compass",
+        "type": "guide"
+      }
+    },
+    {
+      "keyword": "futhark runes copy paste",
+      "sources": [
+        "google_suggest_ko_KR"
+      ],
+      "seeds": [
+        "futhark runes"
+      ],
+      "intent": "utility_or_creation",
+      "cluster": "elder_futhark",
+      "score": 15,
+      "article": {
+        "title": "futhark runes copy paste: 엘더 푸사르크 입문자가 헷갈리는 핵심 정리",
+        "slug": "futhark-runes-copy-paste",
+        "type": "guide"
+      }
+    },
+    {
+      "keyword": "futhark runes font",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "futhark runes"
+      ],
+      "intent": "utility_or_creation",
+      "cluster": "elder_futhark",
+      "score": 15,
+      "article": {
+        "title": "futhark runes font: 엘더 푸사르크 입문자가 헷갈리는 핵심 정리",
+        "slug": "futhark-runes-font",
+        "type": "guide"
+      }
+    },
+    {
+      "keyword": "futhark runes pronunciation",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "futhark runes"
+      ],
+      "intent": "history_factcheck",
+      "cluster": "elder_futhark",
+      "score": 15,
+      "article": {
+        "title": "futhark runes pronunciation: 엘더 푸사르크 입문자가 헷갈리는 핵심 정리",
+        "slug": "futhark-runes-pronunciation",
+        "type": "guide"
+      }
+    },
+    {
+      "keyword": "futhark runes set",
+      "sources": [
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "futhark runes"
+      ],
+      "intent": "commercial",
+      "cluster": "elder_futhark",
+      "score": 15,
+      "article": {
+        "title": "futhark runes set: 엘더 푸사르크 입문자가 헷갈리는 핵심 정리",
+        "slug": "futhark-runes-set",
+        "type": "guide"
+      }
+    },
+    {
+      "keyword": "futhark runes tattoo",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "futhark runes"
+      ],
+      "intent": "utility_or_creation",
+      "cluster": "elder_futhark",
+      "score": 15,
+      "article": {
+        "title": "futhark runes tattoo: 엘더 푸사르크 입문자가 헷갈리는 핵심 정리",
+        "slug": "futhark-runes-tattoo",
+        "type": "guide"
+      }
+    },
+    {
+      "keyword": "futhark runes translator",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "futhark runes"
+      ],
+      "intent": "utility_or_creation",
+      "cluster": "elder_futhark",
+      "score": 15,
+      "article": {
+        "title": "futhark runes translator: 엘더 푸사르크 입문자가 헷갈리는 핵심 정리",
+        "slug": "futhark-runes-translator",
+        "type": "guide"
+      }
+    },
+    {
+      "keyword": "rune",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US",
+        "naver_ac"
+      ],
+      "seeds": [
+        "rune"
+      ],
+      "intent": "general",
+      "cluster": "general",
+      "score": 15,
+      "article": {
+        "title": "rune: 룬스 초보 가이드",
+        "slug": "rune",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "rune dice",
+      "sources": [
+        "google_suggest_ko_KR"
+      ],
+      "seeds": [
+        "rune"
+      ],
+      "intent": "general",
+      "cluster": "general",
+      "score": 15,
+      "article": {
+        "title": "rune dice: 룬스 초보 가이드",
+        "slug": "rune-dice",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "rune reading",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "rune reading"
+      ],
+      "intent": "divination",
+      "cluster": "reading",
+      "score": 15,
+      "article": {
+        "title": "rune reading: 룬스 초보 가이드",
+        "slug": "rune-reading",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "rune reading app",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "rune reading"
+      ],
+      "intent": "commercial",
+      "cluster": "reading",
+      "score": 15,
+      "article": {
+        "title": "rune reading app: 룬스 초보 가이드",
+        "slug": "rune-reading-app",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "rune reading book",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "rune reading"
+      ],
+      "intent": "commercial",
+      "cluster": "reading",
+      "score": 15,
+      "article": {
+        "title": "rune reading book: 룬스 초보 가이드",
+        "slug": "rune-reading-book",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "rune reading layouts",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "rune reading"
+      ],
+      "intent": "how_to",
+      "cluster": "reading",
+      "score": 15,
+      "article": {
+        "title": "rune reading layouts: 룬스 초보 가이드",
+        "slug": "rune-reading-layouts",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "rune reading spreads",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "rune reading"
+      ],
+      "intent": "how_to",
+      "cluster": "reading",
+      "score": 15,
+      "article": {
+        "title": "rune reading spreads: 룬스 초보 가이드",
+        "slug": "rune-reading-spreads",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "runes",
+      "sources": [
+        "google_suggest_ko_KR"
+      ],
+      "seeds": [
+        "runes"
+      ],
+      "intent": "general",
+      "cluster": "general",
+      "score": 15,
+      "article": {
+        "title": "runes: 룬스 초보 가이드",
+        "slug": "runes",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "runes of magic",
+      "sources": [
+        "google_suggest_ko_KR"
+      ],
+      "seeds": [
+        "runes"
+      ],
+      "intent": "general",
+      "cluster": "general",
+      "score": 15,
+      "article": {
+        "title": "runes of magic: 룬스 초보 가이드",
+        "slug": "runes-of-magic",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "runes sailor piece",
+      "sources": [
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "rune",
+        "runes"
+      ],
+      "intent": "general",
+      "cluster": "general",
+      "score": 15,
+      "article": {
+        "title": "runes sailor piece: 룬스 초보 가이드",
+        "slug": "runes-sailor-piece",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "runeseeker's call",
+      "sources": [
+        "google_suggest_ko_KR"
+      ],
+      "seeds": [
+        "rune",
+        "runes"
+      ],
+      "intent": "general",
+      "cluster": "general",
+      "score": 15,
+      "article": {
+        "title": "runeseeker's call: 룬스 초보 가이드",
+        "slug": "runeseeker-s-call",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "runestone",
+      "sources": [
+        "google_suggest_en_US",
+        "google_suggest_ko_KR"
+      ],
+      "seeds": [
+        "rune",
+        "runes"
+      ],
+      "intent": "general",
+      "cluster": "rune_stones",
+      "score": 15,
+      "article": {
+        "title": "runestone: 룬스 초보 가이드",
+        "slug": "runestone",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "runestone academy",
+      "sources": [
+        "google_suggest_en_US",
+        "google_suggest_ko_KR"
+      ],
+      "seeds": [
+        "rune",
+        "runes"
+      ],
+      "intent": "general",
+      "cluster": "rune_stones",
+      "score": 15,
+      "article": {
+        "title": "runestone academy: 룬스 초보 가이드",
+        "slug": "runestone-academy",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "runestone problem solving",
+      "sources": [
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "runes"
+      ],
+      "intent": "general",
+      "cluster": "rune_stones",
+      "score": 15,
+      "article": {
+        "title": "runestone problem solving: 룬스 초보 가이드",
+        "slug": "runestone-problem-solving",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "runestone rumbles",
+      "sources": [
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "runes"
+      ],
+      "intent": "general",
+      "cluster": "rune_stones",
+      "score": 15,
+      "article": {
+        "title": "runestone rumbles: 룬스 초보 가이드",
+        "slug": "runestone-rumbles",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "runestorm",
+      "sources": [
+        "google_suggest_ko_KR"
+      ],
+      "seeds": [
+        "runes"
+      ],
+      "intent": "general",
+      "cluster": "general",
+      "score": 15,
+      "article": {
+        "title": "runestorm: 룬스 초보 가이드",
+        "slug": "runestorm",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "rune stone",
+      "sources": [
+        "naver_ac"
+      ],
+      "seeds": [
+        "runes"
+      ],
+      "intent": "general",
+      "cluster": "general",
+      "score": 10,
+      "article": {
+        "title": "rune stone: 룬스 초보 가이드",
+        "slug": "rune-stone",
+        "type": "supporting"
+      }
+    }
+  ],
+  "clusters": {
+    "meanings": [
+      "룬 문자 뜻",
+      "룬문자 뜻",
+      "룬 뜻",
+      "룬 문자 종류 뜻",
+      "룬 문자 해석",
+      "rune 뜻",
+      "rune meaning",
+      "rune meaning ansuz",
+      "rune meaning chart",
+      "rune meaning dagaz",
+      "rune meaning in bengali",
+      "rune meaning in english",
+      "rune meaning in hindi",
+      "rune meaning in tamil",
+      "rune meaning in urdu",
+      "rune meaning isa",
+      "rune meaning light",
+      "rune meaning love",
+      "rune meaning name",
+      "rune meaning nauthiz",
+      "rune meaning perthro",
+      "rune meaning tiwaz",
+      "rune meanings norse",
+      "runes meaning",
+      "runes 뜻"
+    ],
+    "reading": [
+      "룬 점술",
+      "룬 리딩 방법",
+      "룬 리딩 스프레드",
+      "룬 리딩 질문",
+      "룬 문자 점술 사전",
+      "룬 점술 방법",
+      "rune reading free",
+      "rune reading guide",
+      "rune reading meaning",
+      "rune reading online",
+      "rune reading online free",
+      "rune reading",
+      "rune reading app",
+      "rune reading book",
+      "rune reading layouts",
+      "rune reading spreads"
+    ],
+    "rune_stones": [
+      "룬스톤",
+      "룬스톤 구매",
+      "룬스톤 리딩",
+      "룬스톤 매뉴얼",
+      "룬스톤 보는 법",
+      "룬스톤 점",
+      "룬스톤 점술",
+      "룬스톤 종류",
+      "룬스톤 해석",
+      "룬스톤 해설서",
+      "룬스톤 던지는 법",
+      "룬스톤 뽑는 법",
+      "룬스톤 사용법",
+      "룬스톤 세트",
+      "룬스톤 키트",
+      "룬스톤 뜻",
+      "룬스톤 점치는법",
+      "룬스톤 추천",
+      "룬스톤 카드",
+      "룬스톤 타로",
+      "룬스톤 하는방법",
+      "rune stones",
+      "rune stones and their meanings",
+      "rune stones for divination",
+      "rune stones for sale",
+      "rune stones how to use",
+      "rune stones meanings",
+      "rune stones oblivion",
+      "rune stones reading",
+      "rune stones set",
+      "rune stones sweden",
+      "rune stones symbols",
+      "rune stones uk",
+      "runestone",
+      "runestone academy",
+      "runestone problem solving",
+      "runestone rumbles"
+    ],
+    "elder_futhark": [
+      "엘더 푸사르크",
+      "엘더 푸사르크 24룬",
+      "엘더 푸사르크 뜻",
+      "엘더 푸사르크 룬 문자",
+      "엘더 푸사르크 영거 푸사르크 차이",
+      "푸사르크 뜻",
+      "영거 푸사르크",
+      "푸사르크",
+      "bind runes elder futhark",
+      "elder futhark",
+      "elder futhark alphabet",
+      "elder futhark font",
+      "elder futhark list",
+      "elder futhark meanings",
+      "elder futhark rune meanings",
+      "elder futhark rune translator",
+      "elder futhark runes",
+      "elder futhark runes alphabet",
+      "elder futhark runes meanings",
+      "elder futhark runes translator",
+      "elder futhark runic alphabet",
+      "elder futhark translator",
+      "futhark runes and their meanings",
+      "futhark runes meaning",
+      "rune meanings elder futhark",
+      "bind runes alphabet",
+      "futhark runes",
+      "futhark runes alphabet",
+      "futhark runes canada",
+      "futhark runes compass",
+      "futhark runes copy paste",
+      "futhark runes font",
+      "futhark runes pronunciation",
+      "futhark runes set",
+      "futhark runes tattoo",
+      "futhark runes translator"
+    ],
+    "casting": [
+      "룬 캐스팅",
+      "룬 캐스팅 천",
+      "rune casting",
+      "rune casting board",
+      "rune casting cloth",
+      "rune casting divination",
+      "rune casting guide",
+      "rune casting layouts",
+      "rune casting mat",
+      "rune casting meaning",
+      "rune casting methods",
+      "rune casting online"
+    ],
+    "general": [
+      "룬 문자",
+      "룬 문자 마법",
+      "룬 문자 번역",
+      "룬 문자 읽는 법",
+      "룬 문자 종류",
+      "룬 문자 폰트",
+      "룬레이",
+      "룬문자",
+      "룬문자 번역",
+      "룬문자 실타래",
+      "룬문자 아케나이트 마법막대",
+      "룬문자 아케나이트 마법막대 도안",
+      "룬문자 아케이나이트 마법막대",
+      "룬문자 아케이나이트 마법막대 도안",
+      "룬문자 이터늄 마법막대",
+      "룬문자 지옥무쇠 마법막대",
+      "룬워드",
+      "룬의 아이들",
+      "25번째 룬",
+      "룬 오라클 카드",
+      "룬 카드",
+      "빈 룬",
+      "룬 문자 배우기",
+      "룬 문자 책",
+      "룬느",
+      "룬문자 읽는법",
+      "rune",
+      "rune dice",
+      "runes",
+      "runes of magic",
+      "runes sailor piece",
+      "runeseeker's call",
+      "runestorm",
+      "rune stone"
+    ],
+    "tools_tattoo": [
+      "룬 문자 번역기",
+      "룬 문자 변환기",
+      "룬문자 번역기",
+      "룬 문자 변환",
+      "룬 문자 타투"
+    ],
+    "history": [
+      "바이킹 룬",
+      "바이킹 룬문자",
+      "북유럽 룬",
+      "북유럽 룬문자",
+      "북유럽 신화 룬",
+      "북유럽 신화 룬문자",
+      "북유럽 신화 시그룬",
+      "고대 룬 문자",
+      "바이킹 룬 문자",
+      "북유럽 룬 문자"
+    ],
+    "bind_runes": [
+      "바인드 룬",
+      "bind runes and their meanings",
+      "bind runes meaning",
+      "bind runes",
+      "bind runes for love",
+      "bind runes for money",
+      "bind runes for protection",
+      "bind runes for strength",
+      "bind runes generator",
+      "bind runes list",
+      "bind runes symbols",
+      "bind runes tattoo",
+      "bind runes tattoo ideas",
+      "bind runes witchcraft"
+    ]
+  },
+  "topIdeas": [
+    {
+      "keyword": "룬 문자 뜻",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US",
+        "naver_ac",
+        "manual_seed"
+      ],
+      "seeds": [
+        "룬 문자",
+        "manual_ko"
+      ],
+      "intent": "meaning_lookup",
+      "cluster": "meanings",
+      "score": 31,
+      "article": {
+        "title": "룬 문자 뜻: 룬 문자 뜻과 해석 기준",
+        "slug": "rune-letters-meaning",
+        "type": "meaning"
+      }
+    },
+    {
+      "keyword": "룬 점술",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "룬 점술"
+      ],
+      "intent": "divination",
+      "cluster": "reading",
+      "score": 31,
+      "article": {
+        "title": "룬 점술: 룬스 초보 가이드",
+        "slug": "rune-divination",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "룬문자 뜻",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US",
+        "manual_seed"
+      ],
+      "seeds": [
+        "룬문자",
+        "manual_ko"
+      ],
+      "intent": "meaning_lookup",
+      "cluster": "meanings",
+      "score": 31,
+      "article": {
+        "title": "룬문자 뜻: 룬 문자 뜻과 해석 기준",
+        "slug": "rune-letters-meaning",
+        "type": "meaning"
+      }
+    },
+    {
+      "keyword": "룬스톤 구매",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US",
+        "manual_seed"
+      ],
+      "seeds": [
+        "룬스톤",
+        "manual_ko"
+      ],
+      "intent": "commercial",
+      "cluster": "rune_stones",
+      "score": 31,
+      "article": {
+        "title": "룬스톤 구매: 룬스 초보 가이드",
+        "slug": "rune-stones-buying",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "룬스톤 리딩",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "룬스톤"
+      ],
+      "intent": "divination",
+      "cluster": "rune_stones",
+      "score": 31,
+      "article": {
+        "title": "룬스톤 리딩: 룬스 초보 가이드",
+        "slug": "rune-stones-reading",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "룬스톤 점술",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US",
+        "manual_seed"
+      ],
+      "seeds": [
+        "룬스톤",
+        "manual_ko"
+      ],
+      "intent": "divination",
+      "cluster": "rune_stones",
+      "score": 31,
+      "article": {
+        "title": "룬스톤 점술: 룬스 초보 가이드",
+        "slug": "rune-stones-divination",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "룬스톤 해석",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US",
+        "naver_ac"
+      ],
+      "seeds": [
+        "룬스톤"
+      ],
+      "intent": "meaning_lookup",
+      "cluster": "rune_stones",
+      "score": 31,
+      "article": {
+        "title": "룬스톤 해석: 룬스 초보 가이드",
+        "slug": "rune-stones-interpretation",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "엘더 푸사르크",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "엘더 푸사르크",
+        "푸사르크"
+      ],
+      "intent": "history_factcheck",
+      "cluster": "elder_futhark",
+      "score": 31,
+      "article": {
+        "title": "엘더 푸사르크: 엘더 푸사르크 입문자가 헷갈리는 핵심 정리",
+        "slug": "elder-futhark",
+        "type": "guide"
+      }
+    },
+    {
+      "keyword": "룬 뜻",
+      "sources": [
+        "manual_seed"
+      ],
+      "seeds": [
+        "manual_ko"
+      ],
+      "intent": "meaning_lookup",
+      "cluster": "meanings",
+      "score": 30,
+      "article": {
+        "title": "룬 뜻: 룬 문자 뜻과 해석 기준",
+        "slug": "rune-meaning",
+        "type": "meaning"
+      }
+    },
+    {
+      "keyword": "룬 리딩 방법",
+      "sources": [
+        "manual_seed"
+      ],
+      "seeds": [
+        "manual_ko"
+      ],
+      "intent": "how_to",
+      "cluster": "reading",
+      "score": 30,
+      "article": {
+        "title": "룬 리딩 방법: 룬스 초보 가이드",
+        "slug": "rune-reading-method",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "룬 리딩 스프레드",
+      "sources": [
+        "manual_seed"
+      ],
+      "seeds": [
+        "manual_ko"
+      ],
+      "intent": "divination",
+      "cluster": "reading",
+      "score": 30,
+      "article": {
+        "title": "룬 리딩 스프레드: 룬스 초보 가이드",
+        "slug": "rune-reading-spreads",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "룬 리딩 질문",
+      "sources": [
+        "manual_seed"
+      ],
+      "seeds": [
+        "manual_ko"
+      ],
+      "intent": "divination",
+      "cluster": "reading",
+      "score": 30,
+      "article": {
+        "title": "룬 리딩 질문: 룬스 초보 가이드",
+        "slug": "rune-reading-questions",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "룬 문자 점술 사전",
+      "sources": [
+        "manual_seed"
+      ],
+      "seeds": [
+        "manual_ko"
+      ],
+      "intent": "divination",
+      "cluster": "reading",
+      "score": 30,
+      "article": {
+        "title": "룬 문자 점술 사전: 룬스 초보 가이드",
+        "slug": "rune-letters-divination",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "룬 점술 방법",
+      "sources": [
+        "manual_seed"
+      ],
+      "seeds": [
+        "manual_ko"
+      ],
+      "intent": "how_to",
+      "cluster": "reading",
+      "score": 30,
+      "article": {
+        "title": "룬 점술은 어떻게 보나요? 초보자를 위한 룬 리딩 순서",
+        "slug": "how-rune-divination-works",
+        "type": "pillar"
+      }
+    },
+    {
+      "keyword": "룬스톤 던지는 법",
+      "sources": [
+        "manual_seed"
+      ],
+      "seeds": [
+        "manual_ko"
+      ],
+      "intent": "how_to",
+      "cluster": "rune_stones",
+      "score": 30,
+      "article": {
+        "title": "룬스톤 던지는 법: 초보자가 먼저 알아야 할 사용 순서",
+        "slug": "rune-stones-casting-method",
+        "type": "how_to"
+      }
+    },
+    {
+      "keyword": "룬스톤 뽑는 법",
+      "sources": [
+        "manual_seed"
+      ],
+      "seeds": [
+        "manual_ko"
+      ],
+      "intent": "how_to",
+      "cluster": "rune_stones",
+      "score": 30,
+      "article": {
+        "title": "룬스톤 뽑는 법: 초보자가 먼저 알아야 할 사용 순서",
+        "slug": "rune-stones-drawing-method",
+        "type": "how_to"
+      }
+    },
+    {
+      "keyword": "룬스톤 사용법",
+      "sources": [
+        "manual_seed"
+      ],
+      "seeds": [
+        "manual_ko"
+      ],
+      "intent": "how_to",
+      "cluster": "rune_stones",
+      "score": 30,
+      "article": {
+        "title": "룬스톤 사용법: 처음 산 사람이 바로 따라 하는 7단계",
+        "slug": "how-to-use-rune-stones",
+        "type": "pillar"
+      }
+    },
+    {
+      "keyword": "룬스톤 세트",
+      "sources": [
+        "manual_seed"
+      ],
+      "seeds": [
+        "manual_ko"
+      ],
+      "intent": "commercial",
+      "cluster": "rune_stones",
+      "score": 30,
+      "article": {
+        "title": "룬스톤 세트: 룬스 초보 가이드",
+        "slug": "rune-stones-set",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "룬스톤 키트",
+      "sources": [
+        "manual_seed"
+      ],
+      "seeds": [
+        "manual_ko"
+      ],
+      "intent": "commercial",
+      "cluster": "rune_stones",
+      "score": 30,
+      "article": {
+        "title": "룬스톤 키트: 룬스 초보 가이드",
+        "slug": "rune-stones-kit",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "엘더 푸사르크 24룬",
+      "sources": [
+        "manual_seed"
+      ],
+      "seeds": [
+        "manual_ko"
+      ],
+      "intent": "meaning_lookup",
+      "cluster": "elder_futhark",
+      "score": 30,
+      "article": {
+        "title": "엘더 푸사르크 24룬 뜻 표",
+        "slug": "elder-futhark-24-runes-meaning-chart",
+        "type": "hub"
+      }
+    },
+    {
+      "keyword": "엘더 푸사르크 뜻",
+      "sources": [
+        "manual_seed"
+      ],
+      "seeds": [
+        "manual_ko"
+      ],
+      "intent": "meaning_lookup",
+      "cluster": "elder_futhark",
+      "score": 30,
+      "article": {
+        "title": "엘더 푸사르크 뜻: 엘더 푸사르크 입문자가 헷갈리는 핵심 정리",
+        "slug": "elder-futhark-meaning",
+        "type": "guide"
+      }
+    },
+    {
+      "keyword": "엘더 푸사르크 룬 문자",
+      "sources": [
+        "manual_seed"
+      ],
+      "seeds": [
+        "manual_ko"
+      ],
+      "intent": "history_factcheck",
+      "cluster": "elder_futhark",
+      "score": 30,
+      "article": {
+        "title": "엘더 푸사르크 룬 문자: 엘더 푸사르크 입문자가 헷갈리는 핵심 정리",
+        "slug": "elder-futhark-rune-letters",
+        "type": "guide"
+      }
+    },
+    {
+      "keyword": "엘더 푸사르크 영거 푸사르크 차이",
+      "sources": [
+        "manual_seed"
+      ],
+      "seeds": [
+        "manual_ko"
+      ],
+      "intent": "history_factcheck",
+      "cluster": "elder_futhark",
+      "score": 30,
+      "article": {
+        "title": "엘더 푸사르크 영거 푸사르크 차이: 엘더 푸사르크 입문자가 헷갈리는 핵심 정리",
+        "slug": "elder-futhark-younger-futhark",
+        "type": "guide"
+      }
+    },
+    {
+      "keyword": "룬 문자 종류 뜻",
+      "sources": [
+        "naver_ac"
+      ],
+      "seeds": [
+        "룬 문자",
+        "룬문자"
+      ],
+      "intent": "meaning_lookup",
+      "cluster": "meanings",
+      "score": 26,
+      "article": {
+        "title": "룬 문자 종류 뜻: 룬 문자 뜻과 해석 기준",
+        "slug": "rune-letters-types-meaning",
+        "type": "meaning"
+      }
+    },
+    {
+      "keyword": "룬스톤 뜻",
+      "sources": [
+        "naver_ac",
+        "manual_seed"
+      ],
+      "seeds": [
+        "룬스톤",
+        "manual_ko"
+      ],
+      "intent": "meaning_lookup",
+      "cluster": "rune_stones",
+      "score": 26,
+      "article": {
+        "title": "룬스톤 뜻: 룬스 초보 가이드",
+        "slug": "rune-stones-meaning",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "룬스톤 하는방법",
+      "sources": [
+        "naver_ac"
+      ],
+      "seeds": [
+        "룬스톤"
+      ],
+      "intent": "how_to",
+      "cluster": "rune_stones",
+      "score": 26,
+      "article": {
+        "title": "룬스톤 하는방법: 초보자가 먼저 알아야 할 사용 순서",
+        "slug": "rune-stones-method",
+        "type": "how_to"
+      }
+    },
+    {
+      "keyword": "푸사르크 뜻",
+      "sources": [
+        "naver_ac"
+      ],
+      "seeds": [
+        "푸사르크"
+      ],
+      "intent": "meaning_lookup",
+      "cluster": "elder_futhark",
+      "score": 26,
+      "article": {
+        "title": "푸사르크 뜻: 엘더 푸사르크 입문자가 헷갈리는 핵심 정리",
+        "slug": "futhark-meaning",
+        "type": "guide"
+      }
+    },
+    {
+      "keyword": "룬 문자 번역기",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US",
+        "naver_ac",
+        "manual_seed"
+      ],
+      "seeds": [
+        "룬 문자",
+        "룬문자",
+        "manual_ko"
+      ],
+      "intent": "utility_or_creation",
+      "cluster": "tools_tattoo",
+      "score": 23,
+      "article": {
+        "title": "룬 문자 번역기: 룬스 초보 가이드",
+        "slug": "rune-letters-translator",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "룬 문자 변환기",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "룬 문자"
+      ],
+      "intent": "utility_or_creation",
+      "cluster": "tools_tattoo",
+      "score": 23,
+      "article": {
+        "title": "룬 문자 변환기: 룬스 초보 가이드",
+        "slug": "rune-letters-converter",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "룬 문자 해석",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US",
+        "manual_seed"
+      ],
+      "seeds": [
+        "룬 문자",
+        "manual_ko"
+      ],
+      "intent": "meaning_lookup",
+      "cluster": "meanings",
+      "score": 23,
+      "article": {
+        "title": "룬 문자 해석: 룬 문자 뜻과 해석 기준",
+        "slug": "rune-letters-interpretation",
+        "type": "meaning"
+      }
+    },
+    {
+      "keyword": "룬문자 번역기",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "룬문자"
+      ],
+      "intent": "utility_or_creation",
+      "cluster": "tools_tattoo",
+      "score": 23,
+      "article": {
+        "title": "룬문자 번역기: 룬스 초보 가이드",
+        "slug": "rune-letters-translator",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "바이킹 룬",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "바이킹 룬"
+      ],
+      "intent": "history_factcheck",
+      "cluster": "history",
+      "score": 23,
+      "article": {
+        "title": "바이킹 룬: 룬스 초보 가이드",
+        "slug": "viking-rune",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "바이킹 룬문자",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "바이킹 룬"
+      ],
+      "intent": "history_factcheck",
+      "cluster": "history",
+      "score": 23,
+      "article": {
+        "title": "바이킹 룬문자: 룬스 초보 가이드",
+        "slug": "viking-rune-letters",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "북유럽 룬",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "북유럽 룬"
+      ],
+      "intent": "history_factcheck",
+      "cluster": "history",
+      "score": 23,
+      "article": {
+        "title": "북유럽 룬: 룬스 초보 가이드",
+        "slug": "norse-rune",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "북유럽 룬문자",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "북유럽 룬"
+      ],
+      "intent": "history_factcheck",
+      "cluster": "history",
+      "score": 23,
+      "article": {
+        "title": "북유럽 룬문자: 룬스 초보 가이드",
+        "slug": "norse-rune-letters",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "북유럽 신화 룬",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "북유럽 룬"
+      ],
+      "intent": "history_factcheck",
+      "cluster": "history",
+      "score": 23,
+      "article": {
+        "title": "북유럽 신화 룬: 룬스 초보 가이드",
+        "slug": "norse-rune",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "북유럽 신화 룬문자",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "북유럽 룬"
+      ],
+      "intent": "history_factcheck",
+      "cluster": "history",
+      "score": 23,
+      "article": {
+        "title": "북유럽 신화 룬문자: 룬스 초보 가이드",
+        "slug": "norse-rune-letters",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "북유럽 신화 시그룬",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "북유럽 룬"
+      ],
+      "intent": "history_factcheck",
+      "cluster": "history",
+      "score": 23,
+      "article": {
+        "title": "북유럽 신화 시그룬: 룬스 초보 가이드",
+        "slug": "norse-rune",
+        "type": "supporting"
+      }
+    },
+    {
+      "keyword": "영거 푸사르크",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US",
+        "manual_seed"
+      ],
+      "seeds": [
+        "푸사르크",
+        "manual_ko"
+      ],
+      "intent": "history_factcheck",
+      "cluster": "elder_futhark",
+      "score": 23,
+      "article": {
+        "title": "영거 푸사르크: 엘더 푸사르크 입문자가 헷갈리는 핵심 정리",
+        "slug": "younger-futhark",
+        "type": "guide"
+      }
+    },
+    {
+      "keyword": "푸사르크",
+      "sources": [
+        "google_suggest_ko_KR",
+        "google_suggest_en_US"
+      ],
+      "seeds": [
+        "푸사르크"
+      ],
+      "intent": "history_factcheck",
+      "cluster": "elder_futhark",
+      "score": 23,
+      "article": {
+        "title": "푸사르크: 엘더 푸사르크 입문자가 헷갈리는 핵심 정리",
+        "slug": "futhark",
+        "type": "guide"
+      }
+    }
+  ]
+}

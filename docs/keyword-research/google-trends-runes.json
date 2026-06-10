@@ -1,0 +1,544 @@
+{
+  "generated_at": "2026-06-10T18:53:39.702956",
+  "source": "pytrends unofficial Google Trends API",
+  "caveat": "Google Trends values are relative interest indexes, not exact search volume.",
+  "groups": {
+    "ko_core": {
+      "keywords": [
+        "룬 문자",
+        "룬스톤",
+        "룬 점술",
+        "엘더 푸사르크",
+        "룬 리딩"
+      ],
+      "interest_over_time": [],
+      "related_queries": {},
+      "status": "error",
+      "error": "Google Trends rate limited the request with too many 429 responses."
+    },
+    "en_core": {
+      "keywords": [
+        "rune meaning",
+        "rune reading",
+        "rune casting",
+        "elder futhark",
+        "rune stones"
+      ],
+      "interest_over_time": [],
+      "related_queries": {},
+      "status": "error",
+      "error": "Google Trends rate limited the request with too many 429 responses."
+    },
+    "en_commercial": {
+      "keywords": [
+        "rune stones set",
+        "rune casting cloth",
+        "bind runes",
+        "rune translator",
+        "rune tattoo"
+      ],
+      "interest_over_time": [
+        {
+          "date": "2025-06-08T00:00:00",
+          "rune stones set": 0,
+          "rune casting cloth": 0,
+          "bind runes": 0,
+          "rune translator": 0,
+          "rune tattoo": 0,
+          "isPartial": false
+        },
+        {
+          "date": "2025-06-15T00:00:00",
+          "rune stones set": 0,
+          "rune casting cloth": 0,
+          "bind runes": 0,
+          "rune translator": 0,
+          "rune tattoo": 0,
+          "isPartial": false
+        },
+        {
+          "date": "2025-06-22T00:00:00",
+          "rune stones set": 93,
+          "rune casting cloth": 0,
+          "bind runes": 0,
+          "rune translator": 0,
+          "rune tattoo": 0,
+          "isPartial": false
+        },
+        {
+          "date": "2025-06-29T00:00:00",
+          "rune stones set": 0,
+          "rune casting cloth": 0,
+          "bind runes": 0,
+          "rune translator": 0,
+          "rune tattoo": 0,
+          "isPartial": false
+        },
+        {
+          "date": "2025-07-06T00:00:00",
+          "rune stones set": 0,
+          "rune casting cloth": 0,
+          "bind runes": 0,
+          "rune translator": 0,
+          "rune tattoo": 0,
+          "isPartial": false
+        },
+        {
+          "date": "2025-07-13T00:00:00",
+          "rune stones set": 0,
+          "rune casting cloth": 0,
+          "bind runes": 0,
+          "rune translator": 0,
+          "rune tattoo": 0,
+          "isPartial": false
+        },
+        {
+          "date": "2025-07-20T00:00:00",
+          "rune stones set": 100,
+          "rune casting cloth": 0,
+          "bind runes": 0,
+          "rune translator": 0,
+          "rune tattoo": 0,
+          "isPartial": false
+        },
+        {
+          "date": "2025-07-27T00:00:00",
+          "rune stones set": 0,
+          "rune casting cloth": 0,
+          "bind runes": 0,
+          "rune translator": 0,
+          "rune tattoo": 0,
+          "isPartial": false
+        },
+        {
+          "date": "2025-08-03T00:00:00",
+          "rune stones set": 0,
+          "rune casting cloth": 0,
+          "bind runes": 0,
+          "rune translator": 0,
+          "rune tattoo": 0,
+          "isPartial": false
+        },
+        {
+          "date": "2025-08-10T00:00:00",
+          "rune stones set": 0,
+          "rune casting cloth": 0,
+          "bind runes": 0,
+          "rune translator": 0,
+          "rune tattoo": 0,
+          "isPartial": false
+        },
+        {
+          "date": "2025-08-17T00:00:00",
+          "rune stones set": 0,
+          "rune casting cloth": 0,
+          "bind runes": 0,
+          "rune translator": 0,
+          "rune tattoo": 0,
+          "isPartial": false
+        },
+        {
+          "date": "2025-08-24T00:00:00",
+          "rune stones set": 0,
+          "rune casting cloth": 0,
+          "bind runes": 0,
+          "rune translator": 0,
+          "rune tattoo": 90,
+          "isPartial": false
+        },
+        {
+          "date": "2025-08-31T00:00:00",
+          "rune stones set": 0,
+          "rune casting cloth": 0,
+          "bind runes": 0,
+          "rune translator": 0,
+          "rune tattoo": 0,
+          "isPartial": false
+        },
+        {
+          "date": "2025-09-07T00:00:00",
+          "rune stones set": 0,
+          "rune casting cloth": 0,
+          "bind runes": 0,
+          "rune translator": 0,
+          "rune tattoo": 0,
+          "isPartial": false
+        },
+        {
+          "date": "2025-09-14T00:00:00",
+          "rune stones set": 0,
+          "rune casting cloth": 0,
+          "bind runes": 0,
+          "rune translator": 0,
+          "rune tattoo": 0,
+          "isPartial": false
+        },
+        {
+          "date": "2025-09-21T00:00:00",
+          "rune stones set": 0,
+          "rune casting cloth": 0,
+          "bind runes": 0,
+          "rune translator": 0,
+          "rune tattoo": 0,
+          "isPartial": false
+        },
+        {
+          "date": "2025-09-28T00:00:00",
+          "rune stones set": 0,
+          "rune casting cloth": 0,
+          "bind runes": 0,
+          "rune translator": 0,
+          "rune tattoo": 0,
+          "isPartial": false
+        },
+        {
+          "date": "2025-10-05T00:00:00",
+          "rune stones set": 0,
+          "rune casting cloth": 0,
+          "bind runes": 0,
+          "rune translator": 0,
+          "rune tattoo": 0,
+          "isPartial": false
+        },
+        {
+          "date": "2025-10-12T00:00:00",
+          "rune stones set": 0,
+          "rune casting cloth": 0,
+          "bind runes": 0,
+          "rune translator": 0,
+          "rune tattoo": 0,
+          "isPartial": false
+        },
+        {
+          "date": "2025-10-19T00:00:00",
+          "rune stones set": 0,
+          "rune casting cloth": 0,
+          "bind runes": 0,
+          "rune translator": 0,
+          "rune tattoo": 0,
+          "isPartial": false
+        },
+        {
+          "date": "2025-10-26T00:00:00",
+          "rune stones set": 0,
+          "rune casting cloth": 0,
+          "bind runes": 0,
+          "rune translator": 0,
+          "rune tattoo": 0,
+          "isPartial": false
+        },
+        {
+          "date": "2025-11-02T00:00:00",
+          "rune stones set": 0,
+          "rune casting cloth": 0,
+          "bind runes": 0,
+          "rune translator": 0,
+          "rune tattoo": 0,
+          "isPartial": false
+        },
+        {
+          "date": "2025-11-09T00:00:00",
+          "rune stones set": 0,
+          "rune casting cloth": 0,
+          "bind runes": 0,
+          "rune translator": 0,
+          "rune tattoo": 0,
+          "isPartial": false
+        },
+        {
+          "date": "2025-11-16T00:00:00",
+          "rune stones set": 0,
+          "rune casting cloth": 0,
+          "bind runes": 0,
+          "rune translator": 0,
+          "rune tattoo": 0,
+          "isPartial": false
+        },
+        {
+          "date": "2025-11-23T00:00:00",
+          "rune stones set": 0,
+          "rune casting cloth": 0,
+          "bind runes": 0,
+          "rune translator": 0,
+          "rune tattoo": 0,
+          "isPartial": false
+        },
+        {
+          "date": "2025-11-30T00:00:00",
+          "rune stones set": 0,
+          "rune casting cloth": 0,
+          "bind runes": 0,
+          "rune translator": 0,
+          "rune tattoo": 0,
+          "isPartial": false
+        },
+        {
+          "date": "2025-12-07T00:00:00",
+          "rune stones set": 0,
+          "rune casting cloth": 0,
+          "bind runes": 0,
+          "rune translator": 0,
+          "rune tattoo": 0,
+          "isPartial": false
+        },
+        {
+          "date": "2025-12-14T00:00:00",
+          "rune stones set": 0,
+          "rune casting cloth": 0,
+          "bind runes": 0,
+          "rune translator": 0,
+          "rune tattoo": 0,
+          "isPartial": false
+        },
+        {
+          "date": "2025-12-21T00:00:00",
+          "rune stones set": 0,
+          "rune casting cloth": 0,
+          "bind runes": 0,
+          "rune translator": 0,
+          "rune tattoo": 0,
+          "isPartial": false
+        },
+        {
+          "date": "2025-12-28T00:00:00",
+          "rune stones set": 0,
+          "rune casting cloth": 0,
+          "bind runes": 0,
+          "rune translator": 0,
+          "rune tattoo": 0,
+          "isPartial": false
+        },
+        {
+          "date": "2026-01-04T00:00:00",
+          "rune stones set": 0,
+          "rune casting cloth": 0,
+          "bind runes": 0,
+          "rune translator": 0,
+          "rune tattoo": 0,
+          "isPartial": false
+        },
+        {
+          "date": "2026-01-11T00:00:00",
+          "rune stones set": 0,
+          "rune casting cloth": 0,
+          "bind runes": 0,
+          "rune translator": 0,
+          "rune tattoo": 0,
+          "isPartial": false
+        },
+        {
+          "date": "2026-01-18T00:00:00",
+          "rune stones set": 0,
+          "rune casting cloth": 0,
+          "bind runes": 0,
+          "rune translator": 0,
+          "rune tattoo": 0,
+          "isPartial": false
+        },
+        {
+          "date": "2026-01-25T00:00:00",
+          "rune stones set": 0,
+          "rune casting cloth": 0,
+          "bind runes": 0,
+          "rune translator": 0,
+          "rune tattoo": 0,
+          "isPartial": false
+        },
+        {
+          "date": "2026-02-01T00:00:00",
+          "rune stones set": 0,
+          "rune casting cloth": 0,
+          "bind runes": 0,
+          "rune translator": 0,
+          "rune tattoo": 0,
+          "isPartial": false
+        },
+        {
+          "date": "2026-02-08T00:00:00",
+          "rune stones set": 0,
+          "rune casting cloth": 0,
+          "bind runes": 0,
+          "rune translator": 0,
+          "rune tattoo": 0,
+          "isPartial": false
+        },
+        {
+          "date": "2026-02-15T00:00:00",
+          "rune stones set": 0,
+          "rune casting cloth": 0,
+          "bind runes": 0,
+          "rune translator": 0,
+          "rune tattoo": 0,
+          "isPartial": false
+        },
+        {
+          "date": "2026-02-22T00:00:00",
+          "rune stones set": 0,
+          "rune casting cloth": 0,
+          "bind runes": 0,
+          "rune translator": 0,
+          "rune tattoo": 0,
+          "isPartial": false
+        },
+        {
+          "date": "2026-03-01T00:00:00",
+          "rune stones set": 0,
+          "rune casting cloth": 0,
+          "bind runes": 0,
+          "rune translator": 0,
+          "rune tattoo": 0,
+          "isPartial": false
+        },
+        {
+          "date": "2026-03-08T00:00:00",
+          "rune stones set": 0,
+          "rune casting cloth": 0,
+          "bind runes": 0,
+          "rune translator": 0,
+          "rune tattoo": 0,
+          "isPartial": false
+        },
+        {
+          "date": "2026-03-15T00:00:00",
+          "rune stones set": 0,
+          "rune casting cloth": 0,
+          "bind runes": 0,
+          "rune translator": 0,
+          "rune tattoo": 0,
+          "isPartial": false
+        },
+        {
+          "date": "2026-03-22T00:00:00",
+          "rune stones set": 0,
+          "rune casting cloth": 0,
+          "bind runes": 0,
+          "rune translator": 0,
+          "rune tattoo": 0,
+          "isPartial": false
+        },
+        {
+          "date": "2026-03-29T00:00:00",
+          "rune stones set": 0,
+          "rune casting cloth": 0,
+          "bind runes": 0,
+          "rune translator": 0,
+          "rune tattoo": 0,
+          "isPartial": false
+        },
+        {
+          "date": "2026-04-05T00:00:00",
+          "rune stones set": 0,
+          "rune casting cloth": 0,
+          "bind runes": 0,
+          "rune translator": 0,
+          "rune tattoo": 0,
+          "isPartial": false
+        },
+        {
+          "date": "2026-04-12T00:00:00",
+          "rune stones set": 0,
+          "rune casting cloth": 0,
+          "bind runes": 0,
+          "rune translator": 0,
+          "rune tattoo": 0,
+          "isPartial": false
+        },
+        {
+          "date": "2026-04-19T00:00:00",
+          "rune stones set": 0,
+          "rune casting cloth": 0,
+          "bind runes": 0,
+          "rune translator": 0,
+          "rune tattoo": 0,
+          "isPartial": false
+        },
+        {
+          "date": "2026-04-26T00:00:00",
+          "rune stones set": 0,
+          "rune casting cloth": 0,
+          "bind runes": 0,
+          "rune translator": 0,
+          "rune tattoo": 0,
+          "isPartial": false
+        },
+        {
+          "date": "2026-05-03T00:00:00",
+          "rune stones set": 0,
+          "rune casting cloth": 0,
+          "bind runes": 0,
+          "rune translator": 0,
+          "rune tattoo": 0,
+          "isPartial": false
+        },
+        {
+          "date": "2026-05-10T00:00:00",
+          "rune stones set": 0,
+          "rune casting cloth": 0,
+          "bind runes": 0,
+          "rune translator": 0,
+          "rune tattoo": 0,
+          "isPartial": false
+        },
+        {
+          "date": "2026-05-17T00:00:00",
+          "rune stones set": 0,
+          "rune casting cloth": 0,
+          "bind runes": 0,
+          "rune translator": 0,
+          "rune tattoo": 0,
+          "isPartial": false
+        },
+        {
+          "date": "2026-05-24T00:00:00",
+          "rune stones set": 0,
+          "rune casting cloth": 0,
+          "bind runes": 0,
+          "rune translator": 0,
+          "rune tattoo": 0,
+          "isPartial": false
+        },
+        {
+          "date": "2026-05-31T00:00:00",
+          "rune stones set": 0,
+          "rune casting cloth": 0,
+          "bind runes": 0,
+          "rune translator": 0,
+          "rune tattoo": 0,
+          "isPartial": false
+        },
+        {
+          "date": "2026-06-07T00:00:00",
+          "rune stones set": 0,
+          "rune casting cloth": 0,
+          "bind runes": 0,
+          "rune translator": 0,
+          "rune tattoo": 0,
+          "isPartial": true
+        }
+      ],
+      "related_queries": {
+        "rune stones set": {
+          "top": [],
+          "rising": []
+        },
+        "rune casting cloth": {
+          "top": [],
+          "rising": []
+        },
+        "bind runes": {
+          "top": [],
+          "rising": []
+        },
+        "rune translator": {
+          "top": [],
+          "rising": []
+        },
+        "rune tattoo": {
+          "top": [],
+          "rising": []
+        }
+      },
+      "status": "ok"
+    }
+  }
+}
