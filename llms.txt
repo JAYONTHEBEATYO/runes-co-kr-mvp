@@ -6,6 +6,7 @@
 - [홈](https://runes.co.kr/): 룬 문자와 룬스톤을 처음 배우는 사람을 위한 입문, 무료 룬 리딩, 엘더 푸사르크 24룬 탐색
 - [입문 가이드](https://runes.co.kr/beginner): 룬 문자와 룬스톤을 처음 접하는 사용자를 위한 기본 가이드
 - [칼럼](https://runes.co.kr/columns): 룬스톤 리딩 방법, 역방향 고찰, 캐스팅 관련 장문 칼럼
+- [룬은 문자일까, 점술 도구일까](https://runes.co.kr/columns-runes-letter-or-oracle): 룬 문자와 룬스톤 점술의 관계를 역사와 현대 오라클 실천으로 나누어 설명
 - [룬 캐스팅 칼럼](https://runes.co.kr/columns-rune-casting): 룬스톤을 던져 읽는 방식에 대한 정리
 - [역방향 고찰](https://runes.co.kr/columns-reversed-runes): 역방향, merkstave, 그림자 해석에 대한 보수적 검토
 
