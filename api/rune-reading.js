@@ -22,6 +22,35 @@ const ZODIAC = [
 ];
 const ELEMENT_KO = { fire: "불", earth: "흙", air: "공기", water: "물" };
 const MODE_KO = { cardinal: "시작", fixed: "고정", mutable: "변화" };
+const DEFAULT_TAJUSSI_API_URL = "https://tajussi-api.startarot.co.kr";
+const KOREA_PLACE_COORDS = [
+  { match: /서울|강남|성수|종로|마포|서초|송파|용산|영등포/, lat: 37.5665, lng: 126.9780, label: "서울특별시" },
+  { match: /부산|해운대|수영|동래/, lat: 35.1796, lng: 129.0756, label: "부산광역시" },
+  { match: /대구/, lat: 35.8714, lng: 128.6014, label: "대구광역시" },
+  { match: /인천/, lat: 37.4563, lng: 126.7052, label: "인천광역시" },
+  { match: /광주/, lat: 35.1595, lng: 126.8526, label: "광주광역시" },
+  { match: /대전/, lat: 36.3504, lng: 127.3845, label: "대전광역시" },
+  { match: /울산/, lat: 35.5384, lng: 129.3114, label: "울산광역시" },
+  { match: /세종/, lat: 36.4800, lng: 127.2890, label: "세종특별자치시" },
+  { match: /수원/, lat: 37.2636, lng: 127.0286, label: "경기도 수원시" },
+  { match: /분당|성남/, lat: 37.3827, lng: 127.1189, label: "경기도 성남시" },
+  { match: /고양|일산/, lat: 37.6584, lng: 126.8320, label: "경기도 고양시" },
+  { match: /용인/, lat: 37.2411, lng: 127.1776, label: "경기도 용인시" },
+  { match: /춘천/, lat: 37.8813, lng: 127.7298, label: "강원특별자치도 춘천시" },
+  { match: /강릉/, lat: 37.7519, lng: 128.8761, label: "강원특별자치도 강릉시" },
+  { match: /청주/, lat: 36.6424, lng: 127.4890, label: "충청북도 청주시" },
+  { match: /충주/, lat: 36.9910, lng: 127.9259, label: "충청북도 충주시" },
+  { match: /괴산/, lat: 36.8154, lng: 127.7866, label: "충청북도 괴산군" },
+  { match: /천안/, lat: 36.8151, lng: 127.1139, label: "충청남도 천안시" },
+  { match: /전주/, lat: 35.8242, lng: 127.1480, label: "전북특별자치도 전주시" },
+  { match: /목포/, lat: 34.8118, lng: 126.3922, label: "전라남도 목포시" },
+  { match: /여수/, lat: 34.7604, lng: 127.6622, label: "전라남도 여수시" },
+  { match: /포항/, lat: 36.0190, lng: 129.3435, label: "경상북도 포항시" },
+  { match: /경주/, lat: 35.8562, lng: 129.2247, label: "경상북도 경주시" },
+  { match: /창원/, lat: 35.2279, lng: 128.6811, label: "경상남도 창원시" },
+  { match: /제주|제주시/, lat: 33.4996, lng: 126.5312, label: "제주특별자치도 제주시" },
+  { match: /서귀포/, lat: 33.2541, lng: 126.5601, label: "제주특별자치도 서귀포시" }
+];
 
 function getBody(req) {
   if (typeof req.body === "string") return JSON.parse(req.body || "{}");
@@ -115,6 +144,108 @@ function cleanPlaceGeo(value) {
   return { placeId: placeId || null, formattedAddress: formattedAddress || null, lat: lat || null, lng: lng || null, provider: provider || "manual" };
 }
 
+function buildTajussiPayload(astrology) {
+  if (!astrology?.birthDate || !astrology?.birthTime) return null;
+  if (!["male", "female"].includes(astrology.gender)) return null;
+
+  const dateMatch = astrology.birthDate.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  const timeMatch = astrology.birthTime.match(/^(\d{2}):(\d{2})$/);
+  if (!dateMatch || !timeMatch) return null;
+
+  const coord = resolveBirthCoordinate(astrology);
+  if (!coord) return null;
+
+  return {
+    year: Number(dateMatch[1]),
+    month: Number(dateMatch[2]),
+    day: Number(dateMatch[3]),
+    hour: Number(timeMatch[1]),
+    minute: Number(timeMatch[2]),
+    gender: astrology.gender,
+    timezone: "Asia/Seoul",
+    latitude: coord.lat,
+    longitude: coord.lng,
+    calendar: "solar",
+    isLeapMonth: false,
+    jasiMethod: "split",
+    place: {
+      label: astrology.birthPlace || coord.label || "대한민국",
+      country: "대한민국",
+      address: astrology.birthGeo?.formattedAddress || astrology.birthPlace || coord.label || ""
+    }
+  };
+}
+
+function resolveBirthCoordinate(astrology) {
+  const geoLat = Number(astrology.birthGeo?.lat);
+  const geoLng = Number(astrology.birthGeo?.lng);
+  if (Number.isFinite(geoLat) && Number.isFinite(geoLng)) {
+    return { lat: geoLat, lng: geoLng, label: astrology.birthGeo?.formattedAddress || astrology.birthPlace || "" };
+  }
+  const text = [astrology.birthPlace, astrology.birthGeo?.formattedAddress].filter(Boolean).join(" ");
+  const fallback = KOREA_PLACE_COORDS.find((item) => item.match.test(text));
+  if (!fallback) return null;
+  return { lat: fallback.lat, lng: fallback.lng, label: fallback.label };
+}
+
+async function fetchTajussiContext(astrology) {
+  const apiKey = String(process.env.TAJUSSI_API_KEY || "").trim();
+  if (!apiKey) return null;
+  const payload = buildTajussiPayload(astrology);
+  if (!payload) return null;
+
+  const baseUrl = String(process.env.TAJUSSI_API_URL || DEFAULT_TAJUSSI_API_URL).replace(/\/+$/, "");
+  const response = await fetch(`${baseUrl}/api/v1/calculate/compact`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "X-Tajussi-Api-Key": apiKey
+    },
+    body: JSON.stringify(payload)
+  });
+
+  if (!response.ok) {
+    const detail = await response.text();
+    const error = new Error(`Tajussi API ${response.status}: ${detail.slice(0, 300)}`);
+    error.status = response.status;
+    throw error;
+  }
+
+  const data = await response.json();
+  return summarizeTajussiData(data, payload);
+}
+
+function summarizeTajussiData(data, payload) {
+  return {
+    source: "tajussi-api",
+    input: {
+      calendar: payload.calendar,
+      gender: payload.gender,
+      timezone: payload.timezone,
+      place: payload.place?.label || payload.place?.address || null,
+      latitude: payload.latitude,
+      longitude: payload.longitude
+    },
+    summary: pickCompactFields(data)
+  };
+}
+
+function pickCompactFields(value, depth = 0) {
+  if (value == null || depth > 4) return value;
+  if (Array.isArray(value)) return value.slice(0, 8).map((item) => pickCompactFields(item, depth + 1));
+  if (typeof value !== "object") return value;
+
+  const preferred = [
+    "ok", "summary", "fusion", "reading", "manse", "saju", "astrology", "westernAstrology",
+    "ziwei", "numerology", "soulCard", "solar", "lunar", "pillars", "tenGods", "elements",
+    "zodiac", "sun", "moon", "ascendant", "houses", "majorAspects", "keywords", "advice"
+  ];
+  const entries = Object.entries(value);
+  const selected = entries.filter(([key]) => preferred.includes(key)).slice(0, 18);
+  const source = selected.length ? selected : entries.slice(0, 18);
+  return Object.fromEntries(source.map(([key, item]) => [key, pickCompactFields(item, depth + 1)]));
+}
+
 function sunSignFor(month, day) {
   return ZODIAC.find((item) => {
     const [sm, sd] = item.start;
@@ -126,12 +257,14 @@ function sunSignFor(month, day) {
   }) || null;
 }
 
-function buildPrompt({ question, topic, spread, spreadKey, spreadTitle, positions, runes, astrology, agentContext }) {
+function buildPrompt({ question, topic, spread, spreadKey, spreadTitle, positions, runes, astrology, tajussi, agentContext }) {
   return [
     "너는 runes.co.kr의 한국어 룬 리딩 서브에이전트다.",
     "사용자에게는 부드럽고 유려한 한국어로 답하되, 불안을 키우거나 예언을 단정하지 않는다.",
     "반드시 제공된 RAG 컨텍스트와 뽑힌 룬 정보만 근거로 사용한다.",
     "별자리 개인화 정보가 있으면 룬 해석을 보조하는 부드러운 문맥으로만 사용한다.",
+    "타저씨 통합엔진 데이터가 있으면 사주, 만세력, 서양 점성술, 수비학 등 통합 데이터의 큰 경향만 참고한다.",
+    "타저씨 통합엔진 데이터가 없으면 없다고 말하지 말고 제공된 룬과 기본 별자리 개인화만으로 자연스럽게 해석한다.",
     "양력 생일만 있는 경우 태양 별자리만 언급하고, ASC·하우스·달 별자리는 단정하지 않는다.",
     "성별 정보는 사용자가 제공한 자기 식별 정보로만 참고하고, 성별 고정관념이나 역할 단정으로 해석하지 않는다.",
     "역방향, merkstave, 그림자 해석은 사용하지 않는다.",
@@ -142,7 +275,7 @@ function buildPrompt({ question, topic, spread, spreadKey, spreadTitle, position
     JSON.stringify(agentContext, null, 2),
     "",
     "[리딩 입력]",
-    JSON.stringify({ topic, question, spread, spreadKey, spreadTitle, positions, runes, astrology }, null, 2),
+    JSON.stringify({ topic, question, spread, spreadKey, spreadTitle, positions, runes, astrology, tajussi }, null, 2),
     "",
     "[출력 지시]",
     "마크다운 문법을 쓰지 않는다. #, ##, **, -, bullet 기호를 사용하지 않는다.",
@@ -259,7 +392,16 @@ module.exports = async function handler(req, res) {
       return;
     }
 
-    const prompt = buildPrompt({ question, topic, spread, spreadKey, spreadTitle, positions, runes, astrology, agentContext });
+    let tajussi = null;
+    if (astrology) {
+      try {
+        tajussi = await fetchTajussiContext(astrology);
+      } catch (error) {
+        console.info("Tajussi context unavailable; continuing with rune-only reading.", error);
+      }
+    }
+
+    const prompt = buildPrompt({ question, topic, spread, spreadKey, spreadTitle, positions, runes, astrology, tajussi, agentContext });
     const { reading, model } = await callGemini(prompt);
 
     if (!reading) {
@@ -274,7 +416,8 @@ module.exports = async function handler(req, res) {
       model,
       provider: "gemini",
       source: "runes-reading-agent-ko",
-      astrology
+      astrology,
+      tajussi: tajussi ? { source: tajussi.source, enabled: true } : { enabled: false }
     }));
   } catch (error) {
     res.statusCode = error.status || 500;
