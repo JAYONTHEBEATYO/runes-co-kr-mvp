@@ -60,6 +60,8 @@ function buildAstrologyContext(value) {
   const birthTime = cleanText(value.birthTime, 20);
   const birthPlace = cleanText(value.birthPlace, 80);
   const currentPlace = cleanText(value.currentPlace, 80);
+  const birthGeo = cleanPlaceGeo(value.birthGeo);
+  const currentGeo = cleanPlaceGeo(value.currentGeo);
   if (!birthDate && !birthTime && !birthPlace && !currentPlace) return null;
 
   const dateMatch = birthDate.match(/^(\d{4})-(\d{2})-(\d{2})$/);
@@ -71,6 +73,8 @@ function buildAstrologyContext(value) {
     birthTime: birthTime || null,
     birthPlace: birthPlace || null,
     currentPlace: currentPlace || null,
+    birthGeo,
+    currentGeo,
     precision: birthTime ? "birth-date-time-provided" : "birth-date-only",
     note: birthTime
       ? "1차 개인화는 양력 생일 기반 태양 별자리 중심이다. 출생 시간과 지역은 사용자가 제공했지만 ASC/하우스 계산은 아직 기본 결과에 단정적으로 쓰지 않는다."
@@ -85,6 +89,17 @@ function buildAstrologyContext(value) {
       tone: sun.tone
     } : null
   };
+}
+
+function cleanPlaceGeo(value) {
+  if (!value || typeof value !== "object") return null;
+  const placeId = cleanText(value.placeId, 140);
+  const formattedAddress = cleanText(value.formattedAddress, 180);
+  const lat = cleanText(value.lat, 30);
+  const lng = cleanText(value.lng, 30);
+  const provider = cleanText(value.provider, 40);
+  if (!placeId && !formattedAddress && !lat && !lng) return null;
+  return { placeId: placeId || null, formattedAddress: formattedAddress || null, lat: lat || null, lng: lng || null, provider: provider || "manual" };
 }
 
 function sunSignFor(month, day) {

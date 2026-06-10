@@ -48,6 +48,20 @@ const topicLabels = {
 
 let runeData = [];
 
+const fallbackPlaces = [
+  "서울특별시", "서울특별시 강남구", "서울특별시 강동구", "서울특별시 강북구", "서울특별시 강서구", "서울특별시 관악구", "서울특별시 광진구", "서울특별시 구로구", "서울특별시 금천구", "서울특별시 노원구", "서울특별시 도봉구", "서울특별시 동대문구", "서울특별시 동작구", "서울특별시 마포구", "서울특별시 서대문구", "서울특별시 서초구", "서울특별시 성동구", "서울특별시 성북구", "서울특별시 송파구", "서울특별시 양천구", "서울특별시 영등포구", "서울특별시 용산구", "서울특별시 은평구", "서울특별시 종로구", "서울특별시 중구", "서울특별시 중랑구",
+  "부산광역시", "부산광역시 해운대구", "부산광역시 수영구", "부산광역시 부산진구", "부산광역시 동래구", "대구광역시", "인천광역시", "광주광역시", "대전광역시", "울산광역시", "세종특별자치시",
+  "경기도 수원시", "경기도 성남시 분당구", "경기도 성남시 수정구", "경기도 고양시", "경기도 용인시", "경기도 화성시", "경기도 부천시", "경기도 안산시", "경기도 남양주시", "경기도 안양시", "경기도 평택시", "경기도 의정부시", "경기도 파주시", "경기도 김포시", "경기도 광명시", "경기도 하남시",
+  "강원특별자치도 춘천시", "강원특별자치도 원주시", "강원특별자치도 강릉시",
+  "충청북도 청주시", "충청북도 충주시", "충청북도 괴산군",
+  "충청남도 천안시", "충청남도 아산시", "충청남도 공주시", "충청남도 보령시",
+  "전북특별자치도 전주시", "전북특별자치도 군산시", "전북특별자치도 익산시",
+  "전라남도 목포시", "전라남도 여수시", "전라남도 순천시",
+  "경상북도 포항시", "경상북도 경주시", "경상북도 구미시", "경상북도 안동시",
+  "경상남도 창원시", "경상남도 김해시", "경상남도 진주시", "경상남도 양산시",
+  "제주특별자치도 제주시", "제주특별자치도 서귀포시"
+];
+
 function pickRunes(count) {
   const pool = [...runeData];
   const picked = [];
@@ -112,8 +126,19 @@ function buildAstrologyInput(form) {
   const birthTime = (form.get("birthTime") || "").toString().trim();
   const birthPlace = (form.get("birthPlace") || "").toString().trim();
   const currentPlace = (form.get("currentPlace") || "").toString().trim();
+  const birthGeo = buildPlaceMeta(form, "birth");
+  const currentGeo = buildPlaceMeta(form, "current");
   if (!birthDate && !birthTime && !birthPlace && !currentPlace) return null;
-  return { birthDate, birthTime, birthPlace, currentPlace, calendar: "solar" };
+  return { birthDate, birthTime, birthPlace, currentPlace, birthGeo, currentGeo, calendar: "solar" };
+}
+
+function buildPlaceMeta(form, prefix) {
+  const placeId = (form.get(`${prefix}PlaceId`) || "").toString().trim();
+  const formattedAddress = (form.get(`${prefix}PlaceAddress`) || "").toString().trim();
+  const lat = (form.get(`${prefix}PlaceLat`) || "").toString().trim();
+  const lng = (form.get(`${prefix}PlaceLng`) || "").toString().trim();
+  if (!placeId && !formattedAddress && !lat && !lng) return null;
+  return { placeId, formattedAddress, lat, lng, provider: placeId ? "google_places" : "manual" };
 }
 
 function formatAstrologyNote(astrology) {
@@ -217,6 +242,139 @@ function renderRuneGrid() {
   `).join("");
 }
 
+function initPlaceFallback() {
+  const list = document.getElementById("korea-place-suggestions");
+  if (!list) return;
+  list.innerHTML = fallbackPlaces
+    .map((place) => `<option value="${escapeHtml(place)}"></option>`)
+    .join("");
+}
+
+async function initPlaceAutocomplete() {
+  initPlaceFallback();
+
+  const fields = ["birth", "current"];
+  fields.forEach((prefix) => {
+    const input = document.querySelector(`[data-place-input="${prefix}"]`);
+    if (!input) return;
+    input.addEventListener("input", () => clearPlaceMeta(prefix));
+  });
+
+  document.querySelectorAll("[data-place-search]").forEach((button) => {
+    button.addEventListener("click", () => openKoreanAddressSearch(button.dataset.placeSearch));
+  });
+
+  let config = {};
+  try {
+    const response = await fetch("/api/public-config");
+    if (response.ok) config = await response.json();
+  } catch (error) {
+    console.info("Place autocomplete config unavailable; using local fallback.", error);
+  }
+
+  const apiKey = String(config.googleMapsApiKey || "").trim();
+  if (!apiKey) return;
+
+  try {
+    await loadGooglePlaces(apiKey);
+  } catch (error) {
+    console.info("Google Places script unavailable; using local fallback.", error);
+    return;
+  }
+  if (!window.google?.maps?.places?.Autocomplete) return;
+
+  fields.forEach((prefix) => {
+    const input = document.querySelector(`[data-place-input="${prefix}"]`);
+    if (!input) return;
+    const autocomplete = new google.maps.places.Autocomplete(input, {
+      fields: ["place_id", "formatted_address", "geometry", "name"],
+      componentRestrictions: { country: "kr" }
+    });
+    autocomplete.addListener("place_changed", () => {
+      const place = autocomplete.getPlace();
+      const label = place.formatted_address || place.name || input.value;
+      if (label) input.value = label;
+      setPlaceMeta(prefix, place);
+    });
+  });
+}
+
+async function openKoreanAddressSearch(prefix) {
+  const input = document.querySelector(`[data-place-input="${prefix}"]`);
+  if (!input) return;
+  try {
+    await loadDaumPostcode();
+  } catch (error) {
+    console.info("Korean address search unavailable.", error);
+    input.focus();
+    return;
+  }
+  if (!window.daum?.Postcode) {
+    input.focus();
+    return;
+  }
+  new window.daum.Postcode({
+    oncomplete(data) {
+      const address = data.roadAddress || data.jibunAddress || data.address || input.value;
+      input.value = address;
+      setHidden(`${prefix}PlaceId`, data.zonecode ? `daum:${data.zonecode}` : "");
+      setHidden(`${prefix}PlaceAddress`, address);
+      setHidden(`${prefix}PlaceLat`, "");
+      setHidden(`${prefix}PlaceLng`, "");
+    }
+  }).open();
+}
+
+function loadDaumPostcode() {
+  if (window.daum?.Postcode) return Promise.resolve();
+  if (window.__runesDaumPostcodeLoading) return window.__runesDaumPostcodeLoading;
+  window.__runesDaumPostcodeLoading = new Promise((resolve, reject) => {
+    const script = document.createElement("script");
+    script.src = "https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js";
+    script.async = true;
+    script.onload = resolve;
+    script.onerror = reject;
+    document.head.appendChild(script);
+  });
+  return window.__runesDaumPostcodeLoading;
+}
+
+function loadGooglePlaces(apiKey) {
+  if (window.google?.maps?.places) return Promise.resolve();
+  if (window.__runesGooglePlacesLoading) return window.__runesGooglePlacesLoading;
+  window.__runesGooglePlacesLoading = new Promise((resolve, reject) => {
+    const script = document.createElement("script");
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(apiKey)}&libraries=places&language=ko&region=KR`;
+    script.async = true;
+    script.defer = true;
+    script.onload = resolve;
+    script.onerror = reject;
+    document.head.appendChild(script);
+  });
+  return window.__runesGooglePlacesLoading;
+}
+
+function setPlaceMeta(prefix, place) {
+  const lat = place.geometry?.location?.lat?.();
+  const lng = place.geometry?.location?.lng?.();
+  setHidden(`${prefix}PlaceId`, place.place_id || "");
+  setHidden(`${prefix}PlaceAddress`, place.formatted_address || place.name || "");
+  setHidden(`${prefix}PlaceLat`, Number.isFinite(lat) ? String(lat) : "");
+  setHidden(`${prefix}PlaceLng`, Number.isFinite(lng) ? String(lng) : "");
+}
+
+function clearPlaceMeta(prefix) {
+  setHidden(`${prefix}PlaceId`, "");
+  setHidden(`${prefix}PlaceAddress`, "");
+  setHidden(`${prefix}PlaceLat`, "");
+  setHidden(`${prefix}PlaceLng`, "");
+}
+
+function setHidden(id, value) {
+  const input = document.getElementById(id);
+  if (input) input.value = value;
+}
+
 function initLangToggle() {
   const button = document.querySelector("[data-lang-toggle]");
   if (!button) return;
@@ -235,6 +393,7 @@ async function init() {
   runeData = data.runes;
   renderRuneGrid();
   initLangToggle();
+  initPlaceAutocomplete();
   document.getElementById("reading-form").addEventListener("submit", renderResult);
 }
 

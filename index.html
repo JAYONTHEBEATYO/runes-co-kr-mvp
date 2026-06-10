@@ -120,13 +120,28 @@
             <div class="field-grid">
               <label>
                 태어난 지역
-                <input name="birthPlace" id="birthPlace" placeholder="예: 서울, 부산, 제주" autocomplete="off">
+                <span class="place-field">
+                  <input name="birthPlace" id="birthPlace" placeholder="예: 서울, 부산, 제주" autocomplete="off" list="korea-place-suggestions" data-place-input="birth">
+                  <button class="place-search-button" type="button" data-place-search="birth">주소 검색</button>
+                </span>
+                <input type="hidden" name="birthPlaceId" id="birthPlaceId">
+                <input type="hidden" name="birthPlaceAddress" id="birthPlaceAddress">
+                <input type="hidden" name="birthPlaceLat" id="birthPlaceLat">
+                <input type="hidden" name="birthPlaceLng" id="birthPlaceLng">
               </label>
               <label>
                 현재 사는 지역
-                <input name="currentPlace" id="currentPlace" placeholder="예: 강남, 성수, 분당" autocomplete="off">
+                <span class="place-field">
+                  <input name="currentPlace" id="currentPlace" placeholder="예: 강남, 성수, 분당" autocomplete="off" list="korea-place-suggestions" data-place-input="current">
+                  <button class="place-search-button" type="button" data-place-search="current">주소 검색</button>
+                </span>
+                <input type="hidden" name="currentPlaceId" id="currentPlaceId">
+                <input type="hidden" name="currentPlaceAddress" id="currentPlaceAddress">
+                <input type="hidden" name="currentPlaceLat" id="currentPlaceLat">
+                <input type="hidden" name="currentPlaceLng" id="currentPlaceLng">
               </label>
             </div>
+            <datalist id="korea-place-suggestions"></datalist>
             <p class="field-help">생일을 넣으면 태양 별자리 흐름을 룬 리딩에 함께 반영합니다. 태어난 시간과 지역은 다음 단계의 정밀 차트 확장을 위한 선택값입니다.</p>
           </section>
 

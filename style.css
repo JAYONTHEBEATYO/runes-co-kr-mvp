@@ -349,6 +349,35 @@ select:focus {
   margin-bottom: 10px;
 }
 
+.place-field {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px;
+  align-items: center;
+}
+
+.place-field input {
+  min-width: 0;
+}
+
+.place-search-button {
+  min-height: 46px;
+  border: 1px solid rgba(59, 43, 130, .22);
+  border-radius: var(--radius);
+  padding: 0 12px;
+  color: var(--violet);
+  background: #fff;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 900;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.place-search-button:hover {
+  background: var(--violet-soft);
+}
+
 .field-help {
   margin: 2px 0 0;
   line-height: 1.55;
