@@ -124,12 +124,13 @@ async function renderResult(event) {
 function buildAstrologyInput(form) {
   const birthDate = (form.get("birthDate") || "").toString().trim();
   const birthTime = (form.get("birthTime") || "").toString().trim();
+  const gender = (form.get("gender") || "").toString().trim();
   const birthPlace = (form.get("birthPlace") || "").toString().trim();
   const currentPlace = (form.get("currentPlace") || "").toString().trim();
   const birthGeo = buildPlaceMeta(form, "birth");
   const currentGeo = buildPlaceMeta(form, "current");
-  if (!birthDate && !birthTime && !birthPlace && !currentPlace) return null;
-  return { birthDate, birthTime, birthPlace, currentPlace, birthGeo, currentGeo, calendar: "solar" };
+  if (!birthDate && !birthTime && !gender && !birthPlace && !currentPlace) return null;
+  return { birthDate, birthTime, gender, birthPlace, currentPlace, birthGeo, currentGeo, calendar: "solar" };
 }
 
 function buildPlaceMeta(form, prefix) {
@@ -145,9 +146,18 @@ function formatAstrologyNote(astrology) {
   const parts = [];
   if (astrology.birthDate) parts.push(`양력 ${astrology.birthDate}`);
   if (astrology.birthTime) parts.push(`${astrology.birthTime} 출생`);
+  if (astrology.gender) parts.push(`성별 ${genderLabel(astrology.gender)}`);
   if (astrology.birthPlace) parts.push(`출생지 ${astrology.birthPlace}`);
   if (astrology.currentPlace) parts.push(`현재 ${astrology.currentPlace}`);
   return parts.join(" · ");
+}
+
+function genderLabel(value) {
+  return {
+    female: "여성",
+    male: "남성",
+    other: "직접 입력 / 기타"
+  }[value] || value;
 }
 
 async function requestLlmReading(payload) {
@@ -176,7 +186,7 @@ function buildLocalReading({ question, topic, spread, spreadTitle, positions, ru
   const namedRunes = runes.map(rune => `${rune.ko}(${rune.name})`).join(", ");
   const keywordLine = runes.map(rune => rune.keywords.slice(0, 2).join("·")).join(" → ");
   const astrologyLine = astrology?.birthDate
-    ? `양력 생일 ${astrology.birthDate}의 별자리 흐름도 함께 참고합니다. 정확한 출생 시간이 없으면 태양 별자리 중심의 가벼운 개인화로만 보는 것이 안전합니다.\n\n`
+    ? `양력 생일 ${astrology.birthDate}${astrology.gender ? `, 성별 ${genderLabel(astrology.gender)}` : ""}의 별자리 흐름도 함께 참고합니다. 정확한 출생 시간이 없으면 태양 별자리 중심의 가벼운 개인화로만 보는 것이 안전합니다.\n\n`
     : "";
   const introByTopic = {
     general: "전체 흐름에서는 지금 상황을 좋고 나쁨으로 빨리 가르기보다, 어떤 리듬으로 움직이고 있는지 먼저 보는 편이 좋습니다.",

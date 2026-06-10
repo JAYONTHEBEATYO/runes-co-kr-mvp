@@ -4,6 +4,7 @@ const agentContext = require("../content/rag/rune-reading-agent.ko.json");
 const MAX_QUESTION_LENGTH = 500;
 const ALLOWED_TOPICS = new Set(["general", "love", "work", "money", "self", "choice"]);
 const ALLOWED_SPREADS = new Set([1, 3, 5, 7, 9]);
+const ALLOWED_GENDERS = new Set(["female", "male", "other"]);
 const DEFAULT_MODEL = "gemini-2.5-flash";
 const ZODIAC = [
   { sign: "Capricorn", ko: "염소자리", element: "earth", mode: "cardinal", start: [12, 22], end: [1, 19], tone: "현실성, 책임, 장기적인 성취" },
@@ -58,11 +59,13 @@ function buildAstrologyContext(value) {
   if (!value || typeof value !== "object") return null;
   const birthDate = cleanText(value.birthDate, 20);
   const birthTime = cleanText(value.birthTime, 20);
+  const genderRaw = cleanText(value.gender, 20);
+  const gender = ALLOWED_GENDERS.has(genderRaw) ? genderRaw : null;
   const birthPlace = cleanText(value.birthPlace, 80);
   const currentPlace = cleanText(value.currentPlace, 80);
   const birthGeo = cleanPlaceGeo(value.birthGeo);
   const currentGeo = cleanPlaceGeo(value.currentGeo);
-  if (!birthDate && !birthTime && !birthPlace && !currentPlace) return null;
+  if (!birthDate && !birthTime && !gender && !birthPlace && !currentPlace) return null;
 
   const dateMatch = birthDate.match(/^(\d{4})-(\d{2})-(\d{2})$/);
   const sun = dateMatch ? sunSignFor(Number(dateMatch[2]), Number(dateMatch[3])) : null;
@@ -71,6 +74,8 @@ function buildAstrologyContext(value) {
     calendar: "solar",
     birthDate: birthDate || null,
     birthTime: birthTime || null,
+    gender,
+    genderKo: gender ? genderLabel(gender) : null,
     birthPlace: birthPlace || null,
     currentPlace: currentPlace || null,
     birthGeo,
@@ -89,6 +94,14 @@ function buildAstrologyContext(value) {
       tone: sun.tone
     } : null
   };
+}
+
+function genderLabel(value) {
+  return {
+    female: "여성",
+    male: "남성",
+    other: "직접 입력 / 기타"
+  }[value] || null;
 }
 
 function cleanPlaceGeo(value) {
@@ -120,6 +133,7 @@ function buildPrompt({ question, topic, spread, spreadKey, spreadTitle, position
     "반드시 제공된 RAG 컨텍스트와 뽑힌 룬 정보만 근거로 사용한다.",
     "별자리 개인화 정보가 있으면 룬 해석을 보조하는 부드러운 문맥으로만 사용한다.",
     "양력 생일만 있는 경우 태양 별자리만 언급하고, ASC·하우스·달 별자리는 단정하지 않는다.",
+    "성별 정보는 사용자가 제공한 자기 식별 정보로만 참고하고, 성별 고정관념이나 역할 단정으로 해석하지 않는다.",
     "역방향, merkstave, 그림자 해석은 사용하지 않는다.",
     "의료, 법률, 투자, 안전 문제에 대한 확정 조언은 하지 않는다.",
     "상대의 속마음이나 미래 결과를 확정하지 말고, 질문자가 확인할 수 있는 현실 단서와 행동으로 연결한다.",
