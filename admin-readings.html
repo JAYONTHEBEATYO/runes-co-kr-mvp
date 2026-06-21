@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>룬스 관리자 | 무료리딩 기록</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body class="admin-page">
+  <main class="admin-shell">
+    <section class="admin-panel">
+      <p class="eyebrow">RUNES ADMIN</p>
+      <h1>무료리딩 생성 기록</h1>
+      <p class="admin-muted">관리자 토큰을 입력하면 최근 무료리딩 생성 기록을 불러옵니다. 토큰은 브라우저 localStorage에만 저장됩니다.</p>
+      <form class="admin-auth" id="adminAuth">
+        <label for="adminToken">관리자 토큰</label>
+        <div class="admin-auth-row">
+          <input id="adminToken" name="adminToken" type="password" autocomplete="off" placeholder="RUNES_ADMIN_TOKEN">
+          <button class="button button--primary" type="submit">기록 불러오기</button>
+        </div>
+      </form>
+      <div class="admin-toolbar">
+        <button class="button" type="button" id="refreshReadings">새로고침</button>
+        <button class="button" type="button" id="clearToken">토큰 지우기</button>
+      </div>
+      <p class="admin-status" id="adminStatus">대기 중</p>
+    </section>
+    <section class="admin-list" id="readingLogs"></section>
+  </main>
+  <script src="./admin-readings.js"></script>
+</body>
+</html>

@@ -1,5 +1,6 @@
 const runeDb = require("../content/elder-futhark.ko.json");
 const agentContext = require("../content/rag/rune-reading-agent.ko.json");
+const { buildReadingLog, saveReadingLog } = require("./reading-log-store");
 
 const MAX_QUESTION_LENGTH = 500;
 const ALLOWED_TOPICS = new Set(["general", "love", "work", "money", "self", "choice"]);
@@ -410,12 +411,37 @@ module.exports = async function handler(req, res) {
       return;
     }
 
+    const topicLabel = cleanText(body.topicLabel, 80);
+    const logRecord = buildReadingLog({
+      req,
+      question,
+      topic,
+      topicLabel,
+      spread,
+      spreadKey,
+      spreadTitle,
+      positions,
+      runes,
+      astrology,
+      tajussi,
+      reading,
+      model
+    });
+    let logStatus = { saved: false };
+    try {
+      logStatus = await saveReadingLog(logRecord);
+    } catch (error) {
+      console.info("Reading log save failed; continuing response.", error);
+      logStatus = { saved: false, reason: "save-failed" };
+    }
+
     res.statusCode = 200;
     res.end(JSON.stringify({
       reading,
       model,
       provider: "gemini",
       source: "runes-reading-agent-ko",
+      log: { id: logRecord.id, saved: Boolean(logStatus.saved) },
       astrology,
       tajussi: tajussi ? { source: tajussi.source, enabled: true } : { enabled: false }
     }));

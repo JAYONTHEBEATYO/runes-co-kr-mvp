@@ -86,7 +86,7 @@ async function renderResult(event) {
 
   result.innerHTML = `<p class="empty">룬을 정리하고 결과지를 만드는 중입니다.</p>`;
 
-  const llmReading = await requestLlmReading({ question, topic, spread: count, spreadKey, spreadTitle: spreadConfig.title, positions: spreadConfig.positions, runes: selected, astrology });
+  const llmReading = await requestLlmReading({ question, topic, topicLabel: topicLabels[topic] || topicLabels.general, spread: count, spreadKey, spreadTitle: spreadConfig.title, positions: spreadConfig.positions, runes: selected, astrology });
 
   result.innerHTML = `
     <p class="eyebrow">Rune Reading Result</p>
