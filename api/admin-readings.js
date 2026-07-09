@@ -1,13 +1,5 @@
 const { listReadingLogs } = require("./reading-log-store");
-
-function isAuthorized(req) {
-  const token = String(process.env.RUNES_ADMIN_TOKEN || "").trim();
-  if (!token) return false;
-  const headerToken = String(req.headers["x-admin-token"] || "").trim();
-  const auth = String(req.headers.authorization || "");
-  const bearer = auth.startsWith("Bearer ") ? auth.slice(7).trim() : "";
-  return headerToken === token || bearer === token;
-}
+const { isAuthorized } = require("./admin-session");
 
 module.exports = async function handler(req, res) {
   res.setHeader("Content-Type", "application/json; charset=utf-8");

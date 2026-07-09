@@ -3,79 +3,155 @@ const authForm = document.getElementById("adminAuth");
 const statusEl = document.getElementById("adminStatus");
 const logsEl = document.getElementById("readingLogs");
 const refreshButton = document.getElementById("refreshReadings");
-const clearButton = document.getElementById("clearToken");
+const logoutButton = document.getElementById("clearToken");
 
-const savedToken = localStorage.getItem("runesAdminToken") || "";
-tokenInput.value = savedToken;
-
-authForm.addEventListener("submit", (event) => {
+authForm.addEventListener("submit", async (event) => {
   event.preventDefault();
   const token = tokenInput.value.trim();
-  if (token) localStorage.setItem("runesAdminToken", token);
-  loadReadings();
+  if (!token) {
+    setStatus("관리자 토큰을 입력하세요.");
+    return;
+  }
+  await login(token);
 });
 
 refreshButton.addEventListener("click", loadReadings);
-clearButton.addEventListener("click", () => {
-  localStorage.removeItem("runesAdminToken");
-  tokenInput.value = "";
-  logsEl.innerHTML = "";
-  statusEl.textContent = "토큰을 지웠습니다.";
-});
+logoutButton.addEventListener("click", logout);
 
-if (savedToken) loadReadings();
+loadReadings();
 
-async function loadReadings() {
-  const token = tokenInput.value.trim() || localStorage.getItem("runesAdminToken") || "";
-  if (!token) {
-    statusEl.textContent = "관리자 토큰을 입력하세요.";
-    return;
-  }
-  statusEl.textContent = "기록을 불러오는 중입니다.";
+async function login(token) {
+  setStatus("로그인 중입니다.");
   try {
-    const response = await fetch("/api/admin-readings?limit=80", {
-      headers: { "X-Admin-Token": token }
+    const response = await fetch("/api/admin-login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "same-origin",
+      body: JSON.stringify({ token })
     });
     const data = await response.json();
-    if (!response.ok) throw new Error(data.error || "관리자 조회 실패");
-    if (!data.configured) {
-      statusEl.textContent = "Blob 저장소가 아직 설정되지 않았습니다.";
-      return;
-    }
-    renderLogs(data.logs || []);
-    statusEl.textContent = `${data.logs?.length || 0}건을 불러왔습니다.`;
+    if (!response.ok) throw new Error(data.error || "로그인 실패");
+    tokenInput.value = "";
+    await loadReadings();
   } catch (error) {
-    statusEl.textContent = error.message || "기록을 불러오지 못했습니다.";
+    setStatus(error.message || "로그인하지 못했습니다.");
   }
 }
 
+async function logout() {
+  try {
+    await fetch("/api/admin-logout", {
+      method: "POST",
+      credentials: "same-origin"
+    });
+  } finally {
+    tokenInput.value = "";
+    logsEl.textContent = "";
+    setStatus("로그아웃했습니다.");
+  }
+}
+
+async function loadReadings() {
+  setStatus("기록을 불러오는 중입니다.");
+  try {
+    const response = await fetch("/api/admin-readings?limit=80", {
+      credentials: "same-origin"
+    });
+    const data = await response.json();
+    if (response.status === 401) {
+      logsEl.textContent = "";
+      setStatus("관리자 토큰으로 로그인하세요.");
+      return;
+    }
+    if (!response.ok) throw new Error(data.error || "관리자 조회 실패");
+    if (!data.configured) {
+      logsEl.textContent = "";
+      setStatus("Blob 저장소가 아직 설정되지 않았습니다.");
+      return;
+    }
+    renderLogs(data.logs || []);
+    setStatus(`${data.logs?.length || 0}건을 불러왔습니다.`);
+  } catch (error) {
+    setStatus(error.message || "기록을 불러오지 못했습니다.");
+  }
+}
+
+function setStatus(message) {
+  statusEl.textContent = message;
+}
+
 function renderLogs(logs) {
+  logsEl.textContent = "";
   if (!logs.length) {
-    logsEl.innerHTML = `<article class="admin-log"><p class="admin-muted">아직 저장된 리딩 기록이 없습니다.</p></article>`;
+    const article = document.createElement("article");
+    article.className = "admin-log";
+    const message = document.createElement("p");
+    message.className = "admin-muted";
+    message.textContent = "아직 저장된 리딩 기록이 없습니다.";
+    article.appendChild(message);
+    logsEl.appendChild(article);
     return;
   }
-  logsEl.innerHTML = logs.map((log) => `
-    <article class="admin-log">
-      <header>
-        <div>
-          <p class="eyebrow">${escapeHtml(formatDate(log.createdAt))}</p>
-          <h2>${escapeHtml(log.question || "질문 없음")}</h2>
-        </div>
-        <span class="admin-badge">${escapeHtml(log.spreadTitle || "스프레드")}</span>
-      </header>
-      <dl class="admin-meta">
-        <div><dt>주제</dt><dd>${escapeHtml(log.topicLabel || log.topic || "-")}</dd></div>
-        <div><dt>룬</dt><dd>${escapeHtml((log.runes || []).map((rune) => `${rune.position || ""} ${rune.ko || rune.name || rune.id}`).join(" / "))}</dd></div>
-        <div><dt>개인화</dt><dd>${escapeHtml(formatAstrology(log.astrology))}</dd></div>
-        <div><dt>타저씨</dt><dd>${log.tajussi?.enabled ? "연동됨" : "미사용"}</dd></div>
-        <div><dt>모델</dt><dd>${escapeHtml(log.model || "-")}</dd></div>
-      </dl>
-      <details>
-        <summary>해석 전문 보기</summary>
-        <div class="admin-reading">${formatReading(log.reading || "")}</div>
-      </details>
-    </article>
-  `).join("");
+
+  for (const log of logs) {
+    logsEl.appendChild(createLogArticle(log));
+  }
+}
+
+function createLogArticle(log) {
+  const article = document.createElement("article");
+  article.className = "admin-log";
+
+  const header = document.createElement("header");
+  const headingWrap = document.createElement("div");
+  const eyebrow = document.createElement("p");
+  eyebrow.className = "eyebrow";
+  eyebrow.textContent = formatDate(log.createdAt);
+  const title = document.createElement("h2");
+  title.textContent = log.question || "질문 없음";
+  headingWrap.append(eyebrow, title);
+
+  const badge = document.createElement("span");
+  badge.className = "admin-badge";
+  badge.textContent = log.spreadTitle || "스프레드";
+  header.append(headingWrap, badge);
+
+  const meta = document.createElement("dl");
+  meta.className = "admin-meta";
+  addMeta(meta, "주제", log.topicLabel || log.topic || "-");
+  addMeta(meta, "룬", (log.runes || []).map((rune) => `${rune.position || ""} ${rune.ko || rune.name || rune.id}`).join(" / "));
+  addMeta(meta, "개인화", formatAstrology(log.astrology));
+  addMeta(meta, "타저씨", log.tajussi?.enabled ? "연동됨" : "미사용");
+  addMeta(meta, "모델", log.model || "-");
+
+  const details = document.createElement("details");
+  const summary = document.createElement("summary");
+  summary.textContent = "해석 전문 보기";
+  const reading = document.createElement("div");
+  reading.className = "admin-reading";
+  for (const paragraph of String(log.reading || "").split(/\n{2,}/).filter(Boolean)) {
+    const p = document.createElement("p");
+    const lines = paragraph.split(/\n/);
+    lines.forEach((line, index) => {
+      if (index > 0) p.appendChild(document.createElement("br"));
+      p.appendChild(document.createTextNode(line));
+    });
+    reading.appendChild(p);
+  }
+  details.append(summary, reading);
+
+  article.append(header, meta, details);
+  return article;
+}
+
+function addMeta(parent, label, value) {
+  const item = document.createElement("div");
+  const dt = document.createElement("dt");
+  const dd = document.createElement("dd");
+  dt.textContent = label;
+  dd.textContent = value || "-";
+  item.append(dt, dd);
+  parent.appendChild(item);
 }
 
 function formatAstrology(astrology) {
@@ -90,10 +166,6 @@ function formatAstrology(astrology) {
   return parts.join(" · ") || "입력값 없음";
 }
 
-function formatReading(text) {
-  return escapeHtml(text).split(/\n{2,}/).map((paragraph) => `<p>${paragraph.replace(/\n/g, "<br>")}</p>`).join("");
-}
-
 function formatDate(value) {
   if (!value) return "";
   const date = new Date(value);
@@ -102,13 +174,4 @@ function formatDate(value) {
     dateStyle: "medium",
     timeStyle: "short"
   }).format(date);
-}
-
-function escapeHtml(value) {
-  return String(value || "")
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
 }
