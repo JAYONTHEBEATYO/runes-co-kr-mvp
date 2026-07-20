@@ -1,7 +1,10 @@
 const crypto = require("node:crypto");
 
 const LOG_PREFIX = "reading-logs/";
+const RATE_LIMIT_PREFIX = "reading-rate-limits/";
 const MAX_LIST_LIMIT = 100;
+const DEFAULT_RETENTION_DAYS = 90;
+const DEFAULT_RATE_LIMIT_RETENTION_DAYS = 3;
 
 function hasBlobStorage() {
   return Boolean(String(process.env.BLOB_READ_WRITE_TOKEN || "").trim());
@@ -10,6 +13,20 @@ function hasBlobStorage() {
 function createReadingId() {
   if (typeof crypto.randomUUID === "function") return crypto.randomUUID();
   return crypto.randomBytes(16).toString("hex");
+}
+
+function hashValue(value) {
+  const secret = String(process.env.RUNES_ADMIN_TOKEN || process.env.GEMINI_API_KEY || "").trim();
+  if (!secret || !value) return null;
+  return crypto.createHmac("sha256", secret).update(String(value)).digest("hex").slice(0, 24);
+}
+
+function clientFingerprint(req) {
+  return hashValue(forwardedIp(req));
+}
+
+function hashDeletionToken(value) {
+  return hashValue(`reading-delete:${value}`);
 }
 
 function pathnameFor(date, id) {
@@ -70,7 +87,8 @@ function buildReadingLog({
   astrology,
   tajussi,
   reading,
-  model
+  model,
+  deletionTokenHash
 }) {
   const createdAt = new Date();
   const id = createReadingId();
@@ -78,9 +96,11 @@ function buildReadingLog({
     id,
     createdAt: createdAt.toISOString(),
     request: {
-      ip: forwardedIp(req),
-      userAgent: String(req.headers["user-agent"] || "").slice(0, 300),
-      referer: String(req.headers.referer || req.headers.referrer || "").slice(0, 300)
+      clientHash: clientFingerprint(req)
+    },
+    privacy: {
+      deletionTokenHash: deletionTokenHash || null,
+      retentionDays: retentionDays()
     },
     input: {
       question,
@@ -119,12 +139,18 @@ async function saveReadingLog(record) {
 async function listReadingLogs({ limit = 50, cursor } = {}) {
   if (!hasBlobStorage()) return { configured: false, logs: [], hasMore: false };
   const { get, list } = await import("@vercel/blob");
-  const result = await list({
-    prefix: LOG_PREFIX,
-    limit: Math.min(Math.max(Number(limit) || 50, 1), MAX_LIST_LIMIT),
-    cursor
-  });
-  const blobs = [...result.blobs].sort((a, b) => new Date(b.uploadedAt) - new Date(a.uploadedAt));
+  const requestedLimit = Math.min(Math.max(Number(limit) || 50, 1), MAX_LIST_LIMIT);
+  const allBlobs = [];
+  let nextCursor = cursor;
+  for (let page = 0; page < 10; page += 1) {
+    const result = await list({ prefix: LOG_PREFIX, limit: 1000, cursor: nextCursor });
+    allBlobs.push(...result.blobs);
+    if (!result.hasMore || !result.cursor) break;
+    nextCursor = result.cursor;
+  }
+  const blobs = allBlobs
+    .sort((a, b) => new Date(b.uploadedAt) - new Date(a.uploadedAt))
+    .slice(0, requestedLimit);
   const logs = [];
   for (const blob of blobs) {
     const item = await get(blob.pathname, { access: "private", useCache: false });
@@ -151,12 +177,132 @@ async function listReadingLogs({ limit = 50, cursor } = {}) {
       logs.push({ pathname: blob.pathname, createdAt: blob.uploadedAt, parseError: true });
     }
   }
-  return { configured: true, logs, cursor: result.cursor || null, hasMore: Boolean(result.hasMore) };
+  return { configured: true, logs, cursor: null, hasMore: allBlobs.length > requestedLimit };
+}
+
+async function deleteReadingLog(pathname) {
+  if (!hasBlobStorage()) return { deleted: false, reason: "blob-token-missing" };
+  const safePath = String(pathname || "");
+  if (!safePath.startsWith(LOG_PREFIX) || !safePath.endsWith(".json")) {
+    return { deleted: false, reason: "invalid-path" };
+  }
+  const { del } = await import("@vercel/blob");
+  await del(safePath);
+  return { deleted: true, pathname: safePath };
+}
+
+async function deleteReadingByOwner({ id, createdAt, token }) {
+  if (!hasBlobStorage()) return { deleted: false, reason: "blob-token-missing" };
+  const safeId = String(id || "").trim();
+  const date = new Date(createdAt);
+  if (!/^[a-f0-9-]{32,40}$/i.test(safeId) || Number.isNaN(date.getTime()) || !token) {
+    return { deleted: false, reason: "invalid-request" };
+  }
+
+  const dayPrefix = `${LOG_PREFIX}${date.toISOString().slice(0, 10).replace(/-/g, "/")}/`;
+  const { get, list } = await import("@vercel/blob");
+  let cursor;
+  for (let page = 0; page < 10; page += 1) {
+    const result = await list({ prefix: dayPrefix, limit: 100, cursor });
+    const blob = result.blobs.find((item) => item.pathname.endsWith(`-${safeId}.json`));
+    if (blob) {
+      const item = await get(blob.pathname, { access: "private", useCache: false });
+      if (!item?.stream) return { deleted: false, reason: "not-found" };
+      const record = JSON.parse(await streamToText(item.stream));
+      const expected = String(record.privacy?.deletionTokenHash || "");
+      const actual = String(hashDeletionToken(token) || "");
+      if (!safeEqual(expected, actual)) return { deleted: false, reason: "unauthorized" };
+      return deleteReadingLog(blob.pathname);
+    }
+    if (!result.hasMore || !result.cursor) break;
+    cursor = result.cursor;
+  }
+  return { deleted: false, reason: "not-found" };
+}
+
+async function purgeExpiredData() {
+  if (!hasBlobStorage()) return { configured: false, deleted: 0 };
+  const readingCutoff = Date.now() - retentionDays() * 86400000;
+  const rateCutoff = Date.now() - rateLimitRetentionDays() * 86400000;
+  const deleted = [];
+  await collectExpired(LOG_PREFIX, readingCutoff, deleted);
+  await collectExpired(RATE_LIMIT_PREFIX, rateCutoff, deleted);
+  if (deleted.length) {
+    const { del } = await import("@vercel/blob");
+    for (let index = 0; index < deleted.length; index += 100) {
+      await del(deleted.slice(index, index + 100));
+    }
+  }
+  const scrubbed = await scrubLegacyReadingLogs();
+  return { configured: true, deleted: deleted.length, scrubbed };
+}
+
+async function scrubLegacyReadingLogs() {
+  const { get, list, put } = await import("@vercel/blob");
+  let cursor;
+  let scrubbed = 0;
+  for (let page = 0; page < 10; page += 1) {
+    const result = await list({ prefix: LOG_PREFIX, limit: 1000, cursor });
+    for (const blob of result.blobs) {
+      const item = await get(blob.pathname, { access: "private", useCache: false });
+      if (!item?.stream) continue;
+      const record = JSON.parse(await streamToText(item.stream));
+      const legacyIp = record.request?.ip || null;
+      const hasLegacyFields = Boolean(legacyIp || record.request?.userAgent || record.request?.referer);
+      if (!hasLegacyFields) continue;
+      record.request = { clientHash: legacyIp ? hashValue(legacyIp) : null };
+      record.privacy = {
+        ...(record.privacy || {}),
+        retentionDays: retentionDays()
+      };
+      await put(blob.pathname, JSON.stringify(record, null, 2), {
+        access: "private",
+        contentType: "application/json; charset=utf-8",
+        allowOverwrite: true
+      });
+      scrubbed += 1;
+    }
+    if (!result.hasMore || !result.cursor) break;
+    cursor = result.cursor;
+  }
+  return scrubbed;
+}
+
+async function collectExpired(prefix, cutoff, target) {
+  const { list } = await import("@vercel/blob");
+  let cursor;
+  for (let page = 0; page < 20; page += 1) {
+    const result = await list({ prefix, limit: 1000, cursor });
+    for (const blob of result.blobs) {
+      if (new Date(blob.uploadedAt).getTime() < cutoff) target.push(blob.pathname);
+    }
+    if (!result.hasMore || !result.cursor) break;
+    cursor = result.cursor;
+  }
+}
+
+function retentionDays() {
+  return boundedDays(process.env.RUNES_LOG_RETENTION_DAYS, DEFAULT_RETENTION_DAYS, 7, 365);
+}
+
+function rateLimitRetentionDays() {
+  return boundedDays(process.env.RUNES_RATE_LIMIT_RETENTION_DAYS, DEFAULT_RATE_LIMIT_RETENTION_DAYS, 2, 14);
+}
+
+function boundedDays(value, fallback, min, max) {
+  const number = Number(value);
+  return Number.isFinite(number) ? Math.min(Math.max(Math.floor(number), min), max) : fallback;
 }
 
 function forwardedIp(req) {
   const forwarded = String(req.headers["x-forwarded-for"] || "").split(",")[0].trim();
   return forwarded || String(req.socket?.remoteAddress || "").slice(0, 100);
+}
+
+function safeEqual(a, b) {
+  const left = Buffer.from(String(a || ""));
+  const right = Buffer.from(String(b || ""));
+  return left.length === right.length && crypto.timingSafeEqual(left, right);
 }
 
 async function streamToText(stream) {
@@ -166,6 +312,13 @@ async function streamToText(stream) {
 
 module.exports = {
   buildReadingLog,
+  clientFingerprint,
+  deleteReadingByOwner,
+  deleteReadingLog,
+  hashDeletionToken,
   listReadingLogs,
+  purgeExpiredData,
+  rateLimitRetentionDays,
+  retentionDays,
   saveReadingLog
 };

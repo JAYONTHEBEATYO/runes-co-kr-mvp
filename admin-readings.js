@@ -140,8 +140,37 @@ function createLogArticle(log) {
   }
   details.append(summary, reading);
 
-  article.append(header, meta, details);
+  const actions = document.createElement("div");
+  actions.className = "admin-log-actions";
+  const deleteButton = document.createElement("button");
+  deleteButton.className = "button button--danger";
+  deleteButton.type = "button";
+  deleteButton.textContent = "기록 삭제";
+  deleteButton.disabled = !log.pathname;
+  deleteButton.addEventListener("click", () => deleteReading(log, article));
+  actions.appendChild(deleteButton);
+
+  article.append(header, meta, details, actions);
   return article;
+}
+
+async function deleteReading(log, article) {
+  if (!log.pathname || !window.confirm("이 리딩 기록을 영구 삭제할까요?")) return;
+  setStatus("기록을 삭제하는 중입니다.");
+  try {
+    const response = await fetch("/api/admin-readings", {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      credentials: "same-origin",
+      body: JSON.stringify({ pathname: log.pathname })
+    });
+    const data = await response.json();
+    if (!response.ok || !data.deleted) throw new Error(data.error || "삭제 실패");
+    article.remove();
+    setStatus("기록을 삭제했습니다.");
+  } catch (error) {
+    setStatus(error.message || "기록을 삭제하지 못했습니다.");
+  }
 }
 
 function addMeta(parent, label, value) {

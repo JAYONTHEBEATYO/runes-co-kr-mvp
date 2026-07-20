@@ -17,17 +17,15 @@ module.exports = async function handler(req, res) {
     res.statusCode = 200;
     res.end(JSON.stringify({
       configured,
-      apiUrl: baseUrl,
       healthOk: response.ok,
-      health
+      service: health?.service || null,
+      version: health?.version || null
     }));
   } catch (error) {
     res.statusCode = 200;
     res.end(JSON.stringify({
       configured,
-      apiUrl: baseUrl,
-      healthOk: false,
-      error: String(error.message || error).slice(0, 300)
+      healthOk: false
     }));
   }
 };

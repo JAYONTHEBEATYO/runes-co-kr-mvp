@@ -1,11 +1,11 @@
-const { listReadingLogs } = require("./reading-log-store");
+const { deleteReadingLog, listReadingLogs } = require("./reading-log-store");
 const { isAuthorized } = require("./admin-session");
 
 module.exports = async function handler(req, res) {
   res.setHeader("Content-Type", "application/json; charset=utf-8");
   res.setHeader("Cache-Control", "no-store");
 
-  if (req.method !== "GET") {
+  if (!["GET", "DELETE"].includes(req.method)) {
     res.statusCode = 405;
     res.end(JSON.stringify({ error: "Method not allowed" }));
     return;
@@ -18,6 +18,16 @@ module.exports = async function handler(req, res) {
   }
 
   try {
+    if (req.method === "DELETE") {
+      const body = req.body && typeof req.body === "object"
+        ? req.body
+        : JSON.parse(typeof req.body === "string" ? req.body : "{}");
+      const result = await deleteReadingLog(body.pathname);
+      res.statusCode = result.deleted ? 200 : 400;
+      res.end(JSON.stringify(result));
+      return;
+    }
+
     const url = new URL(req.url, "https://runes.co.kr");
     const limit = Number(url.searchParams.get("limit") || 50);
     const cursor = url.searchParams.get("cursor") || undefined;

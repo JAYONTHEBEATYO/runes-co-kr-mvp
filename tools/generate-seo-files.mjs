@@ -16,7 +16,7 @@ const staticPages = [
   { loc: "/columns-runes-letter-or-oracle", priority: "0.85", changefreq: "monthly" },
   { loc: "/columns-reversed-runes", priority: "0.8", changefreq: "monthly" },
   { loc: "/columns-rune-casting", priority: "0.8", changefreq: "monthly" },
-  { loc: "/en/", priority: "0.4", changefreq: "monthly" }
+  { loc: "/privacy", priority: "0.3", changefreq: "yearly" }
 ];
 
 const runeData = JSON.parse(fs.readFileSync(path.join(root, "content", "elder-futhark.ko.json"), "utf8"));
@@ -59,6 +59,7 @@ const llms = `# 룬스 - 고대 북유럽 엘더 푸사르크 룬 문자의 비�
 - [룬은 문자일까, 점술 도구일까](https://runes.co.kr/columns-runes-letter-or-oracle): 룬 문자와 룬스톤 점술의 관계를 역사와 현대 오라클 실천으로 나누어 설명
 - [룬 캐스팅 칼럼](https://runes.co.kr/columns-rune-casting): 룬스톤을 던져 읽는 방식에 대한 정리
 - [역방향 고찰](https://runes.co.kr/columns-reversed-runes): 역방향, merkstave, 그림자 해석에 대한 보수적 검토
+- [개인정보 처리방침](https://runes.co.kr/privacy): 무료 리딩에서 처리하는 정보, 보관기간과 삭제 방법
 
 ## 24룬 상세 페이지
 ${runeData.runes.map((rune) => `- [${rune.ko} (${rune.name})](https://runes.co.kr/runes/${rune.id}): ${rune.keywords.join(", ")}`).join("\n")}

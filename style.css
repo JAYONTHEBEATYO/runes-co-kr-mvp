@@ -1,5 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap");
-@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css");
+@import url("https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap");
 
 :root {
   --ink: #171717;
@@ -29,7 +28,7 @@ body {
   background:
     radial-gradient(circle at top left, rgba(236, 232, 255, .72), transparent 34rem),
     linear-gradient(180deg, #fbfaf7 0%, var(--paper) 38%, #fbfaf7 100%);
-  font-family: "Pretendard Variable", Pretendard, "Apple SD Gothic Neo", "Noto Sans KR", "Segoe UI", system-ui, sans-serif;
+  font-family: "Noto Sans KR", "Apple SD Gothic Neo", "Segoe UI", system-ui, sans-serif;
   font-size: 16px;
   line-height: 1.68;
   word-break: keep-all;
@@ -321,6 +320,33 @@ select:focus {
   background: linear-gradient(180deg, #fffefa 0%, #f7f4ff 100%);
 }
 
+.personal-fields > summary {
+  list-style: none;
+  cursor: pointer;
+}
+
+.personal-fields > summary::-webkit-details-marker {
+  display: none;
+}
+
+.personal-fields > summary::after {
+  content: "+";
+  margin-left: auto;
+  color: var(--violet);
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.personal-fields[open] > summary::after {
+  content: "−";
+}
+
+.personal-fields__body {
+  margin-top: 14px;
+  border-top: 1px solid rgba(59, 43, 130, .12);
+  padding-top: 14px;
+}
+
 .form-section-title {
   display: flex;
   justify-content: space-between;
@@ -337,6 +363,132 @@ select:focus {
 .field-help {
   color: var(--muted);
   font-size: 13px;
+}
+
+.privacy-consent {
+  grid-template-columns: 20px minmax(0, 1fr);
+  gap: 10px;
+  align-items: start;
+  margin: 4px 0 18px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.55;
+}
+
+.privacy-consent input {
+  width: 18px;
+  min-height: 18px;
+  margin: 2px 0 0;
+  accent-color: var(--violet);
+}
+
+.privacy-consent a {
+  color: var(--violet);
+  font-weight: 800;
+}
+
+.reading-error {
+  border: 1px solid #dbc4c0;
+  border-radius: var(--radius);
+  padding: 18px;
+  background: #fff6f4;
+}
+
+.reading-error p,
+.result-privacy-note {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.button--quiet {
+  margin-left: 8px;
+  border-color: var(--line);
+  color: var(--muted);
+  background: transparent;
+}
+
+.button--danger {
+  border-color: #caa6a0;
+  color: #8b3029;
+  background: #fff6f4;
+}
+
+.admin-log-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 16px;
+}
+
+.site-footer {
+  display: grid;
+  gap: 12px;
+  padding: 36px clamp(20px, 6vw, 88px);
+  border-top: 1px solid var(--line);
+  background: #fffefa;
+}
+
+.site-footer nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.site-footer a {
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.site-footer p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.policy-page {
+  padding-bottom: 72px;
+}
+
+.policy-hero {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 72px 22px 34px;
+}
+
+.policy-hero h1 {
+  margin: 0 0 16px;
+  font-family: "Gowun Batang", "Noto Serif KR", serif;
+  font-size: clamp(38px, 6vw, 68px);
+  line-height: 1.15;
+}
+
+.article-toc {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 28px 0 42px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 16px;
+  background: #fffefa;
+}
+
+.article-toc strong {
+  width: 100%;
+  margin-bottom: 4px;
+}
+
+.article-toc a {
+  border: 1px solid rgba(59, 43, 130, .16);
+  border-radius: 999px;
+  padding: 6px 10px;
+  color: var(--violet);
+  background: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
 }
 
 .field-grid {
@@ -989,13 +1141,24 @@ th {
 
   .topbar__links {
     width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 4px;
-    overflow-x: auto;
-    white-space: nowrap;
+    overflow: visible;
+    white-space: normal;
+  }
+
+  .topbar__links a {
+    padding: 7px 4px;
+    text-align: center;
+  }
+
+  .lang-toggle {
+    display: none;
   }
 
   .hero {
-    min-height: 76vh;
+    min-height: 620px;
     align-items: end;
     background:
       linear-gradient(0deg, rgba(251,250,247,.98) 0%, rgba(251,250,247,.78) 58%, rgba(251,250,247,.18) 100%),
@@ -1078,9 +1241,19 @@ th {
   }
 
   .form-section-title {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 2px;
+    align-items: center;
+    flex-direction: row;
+    gap: 8px;
+  }
+
+  .form-section-title span {
+    font-size: 12px;
+  }
+
+  .button--quiet {
+    display: block;
+    width: 100%;
+    margin: 10px 0 0;
   }
 
   .result h2 {

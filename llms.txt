@@ -13,6 +13,7 @@
 - [룬은 문자일까, 점술 도구일까](https://runes.co.kr/columns-runes-letter-or-oracle): 룬 문자와 룬스톤 점술의 관계를 역사와 현대 오라클 실천으로 나누어 설명
 - [룬 캐스팅 칼럼](https://runes.co.kr/columns-rune-casting): 룬스톤을 던져 읽는 방식에 대한 정리
 - [역방향 고찰](https://runes.co.kr/columns-reversed-runes): 역방향, merkstave, 그림자 해석에 대한 보수적 검토
+- [개인정보 처리방침](https://runes.co.kr/privacy): 무료 리딩에서 처리하는 정보, 보관기간과 삭제 방법
 
 ## 24룬 상세 페이지
 - [페후 (Fehu)](https://runes.co.kr/runes/fehu): 자원, 소유, 흐름, 값어치

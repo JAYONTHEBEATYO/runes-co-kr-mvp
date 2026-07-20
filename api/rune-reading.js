@@ -1,6 +1,8 @@
 const runeDb = require("../content/elder-futhark.ko.json");
 const agentContext = require("../content/rag/rune-reading-agent.ko.json");
-const { buildReadingLog, saveReadingLog } = require("./reading-log-store");
+const crypto = require("node:crypto");
+const { buildReadingLog, hashDeletionToken, saveReadingLog } = require("./reading-log-store");
+const { applyRateLimitHeaders, reserveReading } = require("./reading-rate-limit");
 
 const MAX_QUESTION_LENGTH = 500;
 const ALLOWED_TOPICS = new Set(["general", "love", "work", "money", "self", "choice"]);
@@ -355,6 +357,7 @@ async function callGemini(prompt) {
 
 module.exports = async function handler(req, res) {
   res.setHeader("Content-Type", "application/json; charset=utf-8");
+  res.setHeader("Cache-Control", "no-store");
 
   if (req.method !== "POST") {
     res.statusCode = 405;
@@ -370,6 +373,11 @@ module.exports = async function handler(req, res) {
 
   try {
     const body = getBody(req);
+    if (body.privacyConsent !== true || body.privacyConsentVersion !== "2026-07-20") {
+      res.statusCode = 400;
+      res.end(JSON.stringify({ error: "Privacy consent is required" }));
+      return;
+    }
     const topic = ALLOWED_TOPICS.has(body.topic) ? body.topic : "general";
     const spread = Number(body.spread);
     const spreadKey = cleanText(body.spreadKey, 40);
@@ -393,6 +401,17 @@ module.exports = async function handler(req, res) {
       return;
     }
 
+    const rateLimit = await reserveReading(req);
+    applyRateLimitHeaders(res, rateLimit);
+    if (!rateLimit.allowed) {
+      res.statusCode = 429;
+      res.end(JSON.stringify({
+        error: "Daily reading limit reached",
+        message: "오늘의 무료 리딩 횟수를 모두 사용했습니다. 내일 다시 이용해주세요."
+      }));
+      return;
+    }
+
     let tajussi = null;
     if (astrology) {
       try {
@@ -412,6 +431,7 @@ module.exports = async function handler(req, res) {
     }
 
     const topicLabel = cleanText(body.topicLabel, 80);
+    const deletionToken = crypto.randomBytes(24).toString("base64url");
     const logRecord = buildReadingLog({
       req,
       question,
@@ -425,7 +445,8 @@ module.exports = async function handler(req, res) {
       astrology,
       tajussi,
       reading,
-      model
+      model,
+      deletionTokenHash: hashDeletionToken(deletionToken)
     });
     let logStatus = { saved: false };
     try {
@@ -441,7 +462,12 @@ module.exports = async function handler(req, res) {
       model,
       provider: "gemini",
       source: "runes-reading-agent-ko",
-      log: { id: logRecord.id, saved: Boolean(logStatus.saved) },
+      log: {
+        id: logRecord.id,
+        createdAt: logRecord.createdAt,
+        saved: Boolean(logStatus.saved),
+        deletionToken: logStatus.saved ? deletionToken : null
+      },
       astrology,
       tajussi: tajussi ? { source: tajussi.source, enabled: true } : { enabled: false }
     }));

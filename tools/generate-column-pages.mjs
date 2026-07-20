@@ -244,7 +244,9 @@ ${paragraphs.map((paragraph) => paragraph.includes(":") && paragraph.length < 90
     author: { "@type": "Organization", name: "룬스" },
     publisher: { "@type": "Organization", name: "룬스" },
     mainEntityOfPage: url,
-    about: article.keywords
+    about: article.keywords,
+    datePublished: "2026-06-10",
+    dateModified: "2026-07-20"
   }, null, 2)}
   </script>
   <script type="application/ld+json">
@@ -281,6 +283,10 @@ ${faq}
       <p><a href="./columns-runes-letter-or-oracle.html">룬은 문자일까, 점술 도구일까?</a>에서 룬 문자와 현대 룬스톤 리딩의 관계를 먼저 잡고, <a href="./columns-rune-casting.html">룬스톤을 던지는 캐스팅</a>에서 심화 리딩 방식까지 이어서 볼 수 있습니다.</p>
     </article>
   </main>
+  <footer class="site-footer">
+    <strong>룬스</strong>
+    <nav aria-label="사이트 정책"><a href="./privacy.html">개인정보 처리방침</a><a href="./columns.html">칼럼</a><a href="./beginner.html">입문 가이드</a></nav>
+  </footer>
 </body>
 </html>
 `;

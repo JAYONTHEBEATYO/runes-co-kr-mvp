@@ -80,13 +80,21 @@ async function renderResult(event) {
   const count = spreadConfig.count;
   const topic = (form.get("topic") || "general").toString();
   const question = (form.get("question") || "").toString().trim() || "지금 내가 가장 먼저 바라봐야 할 흐름은 무엇인가요?";
+  const privacyConsent = form.get("privacyConsent") === "on";
   const astrology = buildAstrologyInput(form);
   const selected = pickRunes(count);
   const result = document.getElementById("result");
 
   result.innerHTML = `<p class="empty">룬을 정리하고 결과지를 만드는 중입니다.</p>`;
 
-  const llmReading = await requestLlmReading({ question, topic, topicLabel: topicLabels[topic] || topicLabels.general, spread: count, spreadKey, spreadTitle: spreadConfig.title, positions: spreadConfig.positions, runes: selected, astrology });
+  let readingResponse;
+  try {
+    readingResponse = await requestLlmReading({ question, topic, topicLabel: topicLabels[topic] || topicLabels.general, spread: count, spreadKey, spreadTitle: spreadConfig.title, positions: spreadConfig.positions, runes: selected, astrology, privacyConsent, privacyConsentVersion: "2026-07-20" });
+  } catch (error) {
+    result.innerHTML = `<div class="reading-error"><strong>지금은 리딩을 만들 수 없습니다.</strong><p>${escapeHtml(error.message || "잠시 후 다시 시도해주세요.")}</p></div>`;
+    return;
+  }
+  const llmReading = readingResponse.reading;
 
   result.innerHTML = `
     <p class="eyebrow">Rune Reading Result</p>
@@ -115,10 +123,15 @@ async function renderResult(event) {
       `).join("")}
     </details>
     <button class="button button--primary" type="button" data-print-result>PDF로 저장</button>
+    ${readingResponse.log?.saved ? `<button class="button button--quiet" type="button" data-delete-reading>내 리딩 기록 삭제</button><p class="result-privacy-note">이 기록은 비공개로 보관되며 90일 뒤 자동 삭제됩니다.</p>` : ""}
   `;
 
   const printButton = result.querySelector("[data-print-result]");
   if (printButton) printButton.addEventListener("click", () => window.print());
+  const deleteButton = result.querySelector("[data-delete-reading]");
+  if (deleteButton) {
+    deleteButton.addEventListener("click", () => deleteOwnReading(readingResponse.log, deleteButton));
+  }
 }
 
 function buildAstrologyInput(form) {
@@ -171,14 +184,43 @@ async function requestLlmReading(payload) {
         policy: "Use upright Elder Futhark meanings only. Do not use reversals, merkstave, or shadow interpretations."
       })
     });
+    const data = await response.json().catch(() => ({}));
+    if (response.status === 429) {
+      const error = new Error(data.message || "오늘의 무료 리딩 횟수를 모두 사용했습니다.");
+      error.isRateLimit = true;
+      throw error;
+    }
     if (!response.ok) throw new Error(`LLM endpoint returned ${response.status}`);
-    const data = await response.json();
-    if (data && data.reading) return data.reading;
+    if (data && data.reading) return data;
   } catch (error) {
+    if (error.isRateLimit) throw error;
     console.info("LLM endpoint unavailable; using local synthesis.", error);
   }
 
-  return buildLocalReading(payload);
+  return { reading: buildLocalReading(payload), provider: "local", log: { saved: false } };
+}
+
+async function deleteOwnReading(log, button) {
+  if (!log?.id || !log?.createdAt || !log?.deletionToken) return;
+  if (!window.confirm("서버에 저장된 이 리딩 기록을 지금 삭제할까요? 삭제 후에는 복구할 수 없습니다.")) return;
+  button.disabled = true;
+  button.textContent = "삭제 중";
+  try {
+    const response = await fetch("/api/delete-reading", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id: log.id, createdAt: log.createdAt, token: log.deletionToken })
+    });
+    const data = await response.json().catch(() => ({}));
+    if (!response.ok || !data.deleted) throw new Error("삭제하지 못했습니다.");
+    button.textContent = "리딩 기록 삭제 완료";
+    const note = button.parentElement.querySelector(".result-privacy-note");
+    if (note) note.textContent = "서버의 리딩 기록을 삭제했습니다.";
+  } catch (error) {
+    button.disabled = false;
+    button.textContent = "내 리딩 기록 삭제";
+    window.alert(error.message || "삭제하지 못했습니다. 잠시 후 다시 시도해주세요.");
+  }
 }
 
 function buildLocalReading({ question, topic, spread, spreadTitle, positions, runes, astrology }) {
@@ -385,24 +427,11 @@ function setHidden(id, value) {
   if (input) input.value = value;
 }
 
-function initLangToggle() {
-  const button = document.querySelector("[data-lang-toggle]");
-  if (!button) return;
-  const current = localStorage.getItem("runes-lang") || "ko";
-  button.textContent = current.toUpperCase();
-  button.addEventListener("click", () => {
-    const next = (localStorage.getItem("runes-lang") || "ko") === "ko" ? "en" : "ko";
-    localStorage.setItem("runes-lang", next);
-    button.textContent = next.toUpperCase();
-  });
-}
-
 async function init() {
   const response = await fetch("./content/elder-futhark.ko.json");
   const data = await response.json();
   runeData = data.runes;
   renderRuneGrid();
-  initLangToggle();
   initPlaceAutocomplete();
   document.getElementById("reading-form").addEventListener("submit", renderResult);
 }
